@@ -1,0 +1,105 @@
+local GUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/aaaa"))()
+
+local UI = GUI:CreateWindow("Troyan hub","lop")
+-- Just an example of how you would actually u
+local LP = UI:addPage("Local",2,false,6)
+
+-- Label
+
+LP:addLabel("fe script","atlas hub")
+
+--- Button
+
+LP:addButton("RESET",function()
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+-- Toggle
+
+LP:addToggle("Sprint",function(value)
+    if value == false then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 10
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20
+    end
+end)
+-- Textbox
+local GUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/aaaa"))()
+
+local UI = GUI:CreateWindow("Atlas hub","lop")
+
+local Home = UI:addPage("Home",1,true,6)
+--- Just an example of how you would actually use it i guess
+
+local LP = UI:addPage("Local",2,false,6)
+
+-- Label
+
+LP:addLabel("fe script","atlas hub")
+
+--- Button
+
+LP:addButton("RESET",function()
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+
+---Button
+
+LP:addButton("IV Admin",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Iv%20Admin/Admin%202.lua'))()
+    end)
+    
+---Button
+
+LP:addButton("Antiragdoll",function()
+    plrs = game:GetService("Players")
+plr = plrs.LocalPlayer
+char = plr.Character
+char.HumanoidRootPart.Size = Vector3.new(1000000, char.HumanoidRootPart.Size.Y, 1000000)
+char.Pushed:Destroy()
+char.RagdollMe:Destroy()
+game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
+plrs = game:GetService("Players")
+plr = plrs.LocalPlayer
+char = plr.Character
+char.HumanoidRootPart.Size = Vector3.new(0.98, 1.62, 0.7225, char.HumanoidRootPart.Size.Y, 0.98, 1.62, 0.7225)
+end)
+end)
+
+---Button
+
+LP:addButton("malwareHub",function()
+    loadstring(game:HttpGet('https://gist.githubusercontent.com/H20CalibreYT/462f6e6236a9371130f113def6549bb1/raw/'))()
+    end)
+    
+--- Button
+    
+LP:addButton("kill fling",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Kill%20Fling.lua"))()
+    end)
+    
+  ---Button
+    
+LP:addButton("R15Emotes",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/R15%20Emotes/R15%20Emotes.lua'))()
+    end)
+    
+  ---Button
+    
+LP:addButton("Antikill",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Anti%20Kill.lua"))()
+    end)
+    
+  -- Toggle
+
+LP:addToggle("Sprint",function(value)
+    if value == false then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 24
+    end
+end)
+-- Textbox
+
+LP:addTextBox("Jump Power / 50 is default","Number here",function(value)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+end) 
