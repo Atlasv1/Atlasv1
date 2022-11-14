@@ -1,0 +1,89 @@
+local GUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/aaaa"))()
+
+local UI = GUI:CreateWindow("GigabiteHub","sexoo")
+
+local Home = UI:addPage("Made by luisito",1,true,6)
+--- Just an example of how you would actually use it i guess
+
+local LP = UI:addPage("Scripts",2,false,6)
+
+---Button
+
+LP:addButton("Antiragdoll",function()
+    plrs = game:GetService("Players")
+plr = plrs.LocalPlayer
+char = plr.Character
+char.HumanoidRootPart.Size = Vector3.new(1000000, char.HumanoidRootPart.Size.Y, 1000000)
+char.Pushed:Destroy()
+char.RagdollMe:Destroy()
+game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
+plrs = game:GetService("Players")
+plr = plrs.LocalPlayer
+char = plr.Character
+char.HumanoidRootPart.Size = Vector3.new(0.98, 1.62, 0.7225, char.HumanoidRootPart.Size.Y, 0.98, 1.62, 0.7225)
+end)
+end)
+
+--- Button
+    
+LP:addButton("kill fling",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Kill%20Fling.lua"))()
+    end)
+    
+  ---Button
+    
+LP:addButton("R15Emotes",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/R15%20Emotes/R15%20Emotes.lua'))()
+    end)
+    
+  ---Button
+    
+LP:addButton("Antikill",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Anti%20Kill.lua"))()
+    end)
+    
+  ---Button
+    
+LP:addButton("kill",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Kill.lua"))()
+    end)
+    
+  ---Button
+    
+LP:addButton("antifling",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/omnilocua/omnilocua/main/Anti%20Fling.lua"))()
+    end)
+    
+   ---Button
+    
+LP:addButton("superleg",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Leg%20Resize'))()
+--r15
+    end)
+    
+  ---Button
+  
+LP:addButton("small",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/Small"))()
+    end)
+    
+  ---Button
+  
+LP:addButton("Fate Admin",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+    end)
+    
+  -- Toggle
+
+LP:addToggle("Sprint",function(value)
+    if value == false then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 24
+    end
+end)
+-- Textbox
+
+LP:addTextBox("Jump Power / 50 is default","Number here",function(value)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+end) 
