@@ -1,0 +1,78 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreyCaat/GC-Library/main/Lib.txt", true))()
+--getting the library
+
+
+local main = library:CreateMain("Nightmare Hub", "Luisito#8668")
+--"credits" can be left empty, I would recommend using your discord
+
+
+local tab = main:CreateTab("Fe scritps")
+--creating a tab
+
+local dropdown = tab:CreateDropdown("List scripts")
+--creating a dropdown menu
+
+
+local dropdownbutton = dropdown:CreateDropdownButton("fate Admin", function()
+--executes this when clicking on the button
+loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))()
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("spinhat",function()
+--executes this when clicking on the button
+local obese = game:GetService('Players')
+for i,v in pairs(obese.LocalPlayer.Character:GetChildren()) do
+if v.ClassName == "Accessory" then
+local stg = v.Handle:FindFirstChildOfClass("BodyForce")
+if stg == nil then
+local a = Instance.new("BodyPosition")
+local b = Instance.new("BodyAngularVelocity")
+a.Parent = v.Handle
+b.Parent = v.Handle
+v.Handle.AccessoryWeld:Destroy()
+b.AngularVelocity = Vector3.new(0,100,0)
+b.MaxTorque = Vector3.new(0,200,0)
+a.P = 30000
+a.D = 50
+game:GetService('RunService').Stepped:connect(function()
+a.Position = obese.LocalPlayer.Character.Head.Position
+end)
+end
+end
+end
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("superLeg",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Leg%20Resize'))()
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("fe emotes",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/R15%20Emotes/R15%20Emotes.lua'))()
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("fe small",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/Small"))()
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("fe kill",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Kill.lua"))()
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("Fe Headless",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/FE%20Headless.txt"))()
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("Hatfling",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Hat%20Fling.lua"))()
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("Invisible",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Invisible.lua"))()
+end)
