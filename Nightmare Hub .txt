@@ -72,17 +72,12 @@ local dropdownbutton = dropdown:CreateDropdownButton("Hatfling",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Hat%20Fling.lua"))()
 end)
 
-local dropdownbutton = dropdown:CreateDropdownButton("Invisible",function()
+local dropdownbutton = dropdown:CreateDropdownButton("HatTool",function()
 --executes this when clicking on the button
-loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Invisible.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/hattool.lua"))()
 end)
 
 local dropdownbutton = dropdown:CreateDropdownButton("BigHat use potion",function()
 --executes this when clicking on the button
 loadstring(game:HttpGet("https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/hat%20resize%20%2B%20drop"))()
-end)
-
-local dropdownbutton = dropdown:CreateDropdownButton("HatTool",function()
---executes this when clicking on the button
-loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/hattool.lua"))()
 end)
