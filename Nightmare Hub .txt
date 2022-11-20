@@ -76,3 +76,8 @@ local dropdownbutton = dropdown:CreateDropdownButton("Invisible",function()
 --executes this when clicking on the button
 loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Invisible.lua"))()
 end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("BigHat use potion",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/hat%20resize%20%2B%20drop"))()
+end)
