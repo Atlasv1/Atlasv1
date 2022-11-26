@@ -71,3 +71,13 @@ local dropdownbutton = dropdown:CreateDropdownButton("fe snake",function()
 --executes this when clicking on the button
 loadstring(game:HttpGet(('https://pastefy.ga/tWBTcE4R/raw'),true))()
 end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("IV Admin",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Iv%20Admin/Admin%202.lua'))()
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("malwarehub",function()
+--executes this when clicking on the button
+loadstring(game:HttpGet('https://gist.githubusercontent.com/H20CalibreYT/462f6e6236a9371130f113def6549bb1/raw/'))()
+end)
