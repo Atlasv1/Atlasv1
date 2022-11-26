@@ -57,24 +57,9 @@ local dropdownbutton = dropdown:CreateDropdownButton("fe small",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/Small"))()
 end)
 
-local dropdownbutton = dropdown:CreateDropdownButton("fe kill",function()
---executes this when clicking on the button
-loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Kill.lua"))()
-end)
-
 local dropdownbutton = dropdown:CreateDropdownButton("Fe Headless",function()
 --executes this when clicking on the button
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/FE%20Headless.txt"))()
-end)
-
-local dropdownbutton = dropdown:CreateDropdownButton("Hatfling",function()
---executes this when clicking on the button
-loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/Hat%20Fling.lua"))()
-end)
-
-local dropdownbutton = dropdown:CreateDropdownButton("HatTool",function()
---executes this when clicking on the button
-loadstring(game:HttpGet("https://raw.githubusercontent.com/killersess/omn/main/hattool.lua"))()
 end)
 
 local dropdownbutton = dropdown:CreateDropdownButton("BigHat use potion",function()
