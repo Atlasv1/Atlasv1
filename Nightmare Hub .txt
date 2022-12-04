@@ -82,7 +82,7 @@ local dropdownbutton = dropdown:CreateDropdownButton("malwarehub",function()
 loadstring(game:HttpGet('https://gist.githubusercontent.com/H20CalibreYT/462f6e6236a9371130f113def6549bb1/raw/'))()
 end)
 
-local dropdownbutton = dropdown:CreateDropdownButton("malwarehub",function()
+local dropdownbutton = dropdown:CreateDropdownButton("Hatfling",function()
 --executes this when clicking on the button
 loadstring(game:HttpGet('https://gist.githubusercontent.com/1BlueCat/544f7efbe88235666b5b7add65b7344d/raw/f20804bb85542dcc3bc938982e1f05b7ff05cded/FE%2520Hat%2520Fling'))()
 end)
