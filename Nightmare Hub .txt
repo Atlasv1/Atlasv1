@@ -167,3 +167,28 @@ local dropdownbutton = dropdown:CreateDropdownButton("RTX",function()
 --executes this when clicking on the button
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/Rtx"))()
 end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("antifling",function()
+--executes this when clicking on the button
+char = game:GetService("Players").LocalPlayer.Character
+char.HumanoidRootPart.Size = Vector3.new(1000000, char.HumanoidRootPart.Size.Y, 1000000)
+end)
+
+local dropdownbutton = dropdown:CreateDropdownButton("antiragdoll",function()
+--executes this when clicking on the button
+plrs = game:GetService("Players")
+plr = plrs.LocalPlayer
+char = plr.Character
+char.HumanoidRootPart.Size = Vector3.new(1000000, char.HumanoidRootPart.Size.Y, 1000000)
+char.Pushed:Destroy()
+char.RagdollMe:Destroy()
+game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
+plrs = game:GetService("Players")
+plr = plrs.LocalPlayer
+char = plr.Character
+char.HumanoidRootPart.Size = Vector3.new(0.98, 1.62, 0.7225, char.HumanoidRootPart.Size.Y, 0.98, 1.62, 0.7225)
+end)
+end)
+
+
+
