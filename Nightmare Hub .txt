@@ -62,11 +62,6 @@ local dropdownbutton = dropdown:CreateDropdownButton("BigHat use potion",functio
 loadstring(game:HttpGet("https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/hat%20resize%20%2B%20drop"))()
 end)
 
-local dropdownbutton = dropdown:CreateDropdownButton("fe snake",function()
---executes this when clicking on the button
-loadstring(game:HttpGet(('https://pastefy.ga/tWBTcE4R/raw'),true))()
-end)
-
 local dropdownbutton = dropdown:CreateDropdownButton("IV Admin",function()
 --executes this when clicking on the button
 loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Iv%20Admin/Admin%202.lua'))()
