@@ -61,12 +61,6 @@ LP:addButton("small",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/Small"))()
     end)
     
-  ---Button
-  
-LP:addButton("iv admin v2",function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Iv%20Admin/Admin%202.lua'))()
-    end)
-    
   ---button
     
 LP:addButton("hatfling",function()    
