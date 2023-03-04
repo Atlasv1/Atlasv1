@@ -70,7 +70,7 @@ LP:addButton("hatfling",function()
   ---button
   
 LP:addButton("RTX",function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/Rtx"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ZhenX201/RTX-Script/main/source"))()
     end)
     
   --button
