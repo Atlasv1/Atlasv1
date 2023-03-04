@@ -1,9 +1,6 @@
 local GUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/aaaa"))()
 
-local UI = GUI:CreateWindow("Siikosis-Hub","sexoo")
-
-local Home = UI:addPage("Made by 4luzI#8668",1,true,6)
---- Just an example of how you would actually use it i guess
+local UI = GUI:CreateWindow("Siikosis-Hub      "Made by 4luzI#8668"        ","sexoo")
 
 local LP = UI:addPage("Scripts",2,false,6)
 
