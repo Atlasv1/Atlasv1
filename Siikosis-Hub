@@ -63,7 +63,7 @@ LP:addButton("small",function()
     
   ---Button
   
-LP:addButton("iv-admin v2",function()
+LP:addButton("iv admin v2",function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Iv%20Admin/Admin%202.lua'))()
     end)
     
