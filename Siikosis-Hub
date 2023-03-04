@@ -1,6 +1,9 @@
 local GUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/aaaa"))()
 
-local UI = GUI:CreateWindow("Siikosis-Hub    "Made by 4luzI#8668"      ","sexoo")
+local UI = GUI:CreateWindow("Siikosis-Hub","sexoo")
+
+local Home = UI:addPage("Made by 4luzI#8668",1,true,6)
+--- Just an example of how you would actually use it i guess
 
 local LP = UI:addPage("Scripts",2,false,6)
 
@@ -202,4 +205,4 @@ end)
 
 LP:addTextBox("Jump Power / 50 is default","Number here",function(value)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
-end) 
+end)
