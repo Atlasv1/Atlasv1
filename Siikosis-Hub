@@ -39,17 +39,22 @@ LP:addButton("Superleg",function()
   ---Button
     
 LP:addButton("Antifling",function()
-    game:GetService("RunService").Stepped:Connect(function()
-for i, v in pairs(game:GetService'Players':GetChildren()) do
-if v ~= game.Players.LocalPlayer then
-if v and v.Character then
-v.Character.HumanoidRootPart.CanCollide = false
-v.Character.Head.CanCollide = false
-v.Character.LowerTorso.CanCollide = false
-v.Character.UpperTorso.CanCollide = false
-end
-end
-end
+    local RunService = game:GetService("RunService")
+local players = game:GetService("Players")
+local plr = players.LocalPlayer
+
+RunService.Stepped:Connect(function()
+    for i, CoPlayer in pairs(players:GetChildren()) do
+        if CoPlayer ~= plr and CoPlayer.Character then
+            for i,part in pairs(CoPlayer.Character:GetChildren()) do
+                if part:IsA("BasePart") or part:IsA("Part") or part.Name == "HumanoidRootPart" then
+                    part.CanCollide = false
+                elseif part:IsA("Accessory") and part:FindFirstChildOfClass("MeshPart") then
+                    part:FindFirstChildOfClass("MeshPart").CanCollide = false
+                end
+            end
+        end
+    end
 end)
 end)
     
@@ -215,9 +220,4 @@ LP:addToggle("Sprint",function(value)
     else
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 24
     end
-end)
--- Textbox
-
-LP:addTextBox("Jump Power / 50 is default","Number here",function(value)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
 end)
