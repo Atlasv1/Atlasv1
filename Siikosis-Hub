@@ -195,6 +195,17 @@ end
 end
 end)
 
+---button
+
+LP:addButton("refrest",function()
+     LP = game:GetService('Players').LocalPlayer
+prev = LP.Character:WaitForChild('HumanoidRootPart').CFrame
+LP.Character.Parent = workspace.Terrain
+game.Players.LocalPlayer.Character:Destroy()
+game:GetService('Workspace'):WaitForChild(LP.Name)
+LP.Character:WaitForChild('HumanoidRootPart').CFrame = prev
+end)
+
   -- Toggle
  
 
