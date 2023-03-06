@@ -39,8 +39,18 @@ LP:addButton("Superleg",function()
   ---Button
     
 LP:addButton("Antifling",function()
-    char = game:GetService("Players").LocalPlayer.Character
-    char.HumanoidRootPart.Size = Vector3.new(1000000, char.HumanoidRootPart.Size.Y, 1000000)
+    game:GetService("RunService").Stepped:Connect(function()
+for i, v in pairs(game:GetService'Players':GetChildren()) do
+if v ~= game.Players.LocalPlayer then
+if v and v.Character then
+v.Character.HumanoidRootPart.CanCollide = false
+v.Character.Head.CanCollide = false
+v.Character.LowerTorso.CanCollide = false
+v.Character.UpperTorso.CanCollide = false
+end
+end
+end
+end)
     end)
     
   ---Button
