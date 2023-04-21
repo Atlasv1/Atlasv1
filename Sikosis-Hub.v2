@@ -704,5 +704,5 @@ local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.S
 local function say() 
 Event:FireServer(text, "All")
 end
-text = "Siikosis-Hub [?gg✗rexy ♯ 8668] [Siikosis]: DS Invite - [c4vfAuJbWA]" say()
+text = "Siikosis-Hub [?ggXrexy ♯ 8668] [Siikosis]: DS Invite - [c4vfAuJbWA]" say()
 end)
