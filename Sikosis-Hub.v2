@@ -1,6 +1,6 @@
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/astraln/SentinelUILIB/main/UI.lua', true))()
 
-local window = Library:Window('sikossis-hub         made by ?gg✗rexy    ')
+local window = Library:Window('sikossis-hub         made by ?ggXrexy    ')
 
 local tab = window:Tab('Scripts')
 
