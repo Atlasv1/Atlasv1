@@ -1,6 +1,6 @@
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/astraln/SentinelUILIB/main/UI.lua', true))()
 
-local window = Library:Window('sikossis-hub         made by 4luzI      ')
+local window = Library:Window('sikossis-hub         made by ?gg✗rexy    ')
 
 local tab = window:Tab('Scripts')
 
@@ -704,5 +704,5 @@ local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.S
 local function say() 
 Event:FireServer(text, "All")
 end
-text = "Siikosis-Hub [4luzI ♯ 8668] [Siikosis]: DS Invite - [c4vfAuJbWA]" say()
+text = "Siikosis-Hub [?gg✗rexy ♯ 8668] [Siikosis]: DS Invite - [c4vfAuJbWA]" say()
 end)
