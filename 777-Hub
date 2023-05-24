@@ -47,10 +47,10 @@ end)
 
 local tab = window:Tab('local-scripts-server')
 
-tab:Button('Chat-lag', function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/ChatLag.lua"))()
-end)
-
+tab:Button('fling-gui', function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI"))()
+   end)
+   
 tab:Button('Chat-spy', function()
    --[[
 Title = <string> - The title of the notification.
