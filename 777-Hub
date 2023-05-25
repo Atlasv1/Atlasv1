@@ -223,6 +223,10 @@ end
 text = "gg.777-Hub[made by gg.lui]" say()
 end)
 
+tab:Button('fe-flip', function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/fe%20flip.lua"))()
+end)
+
 local tab = window:Tab('Admin-Hub')
 
 tab:Button('fates-admin', function()
