@@ -1775,42 +1775,6 @@ AddCommand("unview", {"unv"}, "unviews a user", {3}, function(Caller, Args)
     Workspace.Camera.CameraSubject = GetHumanoid();
 end)
 
-AddCommand("anim2", {"nh"}, "add anims player", {3}, function()
-    local tomtoediendo = game.Players.LocalPlayer.Character
-tomtoediendo:FindFirstChild("Animate").Disabled = true 
-for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-v:Stop() 
-end
-tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=891621366"
-tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083214717"
-tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=657564596"
-tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921355261"
-tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
-tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
-tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921032124"
-tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-tomtoediendo:FindFirstChild("Animate").Disabled = false
-end)
-
-AddCommand("anim", {"nh"}, "add anims player", {3}, function()
-    local tomtoediendo = game.Players.LocalPlayer.Character
-tomtoediendo:FindFirstChild("Animate").Disabled = true 
-for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-v:Stop() 
-end
-tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=707742142"
-tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=707855907"
-tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
-tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921355261"
-tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
-tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
-tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921032124"
-tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-tomtoediendo:FindFirstChild("Animate").Disabled = false
-end)
-
 AddCommand("chatspy", {}, "spy chat", {3}, function(Caller, Args, Tbl)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/chat%20spy"))()
 end)
