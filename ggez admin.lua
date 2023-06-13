@@ -501,7 +501,7 @@ end
 PluginLibrary.GetMagnitude = GetMagnitude
 
 local Settings = {
-    Prefix = ">",
+    Prefix = "$",
     CommandBarPrefix = "Semicolon"
 }
 local PluginSettings = {
