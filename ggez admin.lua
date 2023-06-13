@@ -1809,6 +1809,125 @@ AddCommand("unheadsit", {"noheadsit"}, "unheadsits on the target", {3}, function
     return "headsit disabled"
 end)
 
+AddCommand("fly", {}, "fly your character", {3}, function(Caller, Args, Tbl)
+    LoadCommand("fly").CmdExtra[1] = tonumber(Args[1]) or 3
+    local Speed = LoadCommand("fly").CmdExtra[1]
+    for i, v in next, GetRoot():GetChildren() do
+        if (v:IsA("BodyPosition") or v:IsA("BodyGyro")) then
+            v:Destroy();
+        end
+    end
+    local BodyPos = Instance.new("BodyPosition");
+    local BodyGyro = Instance.new("BodyGyro");
+    ProtectInstance(BodyPos);
+    ProtectInstance(BodyGyro);
+    SpoofProperty(GetHumanoid(), "FloorMaterial");
+    SpoofProperty(GetHumanoid(), "PlatformStand");
+    BodyPos.Parent = GetRoot();
+    BodyGyro.Parent = GetRoot();    
+    BodyGyro.maxTorque = Vector3.new(1, 1, 1) * 9e9
+    BodyGyro.CFrame = GetRoot().CFrame
+    BodyPos.maxForce = Vector3.new(1, 1, 1) * math.huge
+    GetHumanoid().PlatformStand = true
+    coroutine.wrap(function()
+        BodyPos.Position = GetRoot().Position
+        while (next(LoadCommand("fly").CmdExtra) and wait()) do
+            Speed = LoadCommand("fly").CmdExtra[1]
+            local NewPos = (BodyGyro.CFrame - (BodyGyro.CFrame).Position) + BodyPos.Position
+            local CoordinateFrame = Workspace.CurrentCamera.CoordinateFrame
+            if (Keys["W"]) then
+                NewPos = NewPos + CoordinateFrame.lookVector * Speed
+
+                BodyPos.Position = (GetRoot().CFrame * CFrame.new(0, 0, -Speed)).Position;
+                BodyGyro.CFrame = CoordinateFrame * CFrame.Angles(-math.rad(Speed * 15), 0, 0);
+            end
+            if (Keys["A"]) then
+                NewPos = NewPos * CFrame.new(-Speed, 0, 0);
+            end
+            if (Keys["S"]) then
+                NewPos = NewPos - CoordinateFrame.lookVector * Speed
+
+                BodyPos.Position = (GetRoot().CFrame * CFrame.new(0, 0, Speed)).Position;
+                BodyGyro.CFrame = CoordinateFrame * CFrame.Angles(-math.rad(Speed * 15), 0, 0);
+            end
+            if (Keys["D"]) then
+                NewPos = NewPos * CFrame.new(Speed, 0, 0);
+            end
+            BodyPos.Position = NewPos.Position
+            BodyGyro.CFrame = CoordinateFrame
+        end
+        GetHumanoid().PlatformStand = false
+    end)();
+end)
+
+AddCommand("fly2", {}, "fly your character", {3}, function(Caller, Args, Tbl)
+    LoadCommand("fly2").CmdExtra[1] = tonumber(Args[1]) or 5
+    local Speed = LoadCommand("fly").CmdExtra[1]
+    for i, v in next, GetRoot():GetChildren() do
+        if (v:IsA("BodyPosition") or v:IsA("BodyGyro")) then
+            v:Destroy();
+        end
+    end
+    local BodyPos = Instance.new("BodyPosition");
+    local BodyGyro = Instance.new("BodyGyro");
+    ProtectInstance(BodyPos);
+    ProtectInstance(BodyGyro);
+    SpoofProperty(GetHumanoid(), "FloorMaterial");
+    SpoofProperty(GetHumanoid(), "PlatformStand");
+    BodyPos.Parent = GetRoot();
+    BodyGyro.Parent = GetRoot();
+    BodyGyro.maxTorque = Vector3.new(1, 1, 1) * 9e9
+    BodyGyro.CFrame = GetRoot().CFrame
+    BodyGyro.D = 0
+    BodyPos.maxForce = Vector3.new(1, 1, 1) * 9e9
+    BodyPos.D = 400
+    coroutine.wrap(function()
+        BodyPos.Position = GetRoot().Position
+        while (next(LoadCommand("fly2").CmdExtra) and wait()) do
+            Speed = LoadCommand("fly2").CmdExtra[1]
+            local CoordinateFrame = Workspace.CurrentCamera.CoordinateFrame
+            if (Keys["W"]) then
+                GetRoot().CFrame = GetRoot().CFrame * CFrame.new(0, 0, -Speed);
+                BodyPos.Position = GetRoot().Position
+            end
+            if (Keys["A"]) then
+                GetRoot().CFrame = GetRoot().CFrame * CFrame.new(-Speed, 0, 0);
+                BodyPos.Position = GetRoot().Position
+            end
+            if (Keys["S"]) then
+                GetRoot().CFrame = GetRoot().CFrame * CFrame.new(0, 0, Speed);
+                BodyPos.Position = GetRoot().Position
+            end
+            if (Keys["D"]) then
+                GetRoot().CFrame = GetRoot().CFrame * CFrame.new(Speed, 0, 0);
+                BodyPos.Position = GetRoot().Position
+            end
+            BodyGyro.CFrame = CoordinateFrame
+            BodyPos.Position = GetRoot().CFrame.Position
+        end
+    end)();
+
+    return "now flying"
+end)
+
+AddCommand("flyspeed", {"fs"}, "changes the fly speed", {3, "1"}, function(Caller, Args)
+    local Speed = tonumber(Args[1]);
+    LoadCommand("fly").CmdExtra[1] = Speed or LoadCommand("fly2").CmdExtra[1]
+    return Speed and "your fly speed is now " .. Speed or "flyspeed must be a number"
+end)
+
+AddCommand("unfly", {}, "unflies your character", {3}, function()
+    LoadCommand("fly").CmdExtra = {}
+    LoadCommand("fly2").CmdExtra = {}
+    for i, v in next, GetRoot():GetChildren() do
+        if (v:IsA("BodyPosition") or v:IsA("BodyGyro")) then
+            v:Destroy();
+        end
+    end
+    GetHumanoid().PlatformStand = false
+    return "stopped flying"
+end)
+
 AddCommand("fling", {}, "flings a Player", {}, function(Caller, Args)
     local Target = GetPlayer(Args[1]);
     local Root = GetRoot()
