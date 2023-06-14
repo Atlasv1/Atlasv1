@@ -602,8 +602,6 @@ ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
 end
 )
 
-Misc:Label("Panel of cmds")
-
 Misc:Button(
     "click tp",
     function()
