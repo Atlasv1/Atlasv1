@@ -1,6 +1,6 @@
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/astraln/SentinelUILIB/main/UI.lua', true))()
 
-local window = Library:Window('   777-Hub      made by gg.lui')
+local window = Library:Window('   Ezzkid-Hub      made by gg.lui')
 
 local tab = window:Tab('Scripts')
 
@@ -45,87 +45,21 @@ local p = game:GetService("Players").LocalPlayer
 ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
 end)
 
-tab:Button('fly x', function()
-repeat wait() 
-		until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Head") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid") 
-		local mouse = game.Players.LocalPlayer:GetMouse() 
-		repeat wait() until mouse
-		local plr = game.Players.LocalPlayer 
-		local torso = plr.Character.Head 
-		local flying = false
-		local deb = true 
-		local ctrl = {f = 0, b = 0, l = 0, r = 0} 
-		local lastctrl = {f = 0, b = 0, l = 0, r = 0} 
-		local maxspeed = 1
-		local speed = 1
-	
-		function Fly() 
-			local bg = Instance.new("BodyGyro", torso) 
-			bg.P = 9e4 
-			bg.maxTorque = Vector3.new(9e9, 9e9, 9e9) 
-			bg.cframe = torso.CFrame 
-			local bv = Instance.new("BodyVelocity", torso) 
-			bv.velocity = Vector3.new(0,0.1,0) 
-			bv.maxForce = Vector3.new(9e9, 9e9, 9e9) 
-			repeat wait() 
-				plr.Character.Humanoid.PlatformStand = true 
-				if ctrl.l + ctrl.r ~= 100000 or ctrl.f + ctrl.b ~= 10000 then 
-					speed = speed+.0+(speed/maxspeed) 
-					if speed > maxspeed then 
-						speed = maxspeed 
-					end 
-				elseif not (ctrl.l + ctrl.r ~= 5 or ctrl.f + ctrl.b ~= 5) and speed ~= 5 then 
-					speed = speed-5
-					if speed > 5 then 
-						speed = -2 
-					end 
-				end 
-				if (ctrl.l + ctrl.r) ~= 5 or (ctrl.f + ctrl.b) ~= 5 then 
-					bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
-					lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r} 
-				elseif (ctrl.l + ctrl.r) == 5 and (ctrl.f + ctrl.b) == 5 and speed ~= 5 then 
-					bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
-				else 
-					bv.velocity = Vector3.new(0,0.1,0) 
-				end 
-				bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0) 
-			until not flying 
-			ctrl = {f = 0, b = 0, l = 0, r = 0} 
-			lastctrl = {f = 0, b = 0, l = 0, r = 0} 
-			speed = 5 
-			bg:Destroy() 
-			bv:Destroy() 
-			plr.Character.Humanoid.PlatformStand = false 
-		end 
-		mouse.KeyDown:connect(function(key) 
-			if key:lower() == "x" then 
-				if flying then flying = false 
-				else 
-					flying = true 
-					Fly() 
-				end 
-			elseif key:lower() == "w" then 
-				ctrl.f = 45
-			elseif key:lower() == "s" then 
-				ctrl.b = -45 
-			elseif key:lower() == "a" then 
-				ctrl.l = -45 
-			elseif key:lower() == "d" then 
-				ctrl.r = 45
-			end 
-		end) 
-		mouse.KeyUp:connect(function(key) 
-			if key:lower() == "w" then 
-				ctrl.f = 0
-			elseif key:lower() == "s" then 
-				ctrl.b = 0
-			elseif key:lower() == "a" then 
-				ctrl.l = 0
-			elseif key:lower() == "d" then 
-				ctrl.r = 0
-			end 
-		end)
-		Fly()
+tab:Button('chat-sit x', function()
+Prefix = '.'
+
+local xd = game:GetService('Players')
+
+xd.LocalPlayer.Chatted:Connect(function(Chat)
+   local mensajito = string.split(Chat, " ")
+   
+   if mensajito[1]:lower() == Prefix..'sit' then
+        xd.LocalPlayer.Character.Humanoid.Sit = true
+   end
+   if mensajito[1]:lower() == Prefix..'test' then
+       print('testiculo')
+   end
+end)
 end)
 
 local tab = window:Tab('local-scripts-server')
@@ -133,7 +67,7 @@ local tab = window:Tab('local-scripts-server')
 tab:Button('fling-gui', function()
    loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI"))()
    end)
-   
+
 tab:Button('Chat-spy', function()
    --[[
 Title = <string> - The title of the notification.
@@ -210,8 +144,240 @@ tab:Button('fe-emotes', function()
    loadstring(game:HttpGet("https://pastebin.com/raw/eCpipCTH"))()
 end)
 
-tab:Button('animation-changer', function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/LunarWareOP/Animation-Changer-Source/main/Script", true))()
+tab:Button('rtx', function()
+   -- Credits to Instance Serializer for helping me convert the Tokyowami shrine whatever thing to luau
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+local Bloom = Instance.new("BloomEffect")
+Bloom.Intensity = 0.1
+Bloom.Threshold = 0
+Bloom.Size = 100
+
+local Tropic = Instance.new("Sky")
+Tropic.Name = "Tropic"
+Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+Tropic.StarCount = 100
+Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+Tropic.Parent = Bloom
+
+local Sky = Instance.new("Sky")
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+Sky.CelestialBodiesShown = false
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+Sky.Parent = Bloom
+
+Bloom.Parent = game:GetService("Lighting")
+
+local Bloom = Instance.new("BloomEffect")
+Bloom.Enabled = false
+Bloom.Intensity = 0.35
+Bloom.Threshold = 0.2
+Bloom.Size = 56
+
+local Tropic = Instance.new("Sky")
+Tropic.Name = "Tropic"
+Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+Tropic.StarCount = 100
+Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+Tropic.Parent = Bloom
+
+local Sky = Instance.new("Sky")
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+Sky.CelestialBodiesShown = false
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+Sky.Parent = Bloom
+
+Bloom.Parent = game:GetService("Lighting")
+local Blur = Instance.new("BlurEffect")
+Blur.Size = 2
+
+Blur.Parent = game:GetService("Lighting")
+local Efecto = Instance.new("BlurEffect")
+Efecto.Name = "Efecto"
+Efecto.Enabled = false
+Efecto.Size = 2
+
+Efecto.Parent = game:GetService("Lighting")
+local Inaritaisha = Instance.new("ColorCorrectionEffect")
+Inaritaisha.Name = "Inari taisha"
+Inaritaisha.Saturation = 0.05
+Inaritaisha.TintColor = Color3.fromRGB(255, 224, 219)
+
+Inaritaisha.Parent = game:GetService("Lighting")
+local Normal = Instance.new("ColorCorrectionEffect")
+Normal.Name = "Normal"
+Normal.Enabled = false
+Normal.Saturation = -0.2
+Normal.TintColor = Color3.fromRGB(255, 232, 215)
+
+Normal.Parent = game:GetService("Lighting")
+local SunRays = Instance.new("SunRaysEffect")
+SunRays.Intensity = 0.05
+
+SunRays.Parent = game:GetService("Lighting")
+local Sunset = Instance.new("Sky")
+Sunset.Name = "Sunset"
+Sunset.SkyboxUp = "rbxassetid://323493360"
+Sunset.SkyboxLf = "rbxassetid://323494252"
+Sunset.SkyboxBk = "rbxassetid://323494035"
+Sunset.SkyboxFt = "rbxassetid://323494130"
+Sunset.SkyboxDn = "rbxassetid://323494368"
+Sunset.SunAngularSize = 14
+Sunset.SkyboxRt = "rbxassetid://323494067"
+
+Sunset.Parent = game:GetService("Lighting")
+local Takayama = Instance.new("ColorCorrectionEffect")
+Takayama.Name = "Takayama"
+Takayama.Enabled = false
+Takayama.Saturation = -0.3
+Takayama.Contrast = 0.1
+Takayama.TintColor = Color3.fromRGB(235, 214, 204)
+
+Takayama.Parent = game:GetService("Lighting")
+local L = game:GetService("Lighting")
+L.Brightness = 2.14
+L.ColorShift_Bottom = Color3.fromRGB(11, 0, 20)
+L.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+L.OutdoorAmbient = Color3.fromRGB(34, 0, 49)
+L.ClockTime = 6.7
+L.FogColor = Color3.fromRGB(94, 76, 106)
+L.FogEnd = 1000
+L.FogStart = 0
+L.ExposureCompensation = 0.24
+L.ShadowSoftness = 0
+L.Ambient = Color3.fromRGB(59, 33, 27)
+
+local Bloom = Instance.new("BloomEffect")
+Bloom.Intensity = 0.1
+Bloom.Threshold = 0
+Bloom.Size = 100
+
+local Tropic = Instance.new("Sky")
+Tropic.Name = "Tropic"
+Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+Tropic.StarCount = 100
+Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+Tropic.Parent = Bloom
+
+local Sky = Instance.new("Sky")
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+Sky.CelestialBodiesShown = false
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+Sky.Parent = Bloom
+
+Bloom.Parent = game:GetService("Lighting")
+
+local Bloom = Instance.new("BloomEffect")
+Bloom.Enabled = false
+Bloom.Intensity = 0.35
+Bloom.Threshold = 0.2
+Bloom.Size = 56
+
+local Tropic = Instance.new("Sky")
+Tropic.Name = "Tropic"
+Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+Tropic.StarCount = 100
+Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+Tropic.Parent = Bloom
+
+local Sky = Instance.new("Sky")
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+Sky.CelestialBodiesShown = false
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+Sky.Parent = Bloom
+
+Bloom.Parent = game:GetService("Lighting")
+local Blur = Instance.new("BlurEffect")
+Blur.Size = 2
+
+Blur.Parent = game:GetService("Lighting")
+local Efecto = Instance.new("BlurEffect")
+Efecto.Name = "Efecto"
+Efecto.Enabled = false
+Efecto.Size = 2
+
+Efecto.Parent = game:GetService("Lighting")
+local Inaritaisha = Instance.new("ColorCorrectionEffect")
+Inaritaisha.Name = "Inari taisha"
+Inaritaisha.Saturation = 0.05
+Inaritaisha.TintColor = Color3.fromRGB(255, 224, 219)
+
+Inaritaisha.Parent = game:GetService("Lighting")
+local Normal = Instance.new("ColorCorrectionEffect")
+Normal.Name = "Normal"
+Normal.Enabled = false
+Normal.Saturation = -0.2
+Normal.TintColor = Color3.fromRGB(255, 232, 215)
+
+Normal.Parent = game:GetService("Lighting")
+local SunRays = Instance.new("SunRaysEffect")
+SunRays.Intensity = 0.05
+
+SunRays.Parent = game:GetService("Lighting")
+local Sunset = Instance.new("Sky")
+Sunset.Name = "Sunset"
+Sunset.SkyboxUp = "rbxassetid://323493360"
+Sunset.SkyboxLf = "rbxassetid://323494252"
+Sunset.SkyboxBk = "rbxassetid://323494035"
+Sunset.SkyboxFt = "rbxassetid://323494130"
+Sunset.SkyboxDn = "rbxassetid://323494368"
+Sunset.SunAngularSize = 14
+Sunset.SkyboxRt = "rbxassetid://323494067"
+
+Sunset.Parent = game:GetService("Lighting")
+local Takayama = Instance.new("ColorCorrectionEffect")
+Takayama.Name = "Takayama"
+Takayama.Enabled = false
+Takayama.Saturation = -0.3
+Takayama.Contrast = 0.1
+Takayama.TintColor = Color3.fromRGB(235, 214, 204)
+
+Takayama.Parent = game:GetService("Lighting")
+local L = game:GetService("Lighting")
+L.Brightness = 2.14
+L.ColorShift_Bottom = Color3.fromRGB(11, 0, 20)
+L.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+L.OutdoorAmbient = Color3.fromRGB(34, 0, 49)
+L.ClockTime = 6.7
+L.FogColor = Color3.fromRGB(94, 76, 106)
+L.FogEnd = 1000
+L.FogStart = 0
+L.ExposureCompensation = 0.24
+L.ShadowSoftness = 0
+L.Ambient = Color3.fromRGB(59, 33, 27)
 end)
 
 tab:Button('spam', function()
@@ -223,26 +389,17 @@ end
 text = "gg.777-Hub[made by gg.lui]" say()
 end)
 
-tab:Button('fe-flip', function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/fe%20flip.lua"))()
+tab:Button('click teleport', function()
+   mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Click Teleport"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 end)
-
-local tab = window:Tab('Admin-Hub')
-
-tab:Button('fates-admin', function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))()
-end)
-
-tab:Button('iv-Admin v2', function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hex/main/Iv%20Admin%20v2.lua'))()
-end)
-
-tab:Button('infiniteyield', function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-end)
-
-tab:Button('CMD-X', function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source",true))()
+tool.Parent = game.Players.LocalPlayer.Backpack
 end)
 
 local tab = window:Tab('teleports')
