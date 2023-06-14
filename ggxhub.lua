@@ -1,8 +1,8 @@
 local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
 local NotifyLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
 local Notify = NotifyLibrary.Notify
-local win = DiscordLib:Window("ggxhub- Ragdoll Engine")
-local serv = win:Server("ggxhub", "")
+local win = DiscordLib:Window("hacks-de memoutro")
+local serv = win:Server("clan de mamasita xd", "")
 local Home = serv:Channel("Home")
 Home:Label("Press (V) to Open/Close ggxhub")
 Home:Label("mady by creator ggluis")
