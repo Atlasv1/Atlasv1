@@ -517,6 +517,12 @@ TargetT:Button(
     end
 )
 
+TargetT:Button(
+    "ggezadmin",
+    function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/ggez%20admin.lua"))()
+    end)
+
 local Teleports = serv:Channel("Teleports")
 
 Teleports:Button(
