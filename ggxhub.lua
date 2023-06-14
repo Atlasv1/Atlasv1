@@ -627,7 +627,7 @@ local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.S
 local function say() 
 Event:FireServer(text, "All")
 end
-text = "gg.777-Hub[made by gg.lui]" say()
+text = "ggxhub[made by gg.lui]" say()
 end)
 
 Misc:Button(
