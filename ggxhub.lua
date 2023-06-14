@@ -402,7 +402,7 @@ player:Button(
 )
 
 player:Button(
-    "Anti Fling (mo fling users)",
+    "Anti Fling (no fling users)",
     function()
 local RunService = game:GetService("RunService")
 local players = game:GetService("Players")
