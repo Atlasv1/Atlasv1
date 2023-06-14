@@ -734,3 +734,9 @@ xd.LocalPlayer.Chatted:Connect(function(Chat)
    end
 end)
 end)
+
+Misc:Button(
+    "freeze-player",
+    function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/freeze.player"))()
+    end)
