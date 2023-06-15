@@ -2066,6 +2066,9 @@ RunService.Stepped:Connect(function()
 end)
 end)
 
+AddCommand("r6", {}, "r6 player", {3}, function(Caller, Args, Tbl)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/r6%20fe"))()
+        end)
 AddCommand("antirag", {}, "antirag your character", {3}, function(Caller, Args, Tbl)
      plrs = game:GetService("Players")
 plr = plrs.LocalPlayer
