@@ -517,6 +517,12 @@ TargetT:Button(
     end
 )
 
+TargetT:Button(
+    "fly",
+    function()
+    loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-ARCEUS-X-FLY-OFFICIAL-9384"))()
+    end(
+
 local Teleports = serv:Channel("Teleports")
 
 Teleports:Button(
