@@ -423,6 +423,28 @@ RunService.Stepped:Connect(function()
 end)
 end)
 
+player:Button(
+    "headless (no lo ven los demas)",
+    function()
+    game.Players.LocalPlayer.Character.Head.Transparency = 1
+        game.Players.LocalPlayer.Character.Head.face:Remove()
+    end
+)
+
+player:Button(
+    "korblox (no lo ven los demas)",
+    function()
+    local ply = game.Players.LocalPlayer
+		local chr = ply.Character
+		chr.RightLowerLeg.MeshId = "902942093"
+		chr.RightLowerLeg.Transparency = "1"
+		chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+		chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+		chr.RightFoot.MeshId = "902942089"
+		chr.RightFoot.Transparency = "1"
+	end
+)
+
 local TargetT = serv:Channel("Target")
 
 
@@ -452,6 +474,84 @@ TargetT:Textbox(
 		})
     end
 )
+
+player = game.Players.LocalPlayer
+        local Loop
+        local OldFlingPos = player.Character.HumanoidRootPart.Position
+        local loopFunction = function()
+            local success,err = pcall(function()
+                local FlingEnemy = game.Players:FindFirstChild(TargetV).Character
+                if FlingEnemy and player.Character then
+                    FlingTorso = FlingEnemy.UpperTorso
+                    local dis = 3.85
+                    local increase = 6
+                    if FlingEnemy.Humanoid.MoveDirection.X < 0 then
+                        xchange = -increase
+                    elseif FlingEnemy.Humanoid.MoveDirection.X > 0  then
+                        xchange = increase
+                    else
+                        xchange = 0
+                    end
+                    if FlingEnemy.Humanoid.MoveDirection.Z < 0 then
+                        zchange = -increase
+                    elseif FlingEnemy.Humanoid.MoveDirection.Z > 0 then
+                        zchange = increase
+                    else
+                        zchange = 0
+                    end          
+                    if player.Character then
+                        player.Character:FindFirstChildWhichIsA('Humanoid'):ChangeState(11)
+                        player.Character.HumanoidRootPart.CFrame = CFrame.new(FlingTorso.Position.X + math.random(-dis,dis) + xchange, FlingTorso.Position.Y, FlingTorso.Position.Z + math.random(-dis,dis) + zchange) * CFrame.Angles(math.rad(player.Character.HumanoidRootPart.Orientation.X + 350),math.rad(player.Character.HumanoidRootPart.Orientation.Y + 200),math.rad(player.Character.HumanoidRootPart.Orientation.Z + 240))
+                        player.Character.HumanoidRootPart.Velocity = Vector3.new(500000,500000,500000)
+                    end
+                end
+            end)
+            if err then
+            end
+        end;
+        local Start = function()    
+            OldFlingPos = player.Character.HumanoidRootPart.Position
+            Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
+        end;
+        local Pause = function()
+            Loop:Disconnect()
+            local vectorZero = Vector3.new(0, 0, 0)
+            player.Character.PrimaryPart.Velocity = vectorZero
+            player.Character.PrimaryPart.RotVelocity = vectorZero
+            player.Character.HumanoidRootPart.CFrame = CFrame.new(OldFlingPos) * CFrame.Angles(math.rad(0),math.rad(137.92),math.rad(0))
+        end;
+
+TargetT:Toggle("Fling", false, function(bool)
+	if bool == true then
+		Start()
+	elseif bool == false then
+		Pause()
+	end
+end)		
+
+_G.RocketLock = false
+game:GetService"RunService".RenderStepped:Connect(function()
+	if _G.RocketLock == true then
+		if game.Workspace.Ignored:FindFirstChild("Launcher")then
+			local lol = game.Workspace.Ignored:FindFirstChild("Launcher")
+			if lol:FindFirstChildOfClass("BodyVelocity") then
+				wait()
+				lol.BodyVelocity:Destroy()
+			end
+
+			if lol:FindFirstChild("BodyVelocity") == nil then
+				lol.CFrame = CFrame.new(workspace.Players[TargetV].Head.CFrame.X,workspace.Players[TargetV].Head.CFrame.Y+6,workspace.Players[TargetV].Head.CFrame.Z)
+			end
+
+		elseif game.Workspace.Ignored:FindFirstChild("Handle")then
+			local lol = game.Workspace.Ignored:FindFirstChild("Handle")
+
+			if lol:FindFirstChild("Pin") then
+				lol.CFrame = CFrame.new(workspace.Players[TargetV].Head.CFrame.X,workspace.Players[TargetV].Head.CFrame.Y+1,workspace.Players[TargetV].Head.CFrame.Z)
+			end
+		end
+	end
+end)
 
 TargetT:Toggle(
 	"View",
