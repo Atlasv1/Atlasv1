@@ -445,6 +445,49 @@ player:Button(
 	end
 )
 
+player:Button(
+	"Trash Talk",
+	function()
+		function dowait()
+			wait(0.172)
+		end
+		local tbl_main = 
+		{
+			  "EZZZZZZZZZZ🤣🙏🏻🤣🙏🏻🤣🙏🏻🤣🙏🏻🤣🙏🏻" , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+		dowait()
+		local tbl_main = 
+		{
+			  "GGXHUB" , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+		dowait()
+		local tbl_main = 
+		{
+			  "anda a dormir marginad@." , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+		dowait()
+		local tbl_main = 
+		{
+			  "Clip?" , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+		dowait()
+		local tbl_main = 
+		{
+			  "mongolito. 🤡" , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+	end
+)
+
 local TargetT = serv:Channel("Target")
 
 
