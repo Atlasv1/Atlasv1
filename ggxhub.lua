@@ -830,7 +830,7 @@ local function onChatted(p,msg)
                 if public then
                     saymsg:FireServer((publicItalics and "/me " or '').."{SPY} [".. p.Name .."]: "..msg,"All")
                 else
-                    privateProperties.Text = "{xxx} [".. p.Name .."]: "..msg
+                    privateProperties.Text = "{ggxhub} [".. p.Name .."]: "..msg
                     StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
                 end
             end
