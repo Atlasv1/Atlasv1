@@ -437,7 +437,7 @@ end)
 
 FLYSPEED = 20
 player:Button(
-    "Fly [X] [Default]",
+    "Fly [X]",
     function()
 		getgenv().FLYMODE = "Default"
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/dylannpro123/enclosed/main/resources/fly.lua"))()
