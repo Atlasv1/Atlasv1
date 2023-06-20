@@ -919,9 +919,3 @@ Misc:Button(
     function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/freeze.player"))()
     end)
-
-Misc:Button(
-    "Fe r6",
-    function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/r6%20fe"))()
-	end)
