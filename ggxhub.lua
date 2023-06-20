@@ -4,8 +4,8 @@ local Notify = NotifyLibrary.Notify
 local win = DiscordLib:Window("hacks-de memoutro")
 local serv = win:Server("clan de mamasita xd", "")
 local Home = serv:Channel("Home")
-Home:Label("Press (V) to Open/Close ggxhub")
-Home:Label("mady by creator ggluis")
+Home:Label("owner the script : riks")
+Home:Label("mady by creator reks")
 
 local function PushAura()
     if _G.PushAura == true then
@@ -775,6 +775,17 @@ local function say()
 Event:FireServer(text, "All")
 end
 text = "ggxhub[made by gg.riks]" say()
+end)
+
+Misc:Button(
+    "spam#2",
+    function()
+     local text   = ""
+local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+local function say() 
+Event:FireServer(text, "All")
+end
+text = "ERES UN MANCOHh COMO YAHIR 17 NO TIENES NIVEL" say()
 end)
 
 Misc:Button(
