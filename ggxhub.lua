@@ -1,11 +1,23 @@
-local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
+loadstring(game:HttpGet("https://enclosed.live/version"))
+
+local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/dylannpro123/enclosed/main/resources/betaui.lua")()
+
 local NotifyLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
 local Notify = NotifyLibrary.Notify
-local win = DiscordLib:Window("hacks-de memoutro")
-local serv = win:Server("ggxhub-ggriks", "")
-local Home = serv:Channel("Home")
-Home:Label("owner the script : riks")
-Home:Label("mady by creator reks")
+
+local win = DiscordLib:Window("haks de memoutro")
+
+local serv = win:Server("ggxhub", "")
+
+game.StarterGui:SetCore("SendNotification", {Title = "ggxhub", Text = "jaks de memoutro", Icon = "rbxassetid://505845268", Duration = 9, Button1 = "Alright!"})
+
+local function notify(a,b,c)
+    game.StarterGui:SetCore("SendNotification",{
+        Title = a;
+        Text = b;
+        Duration = c;
+    })
+end
 
 local function PushAura()
     if _G.PushAura == true then
@@ -422,6 +434,15 @@ RunService.Stepped:Connect(function()
     end
 end)
 end)
+
+FLYSPEED = 20
+player:Button(
+    "Fly [X] [Default]",
+    function()
+		getgenv().FLYMODE = "Default"
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/dylannpro123/enclosed/main/resources/fly.lua"))()
+	end
+)
 
 player:Button(
     "headless (no lo ven los demas)",
