@@ -2,7 +2,7 @@ local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/da
 local NotifyLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
 local Notify = NotifyLibrary.Notify
 local win = DiscordLib:Window("hacks-de memoutro")
-local serv = win:Server("clan de mamasita xd", "")
+local serv = win:Server("ggxhub-ggriks", "")
 local Home = serv:Channel("Home")
 Home:Label("owner the script : riks")
 Home:Label("mady by creator reks")
