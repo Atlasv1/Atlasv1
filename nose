@@ -1,0 +1,26 @@
+local library   = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/random%202"))()
+local One = library:Window("Title")
+
+One:Box("Box", "Box", function()
+    
+    end)
+
+One:Button("animacion", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921355261"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921032124"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+One:Toggle("Toggle", function()
+    
+end)
