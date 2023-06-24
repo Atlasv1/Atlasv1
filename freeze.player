@@ -2,20 +2,6 @@ local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com
 
 local w1 = library:Window("freeze-player") -- Text
 
-w1:Button(
-    "animacion",
-    function()
-        local tomtoediendo = game.Players.LocalPlayer.Character
-tomtoediendo:FindFirstChild("Animate").Disabled = true 
-for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-v:Stop() 
-end
-tomtoediendo.Animate.idle.Animation1.AnimationId = "rbxassetid://"..4211217646
-tomtoediendo.Animate.idle.Animation2.AnimationId = "rbxassetid://"..4211218409
-tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
-tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
-tomtoediendo:FindFirstChild("Animate").Disabled = false
-    end
 ) -- Text, Callback
 
 w1:Toggle(
