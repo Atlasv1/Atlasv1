@@ -1,9 +1,6 @@
 local library   = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/random%202"))()
-local One = library:Window("Title")
+local One = library:Window("ggxhub.small")
 
-One:Box("Box", "Box", function()
-    
-    end)
 
 One:Button("animacion", function()
     local tomtoediendo = game.Players.LocalPlayer.Character
@@ -20,6 +17,51 @@ tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=70
 tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
 tomtoediendo:FindFirstChild("Animate").Disabled = false
 end)
+
+One:Button("spam", function()
+local text   = ""
+local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+local function say() 
+Event:FireServer(text, "All")
+end
+text = "ERES UN MANCOHh COMO YAHIR 17 NO TIENES NIVEL" say()
+end)
+
+One:Button("click-tp", function()
+mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Click Teleport"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+
+One:Button("rejoin", function()
+local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+end
+)
+
+One:Button("antiragdoll", function()
+plrs = game:GetService("Players")
+plr = plrs.LocalPlayer
+char = plr.Character
+char.HumanoidRootPart.Size = Vector3.new(1000000, char.HumanoidRootPart.Size.Y, 1000000)
+char.Pushed:Destroy()
+char.RagdollMe:Destroy()
+game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
+plrs = game:GetService("Players")
+plr = plrs.LocalPlayer
+char = plr.Character
+char.HumanoidRootPart.Size = Vector3.new(0.98, 1.62, 0.7225, char.HumanoidRootPart.Size.Y, 0.98, 1.62, 0.7225)
+end)
+end)
+
 One:Button("chatspy", function()
 --[[
 Title = <string> - The title of the notification.
@@ -38,9 +80,9 @@ public = false
 publicItalics = true
 --customize private logs
 privateProperties = {
-    Color = Color3.fromRGB(0,255,255); 
-    Font = Enum.Font.SourceSansBold;
-    TextSize = 18;
+    Color = Color3.fromRGB(0,191,255); 
+    Font = Enum.Font.RobotoMono;
+    TextSize = 16;
 }
 local StarterGui = game:GetService("StarterGui")
 local Players = game:GetService("Players")
@@ -71,7 +113,7 @@ local function onChatted(p,msg)
                 if public then
                     saymsg:FireServer((publicItalics and "/me " or '').."{SPY} [".. p.Name .."]: "..msg,"All")
                 else
-                    privateProperties.Text = "{xxx} [".. p.Name .."]: "..msg
+                    privateProperties.Text = "{ggxhub} [".. p.Name .."]: "..msg
                     StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
                 end
             end
@@ -90,61 +132,4 @@ StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
 local chatFrame = player.PlayerGui.Chat.Frame
 chatFrame.ChatChannelParentFrame.Visible = true
 chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Position+UDim2.new(UDim.new(),chatFrame.ChatChannelParentFrame.Size.Y)
-end)
-One:Button("antifling", function()
-local RunService = game:GetService("RunService")
-local players = game:GetService("Players")
-local plr = players.LocalPlayer
-
-RunService.Stepped:Connect(function()
-    for i, CoPlayer in pairs(players:GetChildren()) do
-        if CoPlayer ~= plr and CoPlayer.Character then
-            for i,part in pairs(CoPlayer.Character:GetChildren()) do
-                if part:IsA("BasePart") or part:IsA("Part") or part.Name == "HumanoidRootPart" then
-                    part.CanCollide = false
-                elseif part:IsA("Accessory") and part:FindFirstChildOfClass("MeshPart") then
-                    part:FindFirstChildOfClass("MeshPart").CanCollide = false
-                end
-            end
-        end
-    end
-end)
-One:Button("spam", function()
-  local text   = ""
-local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
-local function say() 
-Event:FireServer(text, "All")
-end
-text = "ERES UN MANCOHh COMO YAHIR 17 NO TIENES NIVEL" say()
-end)
-One:Button("click-tp", function()
-mouse = game.Players.LocalPlayer:GetMouse()
-tool = Instance.new("Tool")
-tool.RequiresHandle = false
-tool.Name = "Click Teleport"
-tool.Activated:connect(function()
-local pos = mouse.Hit+Vector3.new(0,2.5,0)
-pos = CFrame.new(pos.X,pos.Y,pos.Z)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-end)
-tool.Parent = game.Players.LocalPlayer.Backpack
-end)
-One:Button("rejoin", function()
-local ts = game:GetService("TeleportService")
-local p = game:GetService("Players").LocalPlayer
-ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
-end
-)
-One:Toggle("antiragdoll", function()
-plrs = game:GetService("Players")
-plr = plrs.LocalPlayer
-char = plr.Character
-char.HumanoidRootPart.Size = Vector3.new(1000000, char.HumanoidRootPart.Size.Y, 1000000)
-char.Pushed:Destroy()
-char.RagdollMe:Destroy()
-game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
-plrs = game:GetService("Players")
-plr = plrs.LocalPlayer
-char = plr.Character
-char.HumanoidRootPart.Size = Vector3.new(0.98, 1.62, 0.7225, char.HumanoidRootPart.Size.Y, 0.98, 1.62, 0.7225)
 end)
