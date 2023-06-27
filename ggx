@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/ggx%20script.lua",true))();
