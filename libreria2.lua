@@ -72,7 +72,7 @@ Background.Size = UDim2.new(0, 567, 0, 310)
 local toggledui = false
 		UserInputService.InputBegan:Connect(function(input)
 			pcall(function()
-				if input.KeyCode == Enum.KeyCode.V then
+				if input.KeyCode == Enum.KeyCode.Control then
 					if toggledui == false then
 						toggledui = true
 						UICopied.Enabled = false
