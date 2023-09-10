@@ -2219,7 +2219,7 @@ function DiscordLib:Window(text)
 
 				ToggleFrame.Name = "ToggleFrame"
 				ToggleFrame.Parent = Toggle
-				ToggleFrame.BackgroundColor3 = Color3.fromRGB(255, 99, 189)
+				ToggleFrame.BackgroundColor3 = Color3.fromRGB(114, 118, 125)
 				ToggleFrame.Position = UDim2.new(0.900481343, -5, 0.13300018, 0)
 				ToggleFrame.Size = UDim2.new(0, 40, 0, 21)
 
@@ -2229,7 +2229,7 @@ function DiscordLib:Window(text)
 
 				ToggleFrameCircle.Name = "ToggleFrameCircle"
 				ToggleFrameCircle.Parent = ToggleFrame
-				ToggleFrameCircle.BackgroundColor3 = Color3.fromRGB(255, 99, 189)
+				ToggleFrameCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				ToggleFrameCircle.Position = UDim2.new(0.234999999, -5, 0.133000001, 0)
 				ToggleFrameCircle.Size = UDim2.new(0, 15, 0, 15)
 
@@ -2240,12 +2240,12 @@ function DiscordLib:Window(text)
 				Icon.Name = "Icon"
 				Icon.Parent = ToggleFrameCircle
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
-				Icon.BackgroundColor3 = Color3.fromRGB(255, 99, 189)
+				Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				Icon.BackgroundTransparency = 1.000
 				Icon.BorderColor3 = Color3.fromRGB(27, 42, 53)
 				Icon.Position = UDim2.new(0, 8, 0, 8)
 				Icon.Size = UDim2.new(0, 13, 0, 13)
-				Icon.Image = "http://www.roblox.com/asset/?id=1772126376"
+				Icon.Image = "http://www.roblox.com/asset/?id=6035047409"
 				Icon.ImageColor3 = Color3.fromRGB(114, 118, 125)
 				
 				Toggle.MouseButton1Click:Connect(function()
@@ -2266,7 +2266,7 @@ function DiscordLib:Window(text)
 							TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 							{ImageTransparency = 1}
 						):Play()
-						Icon.Image = "http://www.roblox.com/asset/?id=1772126376"
+						Icon.Image = "http://www.roblox.com/asset/?id=6023426926"
 						wait(.1)
 						TweenService:Create(
 							Icon,
