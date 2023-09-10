@@ -2128,7 +2128,7 @@ function DiscordLib:Window(text)
 				ChannelBtnTitle.TextColor3 = Color3.fromRGB(255, 158, 214)
 				currentchanneltoggled = ChannelBtn.Name
 			end)
-			
+		
 			if fc == false then
 				fc = true
 				ChannelTitle.Text = text
@@ -2148,7 +2148,7 @@ function DiscordLib:Window(text)
 				Button.Size = UDim2.new(0, 401, 0, 30)
 				Button.AutoButtonColor = false
 				Button.Font = Enum.Font.Gotham
-				Button.TextColor3 = Color3.fromRGB(255, 158, 214)
+				Button.TextColor3 = Color3.fromRGB(133, 227, 230)
 				Button.TextSize = 15.000
 				Button.Text = text
 
@@ -2178,7 +2178,7 @@ function DiscordLib:Window(text)
 					TweenService:Create(
 						Button,
 						TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{BackgroundColor3 = Color3.fromRGB(114, 137, 228)}
+						{BackgroundColor3 = Color3.fromRGB(255, 158, 214)}
 					):Play()
 				end)
 				ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
