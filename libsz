@@ -2144,12 +2144,12 @@ function DiscordLib:Window(text)
 
 				Button.Name = "Button"
 				Button.Parent = ChannelHolder
-				Button.BackgroundColor3 = Color3.fromRGB(114, 137, 228)
+				Button.BackgroundColor3 = Color3.fromRGB(255, 158, 214)
 				Button.Size = UDim2.new(0, 401, 0, 30)
 				Button.AutoButtonColor = false
 				Button.Font = Enum.Font.Gotham
 				Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-				Button.TextSize = 14.000
+				Button.TextSize = 15.000
 				Button.Text = text
 
 				ButtonCorner.CornerRadius = UDim.new(0, 4)
@@ -2160,7 +2160,7 @@ function DiscordLib:Window(text)
 					TweenService:Create(
 						Button,
 						TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{BackgroundColor3 = Color3.fromRGB(103,123,196)}
+						{BackgroundColor3 = Color3.fromRGB(255, 158, 214)}
 					):Play()
 				end)
 				
