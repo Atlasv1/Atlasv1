@@ -14,7 +14,7 @@ pcall(function()
 	userinfo = HttpService:JSONDecode(readfile("discordlibinfo.txt"));
 end)
 
-pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
+pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=116504620".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
 user =  userinfo["user"] or game.Players.LocalPlayer.Name
 tag = userinfo["tag"] or tostring(math.random(1000,9999))
 
@@ -269,7 +269,7 @@ function DiscordLib:Window(text)
 	UserTag.TextXAlignment = Enum.TextXAlignment.Left
 	
 	UserName.Text = user
-	UserTag.Text = ">" .. tag
+	UserTag.Text = "🌸" .. tag
 
 	ServersHoldFrame.Name = "ServersHoldFrame"
 	ServersHoldFrame.Parent = MainFrame
@@ -595,7 +595,7 @@ function DiscordLib:Window(text)
 	UserSettingsPadTag.Position = UDim2.new(0.0419999994, 0, 0.493999988, 0)
 	UserSettingsPadTag.Size = UDim2.new(0, 65, 0, 19)
 	UserSettingsPadTag.Font = Enum.Font.Gotham
-	UserSettingsPadTag.Text = "#" .. tag
+	UserSettingsPadTag.Text = "🌸" .. tag
 	UserSettingsPadTag.TextColor3 = Color3.fromRGB(184, 186, 189)
 	UserSettingsPadTag.TextSize = 13.000
 	UserSettingsPadTag.TextXAlignment = Enum.TextXAlignment.Left
@@ -1068,7 +1068,7 @@ function DiscordLib:Window(text)
 	UserPanelTag.Position = UDim2.new(0.0419999994, 0, 0.493999988, 0)
 	UserPanelTag.Size = UDim2.new(0, 65, 0, 19)
 	UserPanelTag.Font = Enum.Font.Gotham
-	UserPanelTag.Text = ">" .. tag
+	UserPanelTag.Text = "🌸" .. tag
 	UserPanelTag.TextColor3 = Color3.fromRGB(184, 186, 189)
 	UserPanelTag.TextSize = 17.000
 	UserPanelTag.TextXAlignment = Enum.TextXAlignment.Left
