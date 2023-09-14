@@ -269,7 +269,7 @@ function DiscordLib:Window(text)
 	UserTag.TextXAlignment = Enum.TextXAlignment.Left
 	
 	UserName.Text = user
-	UserTag.Text = "#" .. tag
+	UserTag.Text = ">" .. tag
 
 	ServersHoldFrame.Name = "ServersHoldFrame"
 	ServersHoldFrame.Parent = MainFrame
@@ -1068,7 +1068,7 @@ function DiscordLib:Window(text)
 	UserPanelTag.Position = UDim2.new(0.0419999994, 0, 0.493999988, 0)
 	UserPanelTag.Size = UDim2.new(0, 65, 0, 19)
 	UserPanelTag.Font = Enum.Font.Gotham
-	UserPanelTag.Text = "#" .. tag
+	UserPanelTag.Text = ">" .. tag
 	UserPanelTag.TextColor3 = Color3.fromRGB(184, 186, 189)
 	UserPanelTag.TextSize = 17.000
 	UserPanelTag.TextXAlignment = Enum.TextXAlignment.Left
@@ -1372,12 +1372,12 @@ function DiscordLib:Window(text)
 			tag = TagTextbox.Text
 			UserSettingsPadUser.Text = user
 			UserSettingsPadUser.Size = UDim2.new(0, UserSettingsPadUser.TextBounds.X + 2, 0, 19)
-			UserSettingsPadTag.Text = "#" .. tag
-			UserPanelTag.Text = "#" .. tag
+			UserSettingsPadTag.Text = ">" .. tag
+			UserPanelTag.Text = ">" .. tag
 			UserPanelUser.Text = user
 			UserPanelUser.Size = UDim2.new(0, UserPanelUser.TextBounds.X + 2, 0, 19)
 			UserName.Text = user
-			UserTag.Text = "#" .. tag
+			UserTag.Text = ">" .. tag
 			SaveInfo()
 
 			UserChange:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
@@ -1416,7 +1416,7 @@ function DiscordLib:Window(text)
 		Close2Icon.BackgroundTransparency = 1.000
 		Close2Icon.Position = UDim2.new(-0.0384615399, 0, 0.312910825, 0)
 		Close2Icon.Size = UDim2.new(0, 25, 0, 25)
-		Close2Icon.Image = "http://www.roblox.com/asset/?id=6035047409"
+		Close2Icon.Image = "http://www.roblox.com/asset/?id=116504620"
 		Close2Icon.ImageColor3 = Color3.fromRGB(119, 122, 127)
 
 		CloseBtn1.Name = "CloseBtn1"
@@ -1702,7 +1702,7 @@ function DiscordLib:Window(text)
 		ServerIco.BackgroundTransparency = 1.000
 		ServerIco.Position = UDim2.new(0.489361703, 0, 0.489361703, 0)
 		ServerIco.Size = UDim2.new(0, 26, 0, 26)
-		ServerIco.Image = ""
+		ServerIco.Image = "116504620"
 
 		ServerWhiteFrame.Name = "ServerWhiteFrame"
 		ServerWhiteFrame.Parent = Server
@@ -1795,7 +1795,7 @@ function DiscordLib:Window(text)
 		Glow.Position = UDim2.new(0, -15, 0, -15)
 		Glow.Size = UDim2.new(1, 30, 1, 30)
 		Glow.ZIndex = 0
-		Glow.Image = "rbxassetid://4996891970"
+		Glow.Image = "rbxassetid://116504620"
 		Glow.ImageColor3 = Color3.fromRGB(15, 15, 15)
 		Glow.ScaleType = Enum.ScaleType.Slice
 		Glow.SliceCenter = Rect.new(20, 20, 280, 280)
@@ -1827,7 +1827,7 @@ function DiscordLib:Window(text)
 		Hashtag.Position = UDim2.new(0.0279720277, 0, 0, 0)
 		Hashtag.Size = UDim2.new(0, 19, 0, 39)
 		Hashtag.Font = Enum.Font.Gotham
-		Hashtag.Text = "#"
+		Hashtag.Text = ">"
 		Hashtag.TextColor3 = Color3.fromRGB(114, 118, 125)
 		Hashtag.TextSize = 25.000
 
@@ -1860,7 +1860,7 @@ function DiscordLib:Window(text)
 		GlowChannel.Position = UDim2.new(0, -33, 0, -91)
 		GlowChannel.Size = UDim2.new(1.06396091, 30, 0.228228226, 30)
 		GlowChannel.ZIndex = 0
-		GlowChannel.Image = "rbxassetid://4996891970"
+		GlowChannel.Image = "rbxassetid://116504620"
 		GlowChannel.ImageColor3 = Color3.fromRGB(15, 15, 15)
 		GlowChannel.ScaleType = Enum.ScaleType.Slice
 		GlowChannel.SliceCenter = Rect.new(20, 20, 280, 280)
@@ -2054,7 +2054,7 @@ function DiscordLib:Window(text)
 			ChannelBtnHashtag.Position = UDim2.new(0.0279720314, 0, 0, 0)
 			ChannelBtnHashtag.Size = UDim2.new(0, 24, 0, 30)
 			ChannelBtnHashtag.Font = Enum.Font.Gotham
-			ChannelBtnHashtag.Text = "#"
+			ChannelBtnHashtag.Text = ">"
 			ChannelBtnHashtag.TextColor3 = Color3.fromRGB(114, 118, 125)
 			ChannelBtnHashtag.TextSize = 21.000
 
@@ -2219,7 +2219,7 @@ function DiscordLib:Window(text)
 
 				ToggleFrame.Name = "ToggleFrame"
 				ToggleFrame.Parent = Toggle
-				ToggleFrame.BackgroundColor3 = Color3.fromRGB(114, 118, 125)
+				ToggleFrame.BackgroundColor3 = Color3.fromRGB(190, 183, 190)
 				ToggleFrame.Position = UDim2.new(0.900481343, -5, 0.13300018, 0)
 				ToggleFrame.Size = UDim2.new(0, 40, 0, 21)
 
@@ -2229,7 +2229,7 @@ function DiscordLib:Window(text)
 
 				ToggleFrameCircle.Name = "ToggleFrameCircle"
 				ToggleFrameCircle.Parent = ToggleFrame
-				ToggleFrameCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				ToggleFrameCircle.BackgroundColor3 = Color3.fromRGB(190, 183, 190)
 				ToggleFrameCircle.Position = UDim2.new(0.234999999, -5, 0.133000001, 0)
 				ToggleFrameCircle.Size = UDim2.new(0, 15, 0, 15)
 
@@ -2240,12 +2240,12 @@ function DiscordLib:Window(text)
 				Icon.Name = "Icon"
 				Icon.Parent = ToggleFrameCircle
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
-				Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				Icon.BackgroundColor3 = Color3.fromRGB(253, 174, 255)
 				Icon.BackgroundTransparency = 1.000
 				Icon.BorderColor3 = Color3.fromRGB(27, 42, 53)
 				Icon.Position = UDim2.new(0, 8, 0, 8)
 				Icon.Size = UDim2.new(0, 13, 0, 13)
-				Icon.Image = "http://www.roblox.com/asset/?id=6035047409"
+				Icon.Image = "http://www.roblox.com/asset/?id=116504620"
 				Icon.ImageColor3 = Color3.fromRGB(114, 118, 125)
 				
 				Toggle.MouseButton1Click:Connect(function()
@@ -2266,7 +2266,7 @@ function DiscordLib:Window(text)
 							TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 							{ImageTransparency = 1}
 						):Play()
-						Icon.Image = "http://www.roblox.com/asset/?id=6023426926"
+						Icon.Image = "http://www.roblox.com/asset/?id=116504620"
 						wait(.1)
 						TweenService:Create(
 							Icon,
@@ -2290,7 +2290,7 @@ function DiscordLib:Window(text)
 							TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 							{ImageTransparency = 1}
 						):Play()
-						Icon.Image = "http://www.roblox.com/asset/?id=6035047409"
+						Icon.Image = "http://www.roblox.com/asset/?id=116504620"
 						wait(.1)
 						TweenService:Create(
 							Icon,
