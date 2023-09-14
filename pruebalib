@@ -203,7 +203,7 @@ function DiscordLib:Window(text)
 	MinimizeIcon.BackgroundTransparency = 1.000
 	MinimizeIcon.Position = UDim2.new(0.189182192, 0, 0.128935531, 0)
 	MinimizeIcon.Size = UDim2.new(0, 17, 0, 17)
-	MinimizeIcon.Image = "http://www.roblox.com/asset/?id=6035067836"
+	MinimizeIcon.Image = "http://www.roblox.com/asset/?id=116504620"
 	MinimizeIcon.ImageColor3 = Color3.fromRGB(220, 221, 222)
 
 	ServersHolder.Name = "ServersHolder"
@@ -239,7 +239,7 @@ function DiscordLib:Window(text)
 	UserCircleImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	UserCircleImage.BackgroundTransparency = 1.000
 	UserCircleImage.Size = UDim2.new(0, 32, 0, 32)
-	UserCircleImage.Image = "rbxassetid://4031889928"
+	UserCircleImage.Image = "rbxassetid://116504620"
 	UserCircleImage.ImageColor3 = Color3.fromRGB(41, 43, 47)
 	
 	UserName.Name = "UserName"
@@ -370,7 +370,7 @@ function DiscordLib:Window(text)
 	SettingsOpenBtnIco.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
 	SettingsOpenBtnIco.BackgroundTransparency = 1.000
 	SettingsOpenBtnIco.Size = UDim2.new(0, 18, 0, 18)
-	SettingsOpenBtnIco.Image = "http://www.roblox.com/asset/?id=6031280882"
+	SettingsOpenBtnIco.Image = "http://www.roblox.com/asset/?id=116504620"
 	SettingsOpenBtnIco.ImageColor3 = Color3.fromRGB(220, 220, 220)
 	local SettingsFrame = Instance.new("Frame")
 	local Settings = Instance.new("Frame")
@@ -694,7 +694,7 @@ function DiscordLib:Window(text)
 	SearchIco.BackgroundTransparency = 1.000
 	SearchIco.Position = UDim2.new(0.150000006, 0, 0.100000001, 0)
 	SearchIco.Size = UDim2.new(0, 15, 0, 15)
-	SearchIco.Image = "http://www.roblox.com/asset/?id=6034407084"
+	SearchIco.Image = "http://www.roblox.com/asset/?id=116504620"
 	SearchIco.ImageColor3 = Color3.fromRGB(114, 118, 125)
 	
 	UserPanelUserIcon.MouseEnter:Connect(function()
@@ -2417,7 +2417,7 @@ function DiscordLib:Window(text)
 				GlowBubble.Position = UDim2.new(0, -15, 0, -15)
 				GlowBubble.Size = UDim2.new(1, 30, 1, 30)
 				GlowBubble.ZIndex = 0
-				GlowBubble.Image = "rbxassetid://4996891970"
+				GlowBubble.Image = "rbxassetid://116504620"
 				GlowBubble.ImageColor3 = Color3.fromRGB(15, 15, 15)
 				GlowBubble.ScaleType = Enum.ScaleType.Slice
 				GlowBubble.SliceCenter = Rect.new(20, 20, 280, 280)
@@ -2580,7 +2580,7 @@ function DiscordLib:Window(text)
 				ArrowImg.BackgroundTransparency = 1.000
 				ArrowImg.Position = UDim2.new(1.84974098, 0, 0.167428851, 0)
 				ArrowImg.Size = UDim2.new(0, 22, 0, 22)
-				ArrowImg.Image = "http://www.roblox.com/asset/?id=6034818372"
+				ArrowImg.Image = "http://www.roblox.com/asset/?id=116504620"
 				ArrowImg.ImageColor3 = Color3.fromRGB(212, 212, 212)
 
 				DropdownFrameBtn.Name = "DropdownFrameBtn"
@@ -2906,7 +2906,7 @@ function DiscordLib:Window(text)
 				Color.Position = UDim2.new(0, 10, 0, 10)
 				Color.Size = UDim2.new(0, 154, 0, 118)
 				Color.ZIndex = 10
-				Color.Image = "rbxassetid://4155801252"
+				Color.Image = "rbxassetid://116504620"
 
 				ColorCorner.CornerRadius = UDim.new(0, 3)
 				ColorCorner.Name = "ColorCorner"
@@ -2919,7 +2919,7 @@ function DiscordLib:Window(text)
 				ColorSelection.BackgroundTransparency = 1.000
 				ColorSelection.Position = UDim2.new(preset and select(3, Color3.toHSV(preset)))
 				ColorSelection.Size = UDim2.new(0, 18, 0, 18)
-				ColorSelection.Image = "http://www.roblox.com/asset/?id=4805639000"
+				ColorSelection.Image = "http://www.roblox.com/asset/?id=116504620"
 				ColorSelection.ScaleType = Enum.ScaleType.Fit
 
 				Hue.Name = "Hue"
@@ -2952,7 +2952,7 @@ function DiscordLib:Window(text)
 				HueSelection.BackgroundTransparency = 1.000
 				HueSelection.Position = UDim2.new(0.48, 0, 1 - select(1, Color3.toHSV(preset)))
 				HueSelection.Size = UDim2.new(0, 18, 0, 18)
-				HueSelection.Image = "http://www.roblox.com/asset/?id=4805639000"
+				HueSelection.Image = "http://www.roblox.com/asset/?id=116504620"
 
 				PresetClr.Name = "PresetClr"
 				PresetClr.Parent = ColorpickerFrame
