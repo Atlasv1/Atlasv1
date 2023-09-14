@@ -1688,7 +1688,7 @@ function DiscordLib:Window(text)
 		Server.AutoButtonColor = false
 		Server.Font = Enum.Font.Gotham
 		Server.Text = ""
-		Server.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Server.TextColor3 = Color3.fromRGB(253, 174, 255)
 		Server.TextSize = 18.000
 
 		ServerBtnCorner.CornerRadius = UDim.new(1, 0)
@@ -1707,7 +1707,7 @@ function DiscordLib:Window(text)
 		ServerWhiteFrame.Name = "ServerWhiteFrame"
 		ServerWhiteFrame.Parent = Server
 		ServerWhiteFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-		ServerWhiteFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ServerWhiteFrame.BackgroundColor3 = Color3.fromRGB(253, 174, 255)
 		ServerWhiteFrame.Position = UDim2.new(-0.347378343, 0, 0.502659559, 0)
 		ServerWhiteFrame.Size = UDim2.new(0, 11, 0, 10)
 
