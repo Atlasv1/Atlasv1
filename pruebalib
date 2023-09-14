@@ -2054,7 +2054,7 @@ function DiscordLib:Window(text)
 			ChannelBtnHashtag.Position = UDim2.new(0.0279720314, 0, 0, 0)
 			ChannelBtnHashtag.Size = UDim2.new(0, 24, 0, 30)
 			ChannelBtnHashtag.Font = Enum.Font.Gotham
-			ChannelBtnHashtag.Text = "#"
+			ChannelBtnHashtag.Text = ">"
 			ChannelBtnHashtag.TextColor3 = Color3.fromRGB(114, 118, 125)
 			ChannelBtnHashtag.TextSize = 21.000
 
@@ -2219,7 +2219,7 @@ function DiscordLib:Window(text)
 
 				ToggleFrame.Name = "ToggleFrame"
 				ToggleFrame.Parent = Toggle
-				ToggleFrame.BackgroundColor3 = Color3.fromRGB(114, 118, 125)
+				ToggleFrame.BackgroundColor3 = Color3.fromRGB(190, 183, 190)
 				ToggleFrame.Position = UDim2.new(0.900481343, -5, 0.13300018, 0)
 				ToggleFrame.Size = UDim2.new(0, 40, 0, 21)
 
@@ -2229,7 +2229,7 @@ function DiscordLib:Window(text)
 
 				ToggleFrameCircle.Name = "ToggleFrameCircle"
 				ToggleFrameCircle.Parent = ToggleFrame
-				ToggleFrameCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				ToggleFrameCircle.BackgroundColor3 = Color3.fromRGB(190, 183, 190)
 				ToggleFrameCircle.Position = UDim2.new(0.234999999, -5, 0.133000001, 0)
 				ToggleFrameCircle.Size = UDim2.new(0, 15, 0, 15)
 
