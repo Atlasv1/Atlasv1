@@ -2240,7 +2240,7 @@ function DiscordLib:Window(text)
 				Icon.Name = "Icon"
 				Icon.Parent = ToggleFrameCircle
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
-				Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				Icon.BackgroundColor3 = Color3.fromRGB(253, 174, 255)
 				Icon.BackgroundTransparency = 1.000
 				Icon.BorderColor3 = Color3.fromRGB(27, 42, 53)
 				Icon.Position = UDim2.new(0, 8, 0, 8)
