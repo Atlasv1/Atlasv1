@@ -469,7 +469,7 @@ function DiscordLib:Window(text)
 	CloseSettingsBtnIcon.BackgroundTransparency = 1.000
 	CloseSettingsBtnIcon.Position = UDim2.new(0, 2, 0, 2)
 	CloseSettingsBtnIcon.Size = UDim2.new(0, 19, 0, 19)
-	CloseSettingsBtnIcon.Image = "http://www.roblox.com/asset/?id=6035047409"
+	CloseSettingsBtnIcon.Image = "http://www.roblox.com/asset/?id=116504620"
 	CloseSettingsBtnIcon.ImageColor3 = Color3.fromRGB(222, 222, 222)
 	
 	CloseSettingsBtn.MouseButton1Click:Connect(function()
@@ -945,7 +945,7 @@ function DiscordLib:Window(text)
 		ResetBtn.TextSize = 13.000
 		
 		ResetBtn.MouseButton1Click:Connect(function()
-			pfp = "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
+			pfp = "https://www.roblox.com/headshot-thumbnail/image?userId=116504620".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
 			UserImage.Image = pfp 
 			UserPanelUserImage.Image = pfp
 			SaveInfo()
@@ -1702,7 +1702,7 @@ function DiscordLib:Window(text)
 		ServerIco.BackgroundTransparency = 1.000
 		ServerIco.Position = UDim2.new(0.489361703, 0, 0.489361703, 0)
 		ServerIco.Size = UDim2.new(0, 26, 0, 26)
-		ServerIco.Image = "116504620"
+		ServerIco.Image = "http://www.roblox.com/asset/?id=116504620"
 
 		ServerWhiteFrame.Name = "ServerWhiteFrame"
 		ServerWhiteFrame.Parent = Server
