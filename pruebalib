@@ -1775,7 +1775,7 @@ function DiscordLib:Window(text)
 		ServerTitle.Size = UDim2.new(0, 97, 0, 39)
 		ServerTitle.Font = Enum.Font.GothamSemibold
 		ServerTitle.Text = text
-		ServerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ServerTitle.TextColor3 = Color3.fromRGB(253, 174, 255)
 		ServerTitle.TextSize = 15.000
 		ServerTitle.TextXAlignment = Enum.TextXAlignment.Left
 
