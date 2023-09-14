@@ -14,7 +14,7 @@ pcall(function()
 	userinfo = HttpService:JSONDecode(readfile("discordlibinfo.txt"));
 end)
 
-pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
+pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=116504620".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
 user =  userinfo["user"] or game.Players.LocalPlayer.Name
 tag = userinfo["tag"] or tostring(math.random(1000,9999))
 
@@ -203,7 +203,7 @@ function DiscordLib:Window(text)
 	MinimizeIcon.BackgroundTransparency = 1.000
 	MinimizeIcon.Position = UDim2.new(0.189182192, 0, 0.128935531, 0)
 	MinimizeIcon.Size = UDim2.new(0, 17, 0, 17)
-	MinimizeIcon.Image = "http://www.roblox.com/asset/?id=6035067836"
+	MinimizeIcon.Image = "http://www.roblox.com/asset/?id=116504620"
 	MinimizeIcon.ImageColor3 = Color3.fromRGB(220, 221, 222)
 
 	ServersHolder.Name = "ServersHolder"
@@ -239,7 +239,7 @@ function DiscordLib:Window(text)
 	UserCircleImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	UserCircleImage.BackgroundTransparency = 1.000
 	UserCircleImage.Size = UDim2.new(0, 32, 0, 32)
-	UserCircleImage.Image = "rbxassetid://4031889928"
+	UserCircleImage.Image = "rbxassetid://116504620"
 	UserCircleImage.ImageColor3 = Color3.fromRGB(41, 43, 47)
 	
 	UserName.Name = "UserName"
@@ -269,7 +269,7 @@ function DiscordLib:Window(text)
 	UserTag.TextXAlignment = Enum.TextXAlignment.Left
 	
 	UserName.Text = user
-	UserTag.Text = ">" .. tag
+	UserTag.Text = "🌸" .. tag
 
 	ServersHoldFrame.Name = "ServersHoldFrame"
 	ServersHoldFrame.Parent = MainFrame
@@ -370,7 +370,7 @@ function DiscordLib:Window(text)
 	SettingsOpenBtnIco.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
 	SettingsOpenBtnIco.BackgroundTransparency = 1.000
 	SettingsOpenBtnIco.Size = UDim2.new(0, 18, 0, 18)
-	SettingsOpenBtnIco.Image = "http://www.roblox.com/asset/?id=6031280882"
+	SettingsOpenBtnIco.Image = "http://www.roblox.com/asset/?id=116504620"
 	SettingsOpenBtnIco.ImageColor3 = Color3.fromRGB(220, 220, 220)
 	local SettingsFrame = Instance.new("Frame")
 	local Settings = Instance.new("Frame")
@@ -469,7 +469,7 @@ function DiscordLib:Window(text)
 	CloseSettingsBtnIcon.BackgroundTransparency = 1.000
 	CloseSettingsBtnIcon.Position = UDim2.new(0, 2, 0, 2)
 	CloseSettingsBtnIcon.Size = UDim2.new(0, 19, 0, 19)
-	CloseSettingsBtnIcon.Image = "http://www.roblox.com/asset/?id=6035047409"
+	CloseSettingsBtnIcon.Image = "http://www.roblox.com/asset/?id=116504620"
 	CloseSettingsBtnIcon.ImageColor3 = Color3.fromRGB(222, 222, 222)
 	
 	CloseSettingsBtn.MouseButton1Click:Connect(function()
@@ -595,7 +595,7 @@ function DiscordLib:Window(text)
 	UserSettingsPadTag.Position = UDim2.new(0.0419999994, 0, 0.493999988, 0)
 	UserSettingsPadTag.Size = UDim2.new(0, 65, 0, 19)
 	UserSettingsPadTag.Font = Enum.Font.Gotham
-	UserSettingsPadTag.Text = "#" .. tag
+	UserSettingsPadTag.Text = "🌸" .. tag
 	UserSettingsPadTag.TextColor3 = Color3.fromRGB(184, 186, 189)
 	UserSettingsPadTag.TextSize = 13.000
 	UserSettingsPadTag.TextXAlignment = Enum.TextXAlignment.Left
@@ -694,7 +694,7 @@ function DiscordLib:Window(text)
 	SearchIco.BackgroundTransparency = 1.000
 	SearchIco.Position = UDim2.new(0.150000006, 0, 0.100000001, 0)
 	SearchIco.Size = UDim2.new(0, 15, 0, 15)
-	SearchIco.Image = "http://www.roblox.com/asset/?id=6034407084"
+	SearchIco.Image = "http://www.roblox.com/asset/?id=116504620"
 	SearchIco.ImageColor3 = Color3.fromRGB(114, 118, 125)
 	
 	UserPanelUserIcon.MouseEnter:Connect(function()
@@ -945,7 +945,7 @@ function DiscordLib:Window(text)
 		ResetBtn.TextSize = 13.000
 		
 		ResetBtn.MouseButton1Click:Connect(function()
-			pfp = "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
+			pfp = "https://www.roblox.com/headshot-thumbnail/image?userId=116504620".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
 			UserImage.Image = pfp 
 			UserPanelUserImage.Image = pfp
 			SaveInfo()
@@ -1068,7 +1068,7 @@ function DiscordLib:Window(text)
 	UserPanelTag.Position = UDim2.new(0.0419999994, 0, 0.493999988, 0)
 	UserPanelTag.Size = UDim2.new(0, 65, 0, 19)
 	UserPanelTag.Font = Enum.Font.Gotham
-	UserPanelTag.Text = ">" .. tag
+	UserPanelTag.Text = "🌸" .. tag
 	UserPanelTag.TextColor3 = Color3.fromRGB(184, 186, 189)
 	UserPanelTag.TextSize = 17.000
 	UserPanelTag.TextXAlignment = Enum.TextXAlignment.Left
@@ -1323,7 +1323,7 @@ function DiscordLib:Window(text)
 		HashtagLabel.Position = UDim2.new(0.765877604, 0, -0.0546001866, 0)
 		HashtagLabel.Size = UDim2.new(0, 23, 0, 37)
 		HashtagLabel.Font = Enum.Font.Gotham
-		HashtagLabel.Text = "#"
+		HashtagLabel.Text = "🌸"
 		HashtagLabel.TextColor3 = Color3.fromRGB(79, 82, 88)
 		HashtagLabel.TextSize = 16.000
 
@@ -1372,12 +1372,12 @@ function DiscordLib:Window(text)
 			tag = TagTextbox.Text
 			UserSettingsPadUser.Text = user
 			UserSettingsPadUser.Size = UDim2.new(0, UserSettingsPadUser.TextBounds.X + 2, 0, 19)
-			UserSettingsPadTag.Text = ">" .. tag
-			UserPanelTag.Text = ">" .. tag
+			UserSettingsPadTag.Text = "🌸" .. tag
+			UserPanelTag.Text = "🌸" .. tag
 			UserPanelUser.Text = user
 			UserPanelUser.Size = UDim2.new(0, UserPanelUser.TextBounds.X + 2, 0, 19)
 			UserName.Text = user
-			UserTag.Text = ">" .. tag
+			UserTag.Text = "🌸" .. tag
 			SaveInfo()
 
 			UserChange:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
@@ -1688,7 +1688,7 @@ function DiscordLib:Window(text)
 		Server.AutoButtonColor = false
 		Server.Font = Enum.Font.Gotham
 		Server.Text = ""
-		Server.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Server.TextColor3 = Color3.fromRGB(253, 174, 255)
 		Server.TextSize = 18.000
 
 		ServerBtnCorner.CornerRadius = UDim.new(1, 0)
@@ -1698,16 +1698,16 @@ function DiscordLib:Window(text)
 		ServerIco.Name = "ServerIco"
 		ServerIco.Parent = Server
 		ServerIco.AnchorPoint = Vector2.new(0.5, 0.5)
-		ServerIco.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ServerIco.BackgroundColor3 = Color3.fromRGB(253, 174, 255)
 		ServerIco.BackgroundTransparency = 1.000
 		ServerIco.Position = UDim2.new(0.489361703, 0, 0.489361703, 0)
 		ServerIco.Size = UDim2.new(0, 26, 0, 26)
-		ServerIco.Image = "116504620"
+		ServerIco.Image = "http://www.roblox.com/asset/?id=116504620"
 
 		ServerWhiteFrame.Name = "ServerWhiteFrame"
 		ServerWhiteFrame.Parent = Server
 		ServerWhiteFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-		ServerWhiteFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ServerWhiteFrame.BackgroundColor3 = Color3.fromRGB(253, 174, 255)
 		ServerWhiteFrame.Position = UDim2.new(-0.347378343, 0, 0.502659559, 0)
 		ServerWhiteFrame.Size = UDim2.new(0, 11, 0, 10)
 
@@ -1775,7 +1775,7 @@ function DiscordLib:Window(text)
 		ServerTitle.Size = UDim2.new(0, 97, 0, 39)
 		ServerTitle.Font = Enum.Font.GothamSemibold
 		ServerTitle.Text = text
-		ServerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ServerTitle.TextColor3 = Color3.fromRGB(253, 174, 255)
 		ServerTitle.TextSize = 15.000
 		ServerTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1827,7 +1827,7 @@ function DiscordLib:Window(text)
 		Hashtag.Position = UDim2.new(0.0279720277, 0, 0, 0)
 		Hashtag.Size = UDim2.new(0, 19, 0, 39)
 		Hashtag.Font = Enum.Font.Gotham
-		Hashtag.Text = ">"
+		Hashtag.Text = "🌸"
 		Hashtag.TextColor3 = Color3.fromRGB(114, 118, 125)
 		Hashtag.TextSize = 25.000
 
@@ -2054,7 +2054,7 @@ function DiscordLib:Window(text)
 			ChannelBtnHashtag.Position = UDim2.new(0.0279720314, 0, 0, 0)
 			ChannelBtnHashtag.Size = UDim2.new(0, 24, 0, 30)
 			ChannelBtnHashtag.Font = Enum.Font.Gotham
-			ChannelBtnHashtag.Text = ">"
+			ChannelBtnHashtag.Text = "🌸"
 			ChannelBtnHashtag.TextColor3 = Color3.fromRGB(114, 118, 125)
 			ChannelBtnHashtag.TextSize = 21.000
 
@@ -2253,12 +2253,12 @@ function DiscordLib:Window(text)
 						TweenService:Create(
 							Icon,
 							TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-							{ImageColor3 = Color3.fromRGB(67,181,129)}
+							{ImageColor3 = Color3.fromRGB(253, 174, 255)}
 						):Play()
 						TweenService:Create(
 							ToggleFrame,
 							TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-							{BackgroundColor3 = Color3.fromRGB(67,181,129)}
+							{BackgroundColor3 = Color3.fromRGB(253, 174, 255)}
 						):Play()
 						ToggleFrameCircle:TweenPosition(UDim2.new(0.655, -5, 0.133000001, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
 						TweenService:Create(
@@ -2417,7 +2417,7 @@ function DiscordLib:Window(text)
 				GlowBubble.Position = UDim2.new(0, -15, 0, -15)
 				GlowBubble.Size = UDim2.new(1, 30, 1, 30)
 				GlowBubble.ZIndex = 0
-				GlowBubble.Image = "rbxassetid://4996891970"
+				GlowBubble.Image = "rbxassetid://116504620"
 				GlowBubble.ImageColor3 = Color3.fromRGB(15, 15, 15)
 				GlowBubble.ScaleType = Enum.ScaleType.Slice
 				GlowBubble.SliceCenter = Rect.new(20, 20, 280, 280)
@@ -2580,7 +2580,7 @@ function DiscordLib:Window(text)
 				ArrowImg.BackgroundTransparency = 1.000
 				ArrowImg.Position = UDim2.new(1.84974098, 0, 0.167428851, 0)
 				ArrowImg.Size = UDim2.new(0, 22, 0, 22)
-				ArrowImg.Image = "http://www.roblox.com/asset/?id=6034818372"
+				ArrowImg.Image = "http://www.roblox.com/asset/?id=116504620"
 				ArrowImg.ImageColor3 = Color3.fromRGB(212, 212, 212)
 
 				DropdownFrameBtn.Name = "DropdownFrameBtn"
@@ -2906,7 +2906,7 @@ function DiscordLib:Window(text)
 				Color.Position = UDim2.new(0, 10, 0, 10)
 				Color.Size = UDim2.new(0, 154, 0, 118)
 				Color.ZIndex = 10
-				Color.Image = "rbxassetid://4155801252"
+				Color.Image = "rbxassetid://116504620"
 
 				ColorCorner.CornerRadius = UDim.new(0, 3)
 				ColorCorner.Name = "ColorCorner"
@@ -2919,7 +2919,7 @@ function DiscordLib:Window(text)
 				ColorSelection.BackgroundTransparency = 1.000
 				ColorSelection.Position = UDim2.new(preset and select(3, Color3.toHSV(preset)))
 				ColorSelection.Size = UDim2.new(0, 18, 0, 18)
-				ColorSelection.Image = "http://www.roblox.com/asset/?id=4805639000"
+				ColorSelection.Image = "http://www.roblox.com/asset/?id=116504620"
 				ColorSelection.ScaleType = Enum.ScaleType.Fit
 
 				Hue.Name = "Hue"
@@ -2952,7 +2952,7 @@ function DiscordLib:Window(text)
 				HueSelection.BackgroundTransparency = 1.000
 				HueSelection.Position = UDim2.new(0.48, 0, 1 - select(1, Color3.toHSV(preset)))
 				HueSelection.Size = UDim2.new(0, 18, 0, 18)
-				HueSelection.Image = "http://www.roblox.com/asset/?id=4805639000"
+				HueSelection.Image = "http://www.roblox.com/asset/?id=116504620"
 
 				PresetClr.Name = "PresetClr"
 				PresetClr.Parent = ColorpickerFrame
