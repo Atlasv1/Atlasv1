@@ -1,4 +1,4 @@
--// variables etc
+--// variables etc
 
 
 
@@ -470,7 +470,7 @@ end)
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/libreria2.lua"))()
 
-local GUI = library:new("Shizzuru Hub","[V2]")
+local GUI = library:new("Shizzuru Hub","[V1.2]")
 local Tab1 = GUI:Tap("Ragdoll Engine")
 local Tab2 = GUI:Tap("Misc")
 local Tab3 = GUI:Tap("Character")
@@ -543,35 +543,6 @@ elseif not value then
 end
 end
 end)
- 
-Tab1:Toggle("Push Aura",nil,function(value)
-    getgenv().PushAura = value;
-    
-    if value then
-        coroutine.resume(coroutine.create(function()
-            while wait() do
-                if not getgenv().PushAura then
-                    getgenv().PACon = true;
-                    coroutine.yield();
-                end
-                
-                if game:GetService("Players").LocalPlayer.Character == nil or game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") == nil or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Push") == nil then
-                    continue; 
-                end
-                
-                for _,plr in pairs(game:GetService("Players"):GetPlayers()) do
-                    if plr == game:GetService("Players").LocalPlayer or plr.Character == nil or plr.Character:FindFirstChild("HumanoidRootPart") == nil or (plr.Character:FindFirstChild("HumanoidRootPart").Position-game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude > 15 then
-                        continue;
-                    end
-                    
-                    game:GetService("Players").LocalPlayer.Character:FindFirstChild("Push"):FindFirstChild("PushTool"):FireServer(plr.Character);
-                end
-            end
-        end))
-    end
-end)
-
-local ar_con1 = nil;
 
 Tab1:Toggle("Freeze",nil,function(value)
     game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = value
@@ -753,13 +724,6 @@ wait()
 firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
 end
 end
-end)
-
-Tab1:Button("Spy Break",function()
-    while true do
-        game:GetService("Players"):Chat("Spy break")
-        task.wait()
-    end
 end)
 
 Tab1:Line()
