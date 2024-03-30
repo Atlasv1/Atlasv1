@@ -932,8 +932,6 @@ end)
 
 local Teleports = serv:Channel("Teleports")
 
-Teleports:Label("Tp")
-
 Teleports:Button(
 	"Sign",
 	function()
@@ -1019,8 +1017,6 @@ Teleports:Button(
 )
 
 local Misc = serv:Channel("Misc")
-
-Misc:Label("Player")
 
 Misc:Button(
     "Fly mobile",
@@ -1180,8 +1176,6 @@ end
 
 local Animations = serv:Channel("Animations")
 
-Animations:Label("Animations Special")
-
   Animations:Button(
 	"cowboy",
 	function()
@@ -1303,8 +1297,6 @@ Animations:Button(
         end)
 
 local Server = serv:Channel("Rejoin")
-
- Server:Label("Adds")
 
     Server:Button(
     "Rejoin",
