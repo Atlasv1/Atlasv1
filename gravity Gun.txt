@@ -929,7 +929,10 @@ for _,x in next, Targets do
 end
 end)
 
+
 local Teleports = serv:Channel("Teleports")
+
+Teleports:Label("Tp")
 
 Teleports:Button(
 	"Sign",
@@ -1016,6 +1019,7 @@ Teleports:Button(
 )
 
 local Misc = serv:Channel("Misc")
+
 Misc:Label("Player")
 
 Misc:Button(
@@ -1176,6 +1180,8 @@ end
 
 local Animations = serv:Channel("Animations")
 
+Animations:Label("Animations Special")
+
   Animations:Button(
 	"cowboy",
 	function()
@@ -1297,6 +1303,8 @@ Animations:Button(
         end)
 
 local Server = serv:Channel("Rejoin")
+
+ Server:Label("Adds")
 
     Server:Button(
     "Rejoin",
