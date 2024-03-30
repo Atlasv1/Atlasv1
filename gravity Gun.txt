@@ -1274,4 +1274,3 @@ Animations:Button(
             tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=742639812"
             tomtoediendo:FindFirstChild("Animate").Disabled = false
             end)
-        end)
