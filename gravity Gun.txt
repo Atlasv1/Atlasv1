@@ -47,6 +47,7 @@ local win = DiscordLib:Window("Exynux.www")
 local serv = win:Server("Exynux Scripts", "")
 local Home = serv:Channel("Home")
 Home:Label("Owner[Cpixell]")
+Home:Label("Next updates soon")
 Home:Label("Press (V) to Open/Close")
 
 game.StarterGui:SetCore("SendNotification", {Title = "Exynux", Text = "Dev [cpixell]", Icon = "rbxassetid://116504620", Duration = 9, Button1 = "Yay🔱"})
@@ -55,7 +56,7 @@ game.StarterGui:SetCore("SendNotification", {Title = "Exynux", Text = "Dev [cpix
 local player = serv:Channel("Ragdoll Engine")
 
 player:Toggle(
-    "No Ragdoll",
+    "Anti Ragdoll",
     false,
 function(state)
 if state then
@@ -682,7 +683,6 @@ TargetT:Button(
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[TargetPlr].Character.HumanoidRootPart.CFrame
     end
 )
-
 TargetT:Button(
     "Copy Anim",
     function()
@@ -928,9 +928,7 @@ for _,x in next, Targets do
 end
 end)
 
-
 local Teleports = serv:Channel("Teleports")
-
 Teleports:Button(
 	"Sign",
 	function()
@@ -1016,6 +1014,9 @@ Teleports:Button(
 )
 
 local Misc = serv:Channel("Misc")
+
+
+Misc:Label("Player")
 
 Misc:Button(
     "Fly mobile",
@@ -1274,3 +1275,578 @@ Animations:Button(
             tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=742639812"
             tomtoediendo:FindFirstChild("Animate").Disabled = false
             end)
+
+Animations:Button(
+    "Zombie",
+    function()
+        local tomtoediendo = game.Players.LocalPlayer.Character
+        tomtoediendo:FindFirstChild("Animate").Disabled = true 
+        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+        v:Stop() 
+        end
+        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616158929"
+        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616160636"
+        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
+        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616168032"
+        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616161997"
+        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616157476"
+        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616156119"
+        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+        tomtoediendo:FindFirstChild("Animate").Disabled = false
+        end)
+
+Animations:Button(
+    "Worewolf",
+     function()
+        local tomtoediendo = game.Players.LocalPlayer.Character
+        tomtoediendo:FindFirstChild("Animate").Disabled = true 
+        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+        v:Stop() 
+        end
+        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083195517"
+        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083214717"
+        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083216690"
+        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083178339"
+        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083218792"
+        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083189019"
+        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083182000"
+        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+        tomtoediendo:FindFirstChild("Animate").Disabled = false
+        end)
+    
+ Animations:Button(
+    "Mage",
+     function()
+        local tomtoediendo = game.Players.LocalPlayer.Character
+        tomtoediendo:FindFirstChild("Animate").Disabled = true 
+        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+        v:Stop() 
+        end
+        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=707742142"
+        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=707855907"
+        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=707861613"
+        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=707897309"
+        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=707853694"
+        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=707829716"
+        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=707826056"
+        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+        tomtoediendo:FindFirstChild("Animate").Disabled = false
+        end)
+
+ Animations:Button(
+  "levitation",
+  function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+    tomtoediendo:FindFirstChild("Animate").Disabled = true 
+    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+    v:Stop() 
+    end
+    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616006778"
+    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616008087"
+    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616010382"
+    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616013216"
+    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616008936"
+    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616005863"
+    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616003713"
+    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+    tomtoediendo:FindFirstChild("Animate").Disabled = false
+    end)
+
+    Animations:Button(
+        "Vampire",
+        function()
+            local tomtoediendo = game.Players.LocalPlayer.Character
+            tomtoediendo:FindFirstChild("Animate").Disabled = true 
+            for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+            v:Stop() 
+            end
+            tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083445855"
+            tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083450166"
+            tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083462077"
+            tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083473930"
+            tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083455352"
+            tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083443587"
+            tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083439238"
+            tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+            tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+            tomtoediendo:FindFirstChild("Animate").Disabled = false
+            end)
+    
+Animations:Button(
+    "Cartonny",
+     function()
+        local tomtoediendo = game.Players.LocalPlayer.Character
+    tomtoediendo:FindFirstChild("Animate").Disabled = true 
+    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+    v:Stop() 
+    end
+    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=742637544"
+    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=742638445"
+    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=742638842"
+    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=742640026"
+    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=742637942"
+    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=742637151"
+    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=742636889"
+    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+    tomtoediendo:FindFirstChild("Animate").Disabled = false
+    end)
+    
+
+Animations:Button(
+  "Ninja",
+  function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+    tomtoediendo:FindFirstChild("Animate").Disabled = true 
+    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+    v:Stop() 
+    end
+    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=656117400"
+    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=656118341"
+    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=656118852"
+    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=656121766"
+    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
+    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=656115606"
+    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=656114359"
+    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+    tomtoediendo:FindFirstChild("Animate").Disabled = false
+    end)
+
+    Animations:Button(
+  "Pirate",
+  function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+    tomtoediendo:FindFirstChild("Animate").Disabled = true 
+    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+    v:Stop() 
+    end
+    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=750781874"
+    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=750782770"
+    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=750783738"
+    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=750785693"
+    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=750782230"
+    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=750780242"
+    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=750779899"
+    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+    tomtoediendo:FindFirstChild("Animate").Disabled = false
+    end)
+
+    Animations:Button(
+        "Hero",
+        function()
+            local tomtoediendo = game.Players.LocalPlayer.Character
+            tomtoediendo:FindFirstChild("Animate").Disabled = true 
+            for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+            v:Stop() 
+            end
+            tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616111295"
+            tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616113536"
+            tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616117076"
+            tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616122287"
+            tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616115533"
+            tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616108001"
+            tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616104706"
+            tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+            tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+            tomtoediendo:FindFirstChild("Animate").Disabled = false
+            end)
+
+ Animations:Button(
+      "Kinght",
+   function()   
+    local tomtoediendo = game.Players.LocalPlayer.Character
+    tomtoediendo:FindFirstChild("Animate").Disabled = true 
+    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+    v:Stop() 
+    end
+    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=657595757"
+    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=657568135"
+    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=657564596"
+    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=657552124"
+    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=657552124"
+    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=657600338"
+    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=658360781"
+    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+    tomtoediendo:FindFirstChild("Animate").Disabled = false
+    end)
+
+    Animations:Button(
+        "Elder",
+     function()   
+        local tomtoediendo = game.Players.LocalPlayer.Character
+        tomtoediendo:FindFirstChild("Animate").Disabled = true 
+        for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+        v:Stop() 
+        end
+        tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=845397899"
+        tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=845400520"
+        tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=845386501"
+        tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=845403856"
+        tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=845398858"
+        tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=845392038"
+        tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=845396048"
+        tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+        tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+        tomtoediendo:FindFirstChild("Animate").Disabled = false
+        end)
+
+Animations:Button(
+       "Toy",
+     function()
+        local tomtoediendo = game.Players.LocalPlayer.Character
+    tomtoediendo:FindFirstChild("Animate").Disabled = true 
+    for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+    v:Stop() 
+    end
+    tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+    tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782845736"
+    tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=782842708"
+    tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=782843345"
+    tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=782847020"
+    tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
+    tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=782843869"
+    tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+    tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+    tomtoediendo:FindFirstChild("Animate").Disabled = false
+    end)
+
+local Server = serv:Channel("Rejoin")
+
+    Server:Button(
+    "Rejoin",
+    function()
+local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+end
+)
+
+Server:Button(
+    "ServerHop",
+    function()
+    for fe, fg in pairs(game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+            if fg.playing ~= fg.maxPlayers then
+              game:service("TeleportService"):TeleportToPlaceInstance(game.PlaceId, fg.id)
+            end
+          end
+end)
+
+-- // mod perms
+--Open source
+local players = game:GetService("Players")
+local player = players.LocalPlayer
+local onben = false
+
+local TestPerson = Instance.new("Player")
+TestPerson.Name = "Cpixell"
+TestPerson.Parent = game.Players
+
+coroutine.wrap(function()
+    pcall(function()
+        task.wait(15)
+        TestPerson:Destroy()
+    end)
+end)()
+
+local PremList = {
+    2924306911,
+    1322643777,
+    2250634441,
+    2278716443,
+    1678248866,
+    2241756235,
+    2448201786,
+    3878503910,
+    637217349,
+    2477537459,
+    3321189625,
+    666;
+}
+
+local adminlist = {
+    143961241,
+}
+
+
+local jumpscares = {
+    10755920324,
+    1119705746,
+    12213285275,
+    12293699441,
+    10727260846,
+    12342625873,
+    8804558033;
+}
+local memes = {
+    8373881910,
+    7279156932,
+    11648246803,
+    928967808,
+    9260491536,
+    551973081,
+    8863809025,
+    11569839895;
+}
+
+local function offragdoll()
+    pcall(function()
+        player.Character:FindFirstChild("Falling down").Disabled = true
+        player.Character:FindFirstChild("Swimming").Disabled = true
+        player.Character:FindFirstChild("StartRagdoll").Disabled = true
+        player.Character:FindFirstChild("Pushed").Disabled = true
+        player.Character:FindFirstChild("KillScript").Disabled = true
+        player.Character:FindFirstChild("RagdollMe").Disabled = true
+    end)
+end
+
+local function onragdoll()
+    pcall(function()
+        player.Character:FindFirstChild("Falling down").Disabled = false
+        player.Character:FindFirstChild("Swimming").Disabled = false
+        player.Character:FindFirstChild("StartRagdoll").Disabled = false
+        player.Character:FindFirstChild("Pushed").Disabled = false
+        player.Character:FindFirstChild("KillScript").Disabled = false
+        player.Character:FindFirstChild("RagdollMe").Disabled = false
+    end)
+end
+
+local function getcommand(plr, msg)
+    local admin = game:GetService("Players"):GetPlayerByUserId(plr)
+    local cmd = msg:lower()
+    local SplitCMD = string.split(cmd," ")
+    local LowerN, LowerD = string.lower(player.Name), string.lower(player.DisplayName)
+    local ISPREMTOO = table.find(PremList, player.UserId)
+    local ISADMIN = table.find(adminlist, admin.UserId)
+    pcall(function()
+        local Allowed = string.find(LowerN, SplitCMD[2]) or string.find(LowerD, SplitCMD[2]) or false
+        if Allowed then
+            if string.find(SplitCMD[1], "-user") then
+                if not ISPREMTOO or ISADMIN then
+                    local args = {[1] = ("/w "..admin.Name.." i'm using Zytek"),[2] = "All"}
+                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+                end
+            end
+            if string.find(SplitCMD[1], "-freeze") then
+                pcall(function()
+                    for i,v in pairs(player.Character:GetChildren()) do
+                        if v:IsA("Part") or v:IsA("BasePart") then
+                            v.Anchored = true
+                        end
+                    end
+                end)
+            end
+            if string.find(SplitCMD[1], "-unfreeze")  or string.find(SplitCMD[1], "m!nofreeze") then
+                pcall(function()
+                    for i,v in pairs(player.Character:GetChildren()) do
+                        if v:IsA("Part") or v:IsA("BasePart") then
+                            v.Anchored = false
+                        end
+                    end
+                end)
+            end
+            if string.find(SplitCMD[1], "-kick") then
+                if not ISPREMTOO or ISADMIN then
+                    pcall(function()
+                        player:Kick("Kicked by: "..admin.Name.."")
+                    end)
+                    task.wait(1)
+                    while true do end
+                end
+            end
+            if string.find(SplitCMD[1], "-bring") then
+                if not ISPREMTOO or ISADMIN then
+                    pcall(function()
+                        player.Character.HumanoidRootPart.CFrame = admin.Character.HumanoidRootPart.CFrame
+                    end)
+                end
+            end
+            if string.find(SplitCMD[1], "-fling") then
+                pcall(function()
+                    for i,v in pairs(player.Character:GetChildren()) do
+                        if v:IsA("Part") or v:IsA("BasePart") then
+                            v.Velocity = Vector3.new(1000000000000,1000000000000,1000000000000)
+                        end
+                    end
+                end)
+            end
+            if string.find(SplitCMD[1], "-sun") then
+                pcall(function()
+                    for i,v in pairs(player.Character:GetChildren()) do
+                        if v:IsA("Part") or v:IsA("BasePart") then
+                            v.Velocity = Vector3.new(0,1000,0)
+                        end
+                    end
+                end)
+            end
+            if string.find(SplitCMD[1], "-sit") then
+                pcall(function()
+                    player.Character.Humanoid.Sit = true
+                end)
+            end
+            if string.find(SplitCMD[1], "-bug") then
+                if not ISPREMTOO or ISADMIN then
+                    pcall(function()
+                        player:Destroy()
+                    end)
+                end
+            end
+            if string.find(SplitCMD[1], "-slow") then
+                pcall(function()
+                    player.Character.Humanoid.WalkSpeed = 3
+                end)
+            end
+            if string.find(SplitCMD[1], "-unslow") or string.find(SplitCMD[1], "m!noslow") then
+                pcall(function()
+                    player.Character.Humanoid.WalkSpeed = 16
+                end)
+            end
+            if string.find(SplitCMD[1], "-jump") then
+                pcall(function()
+                    player.Character.Humanoid:ChangeState(3)
+                end)
+            end
+            if string.find(SplitCMD[1], "-kill") then
+                pcall(function()
+                    player.Character.Humanoid.Health = 0
+                end)
+            end
+            if string.find(SplitCMD[1], "-crash") then
+                if not ISPREMTOO or ISADMIN then
+                    pcall(function()
+                        while true do end
+                    end)
+                end
+            end
+            if string.find(SplitCMD[1], "-benx") then
+                if not ISPREMTOO or ISADMIN then
+                    onben = true
+                    offragdoll()
+                    repeat task.wait()
+                        pcall(function()
+                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -1.3) * CFrame.Angles(-1.5,math.rad(0),0)
+                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -1.8) * CFrame.Angles(-1.5,math.rad(0),0)
+                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -2.3) * CFrame.Angles(-1.5,math.rad(0),0)
+                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -2.8) * CFrame.Angles(-1.5,math.rad(0),0)
+                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -2.3) * CFrame.Angles(-1.5,math.rad(0),0)
+                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -1.8) * CFrame.Angles(-1.5,math.rad(0),0)
+                            task.wait(); player.Character.Humanoid.Sit = true; player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                            player.Character.HumanoidRootPart.CFrame = admin.Character.LowerTorso.CFrame * CFrame.new(0, 0, -1.3) * CFrame.Angles(-1.5,math.rad(0),0)
+                        end)
+                    until onben == false
+                end
+            end
+            if string.find(SplitCMD[1], "-unbenx") or string.find(SplitCMD[1], "!nobenx") then
+                if not ISPREMTOO or ISADMIN then
+                    onben = false
+                    onragdoll()
+                end
+            end
+            if string.find(SplitCMD[1], "-jumpscare") then
+                if not ISPREMTOO or ISADMIN then
+                    local ScGui = Instance.new("ScreenGui")
+                    local image = Instance.new("ImageLabel")
+                    ScGui.Parent = game.CoreGui
+                    ScGui.Name = "ScreenGui"
+                    image.Name = "JScare"
+                    image.ImageTransparency = 0
+                    image.BackgroundTransparency = 1
+                    image.Parent = ScGui
+                    image.Position = UDim2.new(0, 0, 0, 0)
+                    image.Size = UDim2.new(1, 0, 1, 0)
+                    image.Image = ("rbxassetid://"..jumpscares[math.random(1,#jumpscares)])
+                    ScGui.IgnoreGuiInset = true
+                    task.wait(5)
+                    ScGui:Destroy()
+                end
+            end
+            if string.find(SplitCMD[1], "-spin") then
+                if not ISPREMTOO or ISADMIN then
+                    local Spin = Instance.new("BodyAngularVelocity")
+                    Spin.Parent = player.Character.HumanoidRootPart
+                    Spin.Name = "MHSpin"
+                    Spin.MaxTorque = Vector3.new(0,math.huge,0)
+                    Spin.AngularVelocity = Vector3.new(0,30,0)
+                end
+            end
+            if string.find(SplitCMD[1], "-unspin") or string.find(SplitCMD[1], "m!nospin") then
+                pcall(function()
+                    player.Character.HumanoidRootPart.MHSpin:Destroy()
+                end)
+            end
+            if string.find(SplitCMD[1], "-chat") then
+                if not ISPREMTOO or ISADMIN then
+                    local TextSay = ""
+                    for i,v in pairs(SplitCMD) do
+                        pcall(function()
+                            if i >= 2 then
+                                TextSay = (TextSay.." "..SplitCMD[i+1])
+                            end
+                        end)
+                    end
+                    local args = {[1] = TextSay,[2] = "All"}
+                    game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
+                end
+            end
+            if string.find(SplitCMD[1], "-gravity") then
+                if not ISPREMTOO or ISADMIN then
+                    game.Workspace.Gravity = 20
+                end
+            end
+            if string.find(SplitCMD[1], "-nogravity") or string.find(SplitCMD[1], "m!ungravity") then
+                game.Workspace.Gravity = 196.2
+            end
+            if string.find(SplitCMD[1], "-fakeban") then
+                if not ISPREMTOO or ISADMIN then
+                player:Kick("You are banned Reason: kid You will get unban after (999999d 0h 0m 0s)")
+                end
+            end
+            if string.find(SplitCMD[1], "-milk") then
+                local ScGui = Instance.new("ScreenGui")
+                local image = Instance.new("ImageLabel")
+                ScGui.Parent = game.CoreGui
+                ScGui.Name = "ScreenGui"
+                image.Name = "JScare"
+                image.ImageTransparency = 0
+                image.BackgroundTransparency = 1
+                image.Parent = ScGui
+                image.Position = UDim2.new(0, 0, 0, 0)
+                image.Size = UDim2.new(1, 0, 1, 0)
+                image.Image = "rbxassetid://12480466786"
+                ScGui.IgnoreGuiInset = true
+                task.wait(5)
+                ScGui:Destroy()
+            end
+        end
+    end)
+end
+
+for i,v in pairs(game.Players:GetPlayers()) do
+    local PD = v
+    local PREMS = table.find(PremList, v.UserId)
+    if PREMS then
+        v.Chatted:Connect(function(msg)
+            getcommand(PD.UserId, msg)
+        end)
+    end
+end
+players.PlayerAdded:Connect(function(joined)
+    local PDJ = joined
+    local PREMJ = table.find(PremList, joined.UserId)
+    if PREMJ then
+        joined.Chatted:Connect(function(msg)
+            getcommand(PDJ.UserId, msg)
+        end)
+    end
+end)
